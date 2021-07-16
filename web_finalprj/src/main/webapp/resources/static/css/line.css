@@ -1,0 +1,349 @@
+@charset "UTF-8";
+
+.line {
+	/*position: relative;*/
+}
+
+
+#title, #linecnt, #extra {
+	color: #5b24ad;
+	font-weight: 600;
+}
+
+.input-container {
+	margin-top: 70px;
+	margin-bottom: 60px;
+	text-align: right;
+	position: relative;
+	height: 80px;
+	/*position: relative;
+	left: 30px;
+	top: 30px;
+	margin-top: 50px;*/
+}
+
+.input {
+	display: inline-block;
+	width: 825px;
+	height: 50px;
+	resize: none;
+	vertical-align: top;
+	margin-right: 15px;
+	/*
+	resize: none;
+	overflow: hidden;*/
+}
+
+.submit {
+	display: inline-block;
+	height: 62px;
+	vertical-align: top;
+	/*height: 64px;*/
+}
+
+.starForm {
+	text-align: left;
+	text-indent: 165px;
+	height: 35px;
+}
+
+.currcnt-outer {
+	position: relative;
+}
+
+.currcnt {
+	position: absolute;
+	left: 910px;
+	bottom: 48px;
+}
+
+
+/*)
+.linelist {
+	display: table;
+}
+
+.lineOne, .line-date {
+	display: table-row;
+}
+
+span[class|="line"] {
+	display: table-cell;
+}
+*/
+
+.lineone-outer, .user-info, .lineone {
+	height: 105px;
+}
+
+
+.lineone {
+	background-color: #f7f5fa;
+}
+
+.line-date {
+	height: 100px;
+}
+
+.lineone-outer {
+	display: table;
+}
+
+.user-info, .lineone {
+	display: table-cell;
+	vertical-align: middle;
+}
+/* lineone-outer의 너비: 1100px */
+
+
+.line-star, .line-contents, .line-gcntIcon, .line-gcnt, .line-opt {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+span[class|="line"]:not(.line-star):not(.line-date) {
+	height: 105px;
+}
+
+.user-info {
+	width: 153px;
+	text-align: center;
+}
+
+.lineone {
+	width: 946px;
+	border-radius: 7px;
+}
+
+.line-date {
+	height: 60px;
+	text-align: right;
+}
+
+.line-star {
+	height: 50px;
+	border-right: 2px solid lightgray;
+	width: 100px;
+	text-align: center;
+	font-size: xx-large;
+	font-weight: 400;
+	color: #5f3b94;
+}
+
+.line-contents {
+	width: 665px;
+	padding-left: 15px;
+}
+
+.line-gcntIcon {
+	width: 70px;
+	text-align: right;
+}
+
+.line-gcntIcon > svg:hover {
+	cursor: pointer;
+}
+
+.line-gcnt {
+	width: 67px;
+}
+
+.line-opt {
+	width: 32px;
+}
+
+/* 글자색 변경 */
+.currcnt-outer, .user-info, .line-contents, .line-gcnt, .line-date {
+	color: #545151;
+}
+
+.tail {
+	width: 0px;
+	padding: 0px;
+
+	border-top: 15px solid transparent;
+	border-left: 15px solid red;
+	border-right: 15px solid transparent;
+	border-bottom: 15px solid transparent;
+}
+
+.tail + ul {
+	list-style: none;
+}
+
+.tail + ul > li {
+	border: 1px solid lightgray;
+	width: 50px;
+}
+
+.line-popup {
+	display: none;
+}
+
+path:hover .line-date {
+	background-color: red;
+}
+
+.paging {
+	text-align: center;
+}
+
+
+
+
+
+/*
+td[class|="line"] {
+	vertical-align: middle;
+}
+*/
+
+
+/*
+td:not(.line-email):not(.cdate) {	
+}
+*/
+
+
+/*
+.line-star {
+	border-radius: 5px 0px 0px 5px;
+	font-size: xx-large;
+	font-weight: 400;
+	color: #5f3b94;
+	width: 8%;
+	text-align: center;	
+}
+
+.line-contents {
+	width: 65%;
+	text-indent: 5px;
+}
+
+.line-gcntIcon {
+	width: 40px;
+	background-color: yellow !important;
+}
+
+.line-gcnt {
+	background-color: green !important;
+	width: 70px;
+}
+
+.line-opt {
+	background-color: pink !important;
+	border-radius: 0px 5px 5px 0px;
+}
+
+.cdate {
+	text-align: right;
+	/*vertical-align: super;
+}*/
+/*
+.inputdiv, .submitdiv {
+	/*position: absolute;
+	height: 65px;
+}*/
+/*
+.inputdiv {
+	/*left: 150px;
+}*/
+/*
+.submitdiv {
+	/*left: 992px;
+}*/
+
+
+/*
+.strcnt {
+	display: absolute;
+	left: 700px;
+	top: 100px;
+}
+*/
+
+/*
+.line-list {
+	margin-top: 120px;
+}
+
+.lineOne {
+	display: table-row;
+}
+
+.user-info {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	width: 150px;
+	height: 80px;
+}
+
+
+
+.line- {
+	display: table;
+	width: 100%;
+}
+
+
+.line-score, .line-context, .line-goods, .line-opt {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.line-score, .line-opt {
+	width: 90px;
+	text-align: center;
+}
+
+.line-gcntIcon, .line-goods {
+	width: 50px;
+	text-align: center;
+}
+
+.line-context {
+	width: 680px;
+	text-indent: 40px;
+}
+
+
+
+#linecnt {
+	/*display: inline-block;
+	width: 50px;
+	text-align: center;
+	box-shadow: 0px -10px yellow inset;
+}
+*/
+
+/*
+.line-date {
+	text-align: right;
+	margin-bottom: 40px;
+	padding-right: 7px;
+}
+
+.line-opt .del {
+	/*display: none;
+}*/
+
+/*
+.line-opt:hover .del {
+	/*display: inline-block;
+}*/
+
+/*
+.line-opt > ul {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.del {
+	background-color: white;
+	list-style: none;
+	width: 100px;
+	height: 35px;
+	border: 1px solid black;
+}
+*/

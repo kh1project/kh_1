@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="lineMapper">
+	<select id="initLinelist" resultType="line">
+		SELECT *
+		  FROM(
+				SELECT l.*, a.email
+		 		  FROM line l
+				 INNER JOIN movie m
+		 		   	ON l.mid = m.id
+		 		 INNER JOIN account a
+		    		ON l.aid = a.id
+		 		 WHERE l.mid = #{mid}
+		   		   AND l.deleted = 'N'
+		 		 ORDER BY l.cdate DESC)
+		 WHERE ROWNUM &lt;= 10
+	</select>
+	
+	<select id="linelist_dynamic" parameterType="setting" resultType="line">
+		SELECT id, mid, aid, email, contents, gcnt, star, cdate, deleted
+		  FROM(
+				SELECT l.*, a.email, ROW_NUMBER() OVER(ORDER BY l.cdate DESC) rnum
+		  		  FROM line l
+		 		 INNER JOIN movie m
+		   		 	ON l.mid = m.id
+		 		 INNER JOIN account a
+		    		ON l.aid = a.id
+		 		 WHERE l.mid = #{mid}
+		   		   AND l.deleted = 'N'
+           		 ORDER BY l.cdate DESC) t
+		  WHERE rnum BETWEEN #{startNum} AND #{endNum}
+	</select>
+	
+	<select id="lineOne" resultType="line">
+		SELECT l.*, a.email
+		  FROM line l
+		 INNER JOIN account a
+		    ON l.aid = a.id
+		 WHERE l.id = #{id}
+	</select>
+	
+	<select id="getGcnt" resultType="_int">
+		SELECT gcnt
+		  FROM line
+		 WHERE id = #{id}
+	</select>
+	
+	<select id="linecnt" resultType="_int">
+		SELECT COUNT(l.id)
+		  FROM line l
+		 WHERE mid = #{mid}
+		   AND deleted = 'N'
+	</select>
+	
+	<insert id="add" parameterType="lineAddDTO" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			SELECT line_seq.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO line (id, mid, aid, contents, star)
+			 VALUES (#{id}, #{mid}, #{aid}, #{contents}, #{star})
+	</insert>
+	
+	<update id="incGcnt">
+		UPDATE line
+		   SET gcnt = gcnt + 1
+		 WHERE id = #{lid}
+	</update>
+	
+	<update id="delete">
+		UPDATE line
+		   SET deleted = 'Y'
+		 WHERE id = #{lid}
+	</update>
+</mapper>

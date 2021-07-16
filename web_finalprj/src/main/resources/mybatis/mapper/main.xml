@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mainMapper">
+	<select id="carousel" resultType="Integer">
+		SELECT *
+		  FROM (SELECT id FROM movie WHERE id &lt;= 15 ORDER BY dbms_random.value)
+		 WHERE ROWNUM &lt;= 3
+			<!-- ORDER BY id -->
+	</select>
+	
+	<select id="boxoffice" resultType="boxoffice">
+		SELECT *
+		  FROM(
+				SELECT distinct m.id as id, m.gcnt as gcnt, m.summary as summary
+				  FROM reservation r
+				 INNER JOIN time t
+					ON r.timeid = t.id
+				 INNER JOIN movie_theater mt
+					ON t.mtid = mt.id
+				 INNER JOIN movie m
+					ON mt.mid = m.id
+				 ORDER BY gcnt DESC
+		  )
+		WHERE ROWNUM &lt;= 4
+	</select>
+	
+	<select id="boxofficeUnder4" resultType="boxoffice">
+		SELECT id, gcnt, summary
+		  FROM movie
+		 WHERE id IN(
+		 			SELECT *
+		 			  FROM (SELECT id FROM movie WHERE id &lt;= 15 ORDER BY playdate DESC)
+		 			 WHERE ROWNUM &lt;= 4
+		 )
+		 
+	</select>
+	
+	<select id="movieCnt" resultType="_int">
+		SELECT COUNT(distinct m.id) as cnt
+		  FROM reservation r
+		 INNER JOIN time t
+		   	ON r.timeid = t.id
+		 INNER JOIN movie_theater mt
+		    ON t.mtid = mt.id
+		 INNER JOIN movie m
+		    ON mt.mid = m.id
+	</select>
+	
+	<select id="getGcnt" resultType="_int">
+		SELECT gcnt
+		  FROM movie
+		 WHERE id = #{id}
+	</select>
+	
+	<update id="incGcnt">
+		UPDATE movie
+		   SET gcnt = gcnt + 1
+		 WHERE id = #{id}
+	</update>
+</mapper>

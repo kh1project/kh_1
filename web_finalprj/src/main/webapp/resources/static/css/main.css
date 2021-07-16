@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+
+.carousel-item {
+  height: 100vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#boxoffice {
+	/*background-image: url('https://source.unsplash.com/RCAhiGJsUUE/1920x1080');*/
+	background-color: black;
+	color: white;
+	padding: 50px 0px 100px;
+}
+
+.caption {
+	text-align: center;
+	margin: 50px auto;
+	font-size: large;
+	width: 10%;
+	padding-bottom: 15px;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.container-fluid {
+	position: relative;
+}
+
+#more {
+	position: absolute;
+	right: 18%;
+	top: -15%;
+	font-size: large;
+	color: rgba(255, 255, 255, 0.4);
+}
+
+/*
+#plus {
+	display: inline-block;
+	font-size: xx-large;
+}
+*/
+
+.card {
+	position: relative;
+	background-color: black;
+}
+
+.summary {
+	visibility: hidden;
+	font-style: normal !important;
+}
+
+.card:hover .summary {
+	visibility: visible;
+	background-color: rgba(0, 0, 0, 0.8);
+	text-align: left;
+	color: white;
+}
+
+.btn-primary {
+	background-color: #1a56b0;
+	border: 1px solid #1a56b0;
+}
+
+.btn-outline-light {
+	border: 1px solid rgb(255, 255, 255, 0.3);
+}
+
+.cover {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+}
+
+.btn1 {
+	position: absolute;
+	width: 35%;
+}
+
+.btn2 {
+	position: absolute;
+	left: 40%;
+	width: 60%;
+}
+
+.btn1:hover {
+	color: #ffffff !important;
+	background-color: #000000 !important;
+	border: 1px solid rgb(255, 255, 255, 0.3) !important;
+}
+
+.card-img-overlay {
+	text-shadow: 3px 3px 2px #323633;
+	font-style: oblique;
+}
+
+h1 {
+	position: absolute;
+	right: 87%;
+	bottom: 83%;
+}

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reviewMapper">
+	<insert id="firstInsertPost" parameterType="reviewpost" useGeneratedKeys="true" keyColumn="mergePost" keyProperty="mergePost">
+		INSERT INTO post(id, mergePost, postimg, posttext)
+			VALUES(post_seq.NEXTVAL, merge_seq.NEXTVAL, #{postimg}, #{posttext}) 
+	</insert>
+	<insert id="insertPost" parameterType="reviewpost">
+		INSERT INTO post(id, mergePost, postimg, posttext)
+			VALUES(post_seq.NEXTVAL, #{mergePost}, #{postimg}, #{posttext}) 
+	</insert>
+	<select id="selectMergePost" parameterType="string" resultType="reviewpost">
+		SELECT * FROM post WHERE mergePost = #{mergeId}
+	</select>
+	<insert id="insertReview" parameterType="reviewadd">
+		INSERT INTO board(id, btype, mid, aid, title, contents)
+			VALUES(board_seq.NEXTVAL, 1, #{mid}, #{aid}, #{title}, #{contents})
+	</insert>
+	<select id="selectReviewList" resultType="reviewlist">
+		SELECT * FROM board WHERE btype = 1 AND deleted = 'N' AND nodel = 'N' ORDER BY id DESC
+	</select>
+	<select id="selectOrderbyLikeList" resultType="reviewlist">
+		SELECT * FROM board WHERE btype = 1 AND deleted = 'N' AND nodel = 'N' ORDER BY (gcnt - bcnt) DESC
+	</select>
+	<select id="selectReviewSearchList" parameterType="boardSearch" resultType="reviewlist">
+		SELECT a.* FROM board a LEFT OUTER JOIN movie b ON a.mid = b.id LEFT OUTER JOIN account c ON a.aid = c.id WHERE b.title = #{search} OR b.genre = #{search} OR b.director = #{search} OR b.actor = #{search} OR c.nickname = #{search}
+	</select>
+	<select id="selectReviewSeenList" parameterType="int" resultType="reviewlist">
+		SELECT * FROM board WHERE btype = 1 AND deleted = 'N' AND nodel = 'N' AND mid IN (
+		SELECT a.mid FROM board a
+		  LEFT OUTER JOIN account b ON a.aid = b.id
+		  LEFT OUTER JOIN movie_theater c ON a.mid = c.mid
+		  LEFT OUTER JOIN time d ON c.tid = d.id
+		  LEFT OUTER JOIN reservation e ON d.id = e.timeid
+		 WHERE b.id = ${id}
+      GROUP BY a.mid) ORDER BY id DESC
+	</select>
+	<select id="selectOrderbyLikeSeenList" parameterType="int" resultType="reviewlist">
+		SELECT * FROM board WHERE btype = 1 AND deleted = 'N' AND nodel = 'N' AND mid IN (
+		SELECT a.mid FROM board a
+		  LEFT OUTER JOIN account b ON a.aid = b.id
+		  LEFT OUTER JOIN movie_theater c ON a.mid = c.mid
+		  LEFT OUTER JOIN time d ON c.tid = d.id
+		  LEFT OUTER JOIN reservation e ON d.id = e.timeid
+		 WHERE b.id = ${id}
+      GROUP BY a.mid) ORDER BY (gcnt - bcnt) DESC
+	</select>
+	<select id="selectReviewSearchSeenList" parameterType="boardSearch" resultType="reviewlist">
+		SELECT a.* FROM board a LEFT OUTER JOIN movie b ON a.mid = b.id LEFT OUTER JOIN account c ON a.aid = c.id WHERE b.title = #{search} OR b.genre = #{search} OR b.director = #{search} OR b.actor = #{search} OR c.nickname = #{search}
+	</select>
+	<select id="selectReview" parameterType="int" resultType="review">
+		SELECT * FROM board WHERE id = ${rid} AND deleted = 'N' AND nodel = 'N'
+	</select>
+	<update id="firstUpdatePost" parameterType="reviewpost">
+		UPDATE post
+		   SET mergePost = merge_seq.NEXTVAL
+		     , postimg = #{postimg}
+		     , posttext = #{posttext}
+		 WHERE id = #{id}
+		 <selectKey keyColumn="mergePost" keyProperty="mergePost" resultType="int" order="AFTER">
+		 	SELECT mergePost FROM post WHERE id = #{id}
+		 </selectKey>
+	</update>
+	<update id="updatePost" parameterType="reviewpost">
+		UPDATE post
+		   SET mergePost = #{mergePost}
+		     , postimg = #{postimg}
+		     , posttext = #{posttext}
+		 WHERE id = #{id}
+	</update>
+	<delete id="rollbackPost" parameterType="string">
+		DELETE FROM post WHERE mergePost = ${mergeId}
+	</delete>
+	<update id="updateReview" parameterType="review">
+		UPDATE board
+		   SET contents = #{contents}
+		     , star = #{star}
+		     , udate = SYSDATE
+		 WHERE id = #{id}
+	</update>
+	<update id="deleteReview" parameterType="int">
+		UPDATE board
+		   SET deleted = 'Y'
+		 WHERE id = #{id}
+	</update>
+	<update id="updateGcnt" parameterType="review">
+		UPDATE board
+		   SET gcnt = #{gcnt}
+		 WHERE id = #{id}
+		 <selectKey keyColumn="gcnt" keyProperty="gcnt" resultType="int" order="AFTER">
+		 	SELECT gcnt FROM board WHERE id = #{id}
+		 </selectKey>
+	</update>
+	<update id="updateBcnt" parameterType="review">
+		UPDATE board
+		   SET bcnt = #{bcnt}
+		 WHERE id = #{id}
+		 <selectKey keyColumn="bcnt" keyProperty="bcnt" resultType="int" order="AFTER">
+		 	SELECT bcnt FROM board WHERE id = #{id}
+		 </selectKey>
+	</update>
+	<update id="updateVcnt" parameterType="review">
+		UPDATE board
+		   SET vcnt = #{vcnt}
+		 WHERE id = #{id}
+		 <selectKey keyColumn="vcnt" keyProperty="vcnt" resultType="int" order="AFTER">
+		 	SELECT vcnt FROM board WHERE id = #{id}
+		 </selectKey>
+	</update>
+	<update id="blockReview" parameterType="int">
+		UPDATE board
+		   SET nodel = 'Y'
+		 WHERE id = #{id}
+	</update>
+</mapper>

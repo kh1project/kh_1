@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+
+#add-step2 { display:none; }
+.r_movieselect { display:none; }
+.selectImg { width:100%; }
+.btn-group button:last-child i { margin-right:1px; }
+.card-body > a { color:inherit; }
+
+.page-util {
+	background-color: #4397a9;
+    position: relative;
+}
+.page-util * { color:#fff; font-weight:400; line-height:calc(3rem - 8px); }
+.page-util a:hover { text-decoration:none; color:inherit; }
+
+.page-title { border-bottom:1px solid #ddd; }
+.page-title .container { padding-top: 1rem; padding-bottom:1rem; display: flex; justify-content: space-between; align-items: center; }
+.page-title a { background-color:#503396; border-radius:0.5rem; color:#fff; padding:0.6rem 2rem; }
+.page-title h1 { font-size:2rem; } 
+
+.nav-tabs { display:flex; justify-content: center; align-items: center; }
+.nav-tabs li { padding:0.6rem 1.6rem; position:relative; top:1px; }
+.nav-tabs li a:hover { text-decoration:underline; color:#503396; }
+.nav-tabs li.active { color:#5127b5; font-weight:600; border:1px solid #dee2e6; border-bottom-color:#fff; border-top-left-radius:0.5rem; border-top-right-radius:0.5rem; }
+
+.card-image { width:100%; height:180px; overflow:hidden; border-top-left-radius:.5rem; border-top-right-radius:.5rem; }
+.card-image:hover { opacity:.9; }
+.card-image img { width:100%; min-height:180px; cursor:pointer; }
+
+.tab-header { display:flex; justify-content: space-between; align-items:center; padding:1.2rem 0 3rem; }
+.tab-header h5 span { color:#01738b; font-weight:600; }
+.tab-header-right { display:flex; }
+.tab-header-right span {line-height:42px; padding:0 .3rem; }
+.tab-header-right span:hover { text-decoration:underline; cursor:pointer; }
+.tab-header-right span.on { color:#5127b5; font-weight:600; }
+.tab-header-search { margin-left:20px; } 
+.tab-header-search input { border:0; border-bottom:1px solid #bbb; padding:0.5rem; }
+.tab-header-search button { border:0; background:none; }
+.tab-header-search button i { color:#5127b5; }
+
+.add-step-header { display:flex; flex-direction: column; justify-content: space-between; align-items:center; font-size:1.4rem; margin-bottom:2rem;}
+.add-step-header span { font-size:1rem; border:1px solid #ddd; padding:0.5rem 2rem; margin:1rem 0 0; border-radius:30rem; }
+.add-step-header span strong { color:#01738b; font-weight:600; }
+#add-step1 > .row-cols-lg-4 { justify-content:center; }
+.wmwrap { position:relative; cursor:pointer; border-radius:0.5rem; text-align:center; }
+.wmwrap p { padding-top:1rem; margin:0; }
+.wmwrap > img { width:100%; }
+.checkbg { opacity:0; position:absolute; width:calc(100% - 2rem); height:calc(100% - 4.5rem); background:rgba(0,0,0,.6); z-index:3; }
+.checkbg:hover { opacity:0.3; }
+.checkbg i { color: #fff; font-size: 2rem; position: absolute; left: calc(50% - 1rem); top: calc(50% - 1rem); }
+
+#add-step2 > form > .row,
+#update > form > .row { justify-content: space-between; margin-right:15px; margin-left:15px; }
+.postimagewrap, .postwrap { overflow-y:auto; border:1px solid #ddd; border-radius:.5rem; padding:1.5rem; max-width:49%; }
+.postwrap { padding:1.5rem 0; }
+#add-imagelist { display: flex; width:100%; margin-left:0; flex-wrap: wrap; align-items: flex-start; justify-content: space-around; align-content: flex-start; }
+#add-imagelist img { margin:.2rem; padding:0; height:150px; cursor:pointer; }
+#add-imagelist img:hover { opacity:0.7; }
+#btn_addpost { border:1px dashed #d8d9db; border-radius:30rem; padding:0.8rem 2.5rem; background-color:#fff; margin:2rem 35%; width:30%; }
+.post { background-color:#fff; position:relative; padding:1.4rem;}
+.post.selected { background-color:#329eb1; }
+.post .selectImg, .post textarea { width:100%; }
+.post .selectImg { padding:0; }
+.post .delBtn { position:absolute; top:0.3rem; right:0.3rem; cursor:pointer; }
+.post textarea { border:0; padding:.5rem 1rem .5rem; resize:none; border:1px solid #e5e5e5; border-top:0; height:90px; }
+.post.selected textarea { border-color:#fff; }
+.pTextCnt { font-size:12px; position:absolute; bottom:28px; right:28px; color:#aaa; }
+.listnull { width:100%; text-align:center; margin:8rem 0; }
+
+#add-step2 .btn_wrap,
+#update .btn_wrap { display:flex; justify-content: center; align-items: center; padding:2rem 0; }
+#add-step2 .btn_wrap button,
+#update .btn_wrap button { font-size:1.2rem; border:1px solid #503396; background-color:#fff; border-radius:0.5rem; color:#503396; padding:0.6rem 3.5rem; margin:0 .5rem; }
+#add-step2 .btn_wrap button:last-child,
+#update .btn_wrap button:last-child { background-color:#503396; color:#fff; }
+
+.review-detail-wrap { border:1px solid #ddd; border-radius:.5rem; padding:2rem 0 1rem; max-width:60%; min-width:800px; margin:0 auto; }
+.review-post-wrap { background-color:#eaeaea; padding:2rem 3.5rem; display: flex; flex-direction: column; align-items: center; }
+.review-post-wrap + .review-post-wrap { padding-top:0; }
+.review-post-wrap img { max-width:100%; margin-bottom:.5rem; }
+.review-detail-header { display:flex; justify-content: space-between; align-items: center; padding:0 2rem 2rem; }
+.review-detail-header h3,
+.review-detail-header p { margin:0; }
+.review-detail-header h3 { display:flex; flex-direction: column; align-content: flex-start; }
+.review-detail-header h3 small { color:#999; font-size:.9rem; padding-top:.3rem;}
+.review-detail-header > div { display:flex; flex-direction: column; align-content: flex-end; }
+.review-detail-header > div * { color:#999; }
+.review-detail-header > div p { text-align:right; }
+.review-detail-header > div p + p { margin-top:.5rem; }
+.review-detail-header > div span { margin-left:10px; }
+.review-detail-header > div a { border: 1px solid #ddd; padding: 0 .8rem; margin-left: 5px; font-size: .9rem; border-radius: 2rem;}
+.review-detail-header > div a:hover { background-color:#4397a9; color:#fff; border-color:#4397a9; }
+.review-detail-header > div i { margin-right:3px; }
+.detail-btn-wrap { display:flex; justify-content:center; padding-top:1rem; }
+.detail-btn-wrap button { border:0; background:none; }
+.btn-gcnt .fa-thumbs-up,
+.btn-bcnt .fa-thumbs-down,
+.btn-cnt .fa-comment-alt { color:#999; }
+.btn-cnt { cursor:initial !important; }
+.btn-cnt:hover { background:inherit !important; color:inherit !important; border-color:#bbb !important; }
+.btn-cnt .fa-comment-alt { color:#999; }

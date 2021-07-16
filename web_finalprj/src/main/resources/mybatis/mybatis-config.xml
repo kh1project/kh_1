@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTO Config 3.0//EN"
+	"http:/mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.web.seenema.dto.BoxofficeDTO" alias="boxoffice" />
+		<typeAlias type="com.web.seenema.reserve.dto.BranchDTO" alias="branch" />
+		<typeAlias type="com.web.seenema.reserve.dto.RstepDTO" alias="rstep" />
+		<typeAlias type="com.web.seenema.reserve.dto.BranchTheaterDTO" alias="BranchTheater" />
+		<typeAlias type="com.web.seenema.reserve.dto.TimeDTO" alias="time" />
+		<typeAlias type="com.web.seenema.reserve.dto.TimeInfoDTO" alias="timeinfo" />
+		<typeAlias type="com.web.seenema.movie.dto.MovieDTO" alias="movie" />
+		<typeAlias type="com.web.seenema.movie.dto.MyMovieDTO" alias="myMovie" />
+		<typeAlias type="com.web.seenema.movie.dto.MovieImageDTO" alias="movieImage" />
+		<typeAlias type="com.web.seenema.reserve.dto.SeatSelectDTO" alias="SeatSelect" />
+		<typeAlias type="com.web.seenema.reserve.dto.SeatDTO" alias="seat" />
+		<typeAlias type="com.web.seenema.reserve.dto.ReservationDTO" alias="reservation" />
+		<typeAlias type="com.web.seenema.pay.dto.PayDTO" alias="pay" />
+		<typeAlias type="com.web.seenema.line.dto.LineDTO" alias="line" />
+		<typeAlias type="com.web.seenema.line.dto.SettingDataDTO" alias="setting" />
+		<typeAlias type="com.web.seenema.line.dto.LineAddDTO" alias="lineAddDTO" />
+		<typeAlias type="com.web.seenema.review.dto.ReviewPostDTO" alias="reviewpost" />
+		<typeAlias type="com.web.seenema.account.dto.AccountDTO" alias="account" />
+		<typeAlias type="com.web.seenema.review.dto.ReviewAddDTO" alias="reviewadd" />
+		<typeAlias type="com.web.seenema.review.dto.ReviewListDTO" alias="reviewlist" />
+		<typeAlias type="com.web.seenema.review.dto.ReviewDTO" alias="review" />
+		<typeAlias type="com.web.seenema.board.dto.BoardSearchDTO" alias="boardSearch" />
+		
+	</typeAliases>
+</configuration>

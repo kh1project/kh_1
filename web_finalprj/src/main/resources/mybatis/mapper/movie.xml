@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="movie">
+	<select id="movieImageSearch" parameterType="int" resultType="movieImage">
+		select * from image_files where mid = #{mid}
+	</select>
+	
+	<select id="myMovieSearch" parameterType="int" resultType="myMovie">
+		select a.id, a.title, b.path, b.name from movie a, Image_files b where a.id = b.mid and a.id = #{mid}
+	</select>
+	
+	<select id="getPoster" resultType="movieImage">
+		select * from image_files where mid = #{mid} AND path LIKE '%poster%' AND name = 'movie_image.jpg'
+	</select>
+	
+	<select id="getAllMovies" resultType="com.web.seenema.movie.dto.MovieDTO">
+		SELECT * FROM movie
+	</select>
+	
+	<select id="getMovie" resultType="com.web.seenema.movie.dto.MovieDTO">
+		SELECT * FROM movie WHERE id = #{mid}
+	</select>
+	
+	<select id="getAllMoviesSortByReserve" resultType="com.web.seenema.movie.dto.MovieDTO">
+		SELECT id,title, rating, playdate, rcnt, gcnt, grade FROM movie ORDER BY rcnt DESC
+	</select>
+	
+	<select id="getAllMoviesSortByGcnt" resultType="com.web.seenema.movie.dto.MovieDTO">
+		SELECT m.id, m.title, m.rating, m.playdate, m.rcnt, m.grade, count(ml.mid) gcnt FROM movie m 
+		LEFT OUTER JOIN movielike ml ON ml.mid = m.id 
+		GROUP BY ml.mid, m.id, m.title, m.rating, m.playdate, m.rcnt, m.grade 
+		ORDER BY gcnt DESC
+	</select>
+	
+	<select id="getAllMoviesSortByGrade" resultType="com.web.seenema.movie.dto.MovieDTO">
+		SELECT id,title, rating, playdate, rcnt, gcnt, grade FROM movie ORDER BY grade DESC
+	</select>
+	
+	<select id="getLikeList" resultType="com.web.seenema.movie.dto.MovieLikeDTO">
+		SELECT * FROM movielike Where aid = #{aid}
+	</select>
+	
+	<insert id="insertMovieLike" parameterType="com.web.seenema.movie.dto.MovieLikeDTO">
+		INSERT INTO movielike VALUES(#{mid}, #{aid})
+	</insert>
+	
+	<delete id="deleteMovieLike" parameterType="com.web.seenema.movie.dto.MovieLikeDTO">
+		DELETE FROM movieLike WHERE mid = #{mid} AND aid = #{aid} 
+	</delete>
+	
+	<select id="getLikeCnt" resultType="com.web.seenema.movie.dto.MovieDTO">
+		SELECT gcnt FROM movie WHERE id = #{mid}
+	</select>
+	
+	<select id="getGcnt" resultType="com.web.seenema.movie.dto.MovieGcntDTO">
+		SELECT count(mid) gcnt, mid FROM movielike GROUP BY mid
+	</select>
+	
+	<select id="getLastMovieNum" resultType="com.web.seenema.movie.dto.MovieDTO">
+		SELECT id 
+		FROM (SELECT  rownum , id 
+		FROM (SELECT id, title FROM movie ORDER BY id DESC) WHERE rownum = 1)
+	</select>
+	
+	<select id="getMoviePosters" resultType="com.web.seenema.movie.dto.MovieImageDTO">
+		SELECT * FROM image_files WHERE mid = #{mid} AND path LIKE '%poster%'
+	</select>
+	
+	<select id="getMovieStillcuts" resultType="com.web.seenema.movie.dto.MovieImageDTO">
+		SELECT * FROM image_files WHERE mid = #{mid} AND path LIKE '%stillcut%'
+	</select>
+	
+	
+</mapper>

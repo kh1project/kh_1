@@ -1,0 +1,6 @@
+.inner-wrap {
+	display: block;
+	position: relative;
+	max-width: 1100px;
+	margin: 0 auto 0 auto;
+}

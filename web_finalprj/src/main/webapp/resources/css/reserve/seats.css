@@ -1,0 +1,178 @@
+@charset "UTF-8";
+div.main-frame{
+	width: 90%; height: 100%;
+	border: 1px solid #D5D5D5;
+	float:left;
+}
+
+div.seat-info{
+	width:100%; height: 10%;
+	border: 1px solid #D5D5D5;
+	background-color: #46375D;
+	text-align: center;
+}
+
+div.seat-info > label.info-title{
+	width:100%; height: 100%;
+	font-size: 14pt;
+	line-height: 70px;
+	color: white; font-weight: bold;
+}
+
+div.theater-info {
+	margin: auto auto;
+	width: 80%; height: 65%;
+	justify-content: center;
+	text-align: center;
+}
+
+input.movie-title{
+	margin-top: 10px;
+	border-top: 2px solid #503396;
+	border-left: 0; border-right: 0;
+	border-bottom: 2px solid #503396;
+	font-weight: bold;
+	text-align: center;
+	width: 250px;
+}
+
+label.screen{
+	width:60%; border: 1px solid #bcbcbc;
+	margin-top: 20px;
+	margin-bottom : 40px;
+	background-color: white;
+}
+
+input.seatinfo-checkbox { display: none; }
+
+label, .no-seat {
+	line-height: 20px; padding: auto;
+	font-size: 8pt;
+	text-align: center;
+	-ms-user-select: none;
+	-moz-user-select: -moz-none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+}
+
+input[name="seat"] + label {
+	display: inline-block;
+	background-color: white;
+	width: 30px; height: 25px;
+	border: 2px solid #bcbcbc;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	cursor: pointer;
+}
+
+label.no-seat{
+	display: inline-block;
+	width: 30px; height: 25px;
+	background-color: #BDBDBD;
+	border: 1px solid #bcbcbc;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	color: white;
+	font-weight: bold;
+}
+
+input[name="seat"]:checked + label {
+	background-color: #503396;
+	color: white;
+	font-weight: bold;
+}
+
+div.seatexample{
+	width: 100%; height: 5%;
+	justify-content: flex-start;
+	text-align: left;
+	padding-left: 10px;
+}
+
+div.seatexample > div.seatexample{
+	width: auto; height: auto;
+	justify-content: flex-start;
+	text-align: left;
+	padding-left: 10px;
+}
+
+span.seat{
+	display: inline-block;
+	width: 20px; height: 15px;
+	border: 1px solid #bcbcbc;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	margin-right: 5px;
+}
+
+span.selected {
+	background-color: #BDBDBD;
+}
+
+span.choose {
+	background-color: white;
+}
+
+span.select {
+	background-color: #503396;
+}
+
+p.selected {
+	display: inline;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+p.rating19 {
+	margin-right: 10px;
+	font-size: 8pt; font-weight: bold;
+	color: red;
+	float: right;
+}
+
+div.personnel-info{
+	width: 100%; height: 20%;
+	border: 1px solid #D5D5D5;
+	background-color: white;
+	padding:auto; padding-top: 10px;
+	justify-content: center;
+	text-align: center;
+}
+
+input.personnel-type {
+	border: 0; font-weight: bold;
+	background-color: white;
+	text-align: center;
+	width: 100px; height: 20px;
+}
+
+div.peoples-number {
+	display: inline-block;
+	border: 0px;
+	width: 100px;
+}
+
+input.personnel{
+	width: 30%; height: 100%;
+	background-color: #503396;
+	color: white; font-weight: bold;
+	border: 0; margin: 0;
+}
+
+input.personnel-value {
+	width: 30%; height: 100%;
+	text-align: center;
+	border: 0; margin: 0;
+}
+
+div.payment {
+	padding-top: 10px;
+}
+
+div.payment > input.payment {
+	height: 40px; color: white;
+	font-weight: bold;
+	border: 1px solid #503396;
+	border-radius: 5px;
+	background-color: #503396;
+}
