@@ -41,9 +41,9 @@ public class ReviewAjaxController {
 		
 		List<MyMovieDTO> smovieimgs = account.mywatchSelect(selectmovie);
 		
-		for(int i = 0; i < smovieimgs.size(); i++) {
-			System.out.println(smovieimgs.get(i));
-		}
+//		for(int i = 0; i < smovieimgs.size(); i++) {
+//			System.out.println(smovieimgs.get(i));
+//		}
 		//왜 요청이 두번씩 되는지?
 				
 		return smovieimgs;

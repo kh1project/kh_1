@@ -44,8 +44,13 @@
 			    			<form method="get" action="<%=request.getContextPath() %>/review">
 					    		<div class="tab-header-search">
 					    			<input type="hidden" name="btype" value="${btype }">
-					    			<input type="text" name="search" placeholder="제목, 장르, 감독, 배우, 닉네임">
-					    			<button type="submit"><i class="fas fa-search fa-fw"></i></button>
+					    				<input type="text" name="search" placeholder="제목, 장르, 감독, 배우, 닉네임">
+					    			<c:if test="${list != null}">
+					    				<button type="submit"><i class="fas fa-search fa-fw"></i></button>
+					    			</c:if>
+					    			<c:if test="${list == null}">
+					    				<button type="button" onclick="alert('내가 본 영화의 리뷰가 없습니다.')"><i class="fas fa-search fa-fw"></i></button>
+					    			</c:if>
 					    		</div>
 				    		</form>
 			    		</div>
@@ -61,7 +66,7 @@
 									<div class="card mb-3 shadow-sm rlist">
 										<a href="<%=request.getContextPath() %>/review/detail?rid=${i.getId() }"><div class="card-image"><img src="${i.getImgurl() }"></div></a>
 										<div class="card-body">
-											<a href="<%=request.getContextPath() %>/review/detail?rid=${i.getId() }"><small class="text-muted">${i.getAid() }</small></a>
+											<a href="<%=request.getContextPath() %>/review/detail?rid=${i.getId() }"><small class="text-muted">${i.getNickname() }</small></a>
 											<a href="<%=request.getContextPath() %>/review/detail?rid=${i.getId() }"><h5>${i.getTitle() }</h5></a>
 											<a href="<%=request.getContextPath() %>/review/detail?rid=${i.getId() }"><p>${i.getContents() }</p></a>
 											<div class="d-flex justify-content-between align-items-center">

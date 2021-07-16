@@ -16,6 +16,23 @@ $(document).ready(function(){
 	}
 	const updatewrap = $('#update > form > .row > .col-6');
 	$(updatewrap).css("height", window.innerHeight - 300);
+	
+	const blockerror = $("#blockerror").val();
+	if(blockerror == 1) {
+		alert("해당 게시물은 블럭처리 되었으므로 수정하실 수 없습니다.");
+		location.href="<%=request.getContextPath() %>/review";
+	}
+	
+	const rating = $("#star").val();
+	$(".starRating i:nth-child("+rating+")").attr("class", "fas fa-star").prevAll().attr("class", "fas fa-star");
+	
+	$(".starRating i").on('click', function(e) {
+		const star = $(this).attr("data-rating");
+		$(this).parent().children("i").attr("class", "far fa-star");
+		$(this).attr("class", "fas fa-star").prevAll().attr("class", "fas fa-star");
+		$("#star").val(star);
+		return false;
+	});
 });
 
 var movienum;
@@ -107,26 +124,31 @@ function addPost(){
 var nullFlag = false;
 
 function nullCheck() {
-	for(i = 0; i < postClass.length; i++) {
-		console.log("---------- 현재 포스터의 개수 : " + postClass.length);
-		var postnum = $("#"+postClass[i].id);
-		if(postnum.length) {
-			var postimgSrc = postnum.children("img").attr("src");
-			var posttextVal = postnum.children("textarea").val();
-			
-			console.log("----------현재 " + (i + 1) + "번째 포스터 체크중----------");
-			if(postimgSrc == "/seenema/resources/images/sub/bg-img-select.png"){
-				console.log((i + 1) + "번째 이미지 확인중");
-				alert("이미지를 선택해주세요.");
-				nullFlag = false;
-				console.log((i + 1) + "번째 이미지 없음");
-				return;
-			} else if(posttextVal.length < 1) {
-				console.log((i + 1) + "번째 내용 확인중");
-				alert("내용을 입력해주세요.");
-				nullFlag = false;
-				console.log((i + 1) + "번째 내용 없음");
-				return;
+	if($("#star").val() == 0) {
+		alert("평점을 입력해주세요.");
+		return;
+	} else {
+		for(i = 0; i < postClass.length; i++) {
+			console.log("---------- 현재 포스터의 개수 : " + postClass.length);
+			var postnum = $("#"+postClass[i].id);
+			if(postnum.length) {
+				var postimgSrc = postnum.children("img").attr("src");
+				var posttextVal = postnum.children("textarea").val();
+				
+				console.log("----------현재 " + (i + 1) + "번째 포스터 체크중----------");
+				if(postimgSrc == "/seenema/resources/images/sub/bg-img-select.png"){
+					console.log((i + 1) + "번째 이미지 확인중");
+					alert("이미지를 선택해주세요.");
+					nullFlag = false;
+					console.log((i + 1) + "번째 이미지 없음");
+					return;
+				} else if(posttextVal.length < 1) {
+					console.log((i + 1) + "번째 내용 확인중");
+					alert("내용을 입력해주세요.");
+					nullFlag = false;
+					console.log((i + 1) + "번째 내용 없음");
+					return;
+				}
 			}
 		}
 	}

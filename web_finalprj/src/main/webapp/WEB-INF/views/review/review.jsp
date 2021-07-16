@@ -4,8 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <jsp:include page="review_header.jsp"></jsp:include>
-		<div class="page-title"><div class="container"><h1>영화 리뷰</h1><a href="<%=request.getContextPath() %>/review/add">영화 리뷰 작성</a></div></div>
-		<div class="container">
+	<input type="hidden" id="error" name="error" value="${error }"/>
+	<input type="hidden" id="sessionAid" name="sessionAid" value="${sessionAid }"/>
+	<div class="page-title"><div class="container"><h1>영화 리뷰</h1><a href="javascript:;" onclick="reviewAdd()">영화 리뷰 작성</a></div></div>
+	<div class="container">
 		<%-- 임시 주석.. <section>
 			<div class="row row-cols-lg-6">
 				<div class="col">
@@ -45,7 +47,12 @@
 					    		<div class="tab-header-search">
 					    			<input type="hidden" name="btype" value="${btype }">
 					    			<input type="text" name="search" placeholder="제목, 장르, 감독, 배우, 닉네임">
-					    			<button type="submit"><i class="fas fa-search fa-fw"></i></button>
+					    			<c:if test="${list != null}">
+					    				<button type="submit"><i class="fas fa-search fa-fw"></i></button>
+					    			</c:if>
+					    			<c:if test="${list == null}">
+					    				<button type="button" onclick="alert('리뷰가 없으므로 검색할 수 없습니다.')"><i class="fas fa-search fa-fw"></i></button>
+					    			</c:if>
 					    		</div>
 				    		</form>
 			    		</div>
@@ -61,14 +68,14 @@
 									<div class="card mb-3 shadow-sm rlist">
 										<a href="<%=request.getContextPath() %>/review/detail?rid=${i.getId() }"><div class="card-image"><img src="${i.getImgurl() }"></div></a>
 										<div class="card-body">
-											<a href="<%=request.getContextPath() %>/review/detail?rid=${i.getId() }"><small class="text-muted">${i.getAid() }</small></a>
+											<a href="<%=request.getContextPath() %>/review/detail?rid=${i.getId() }"><small class="text-muted">${i.getNickname() }</small></a>
 											<a href="<%=request.getContextPath() %>/review/detail?rid=${i.getId() }"><h5>${i.getTitle() }</h5></a>
 											<a href="<%=request.getContextPath() %>/review/detail?rid=${i.getId() }"><p>${i.getContents() }</p></a>
 											<div class="d-flex justify-content-between align-items-center">
 												<div class="btn-group">
 													<button type="button" class="btn btn-sm btn-outline-secondary btn-gcnt" data-id="${i.getId() }"><i class="far fa-thumbs-up fa-fw"></i><span>${i.getGcnt() }</span></button>
 													<button type="button" class="btn btn-sm btn-outline-secondary btn-bcnt" data-id="${i.getId() }"><i class="far fa-thumbs-down fa-fw"></i><span>${i.getBcnt() }</span></button>
-													<button type="button" class="btn btn-sm btn-outline-secondary btn-cnt"><i class="far fa-comment-alt fa-fw"></i><span>${i.getCommcnt() }</span></button>
+													<button type="button" class="btn btn-sm btn-outline-secondary btn-cnt"><i class="far fa-star fa-fw"></i><span>${i.getStar() }</span></button>
 												</div>
 												<small id="cdate${loop.count }" class="text-muted cdate" data-cdate="${i.getCdateFM() }"></small>
 											</div>

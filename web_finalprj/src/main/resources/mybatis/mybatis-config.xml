@@ -3,6 +3,10 @@
 	PUBLIC "-//mybatis.org//DTO Config 3.0//EN"
 	"http:/mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	
 	<typeAliases>
 		<typeAlias type="com.web.seenema.dto.BoxofficeDTO" alias="boxoffice" />
 		<typeAlias type="com.web.seenema.reserve.dto.BranchDTO" alias="branch" />

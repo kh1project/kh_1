@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+section.reserve-frame{
+	width: 100%; height: 810px;
+}
+
+div.reserve-window {
+	width: 1100px; height: 720px;
+	margin: auto auto;
+}
+
+div.left-menu{
+	width: 10%; height: 720px;
+	border: 1px solid #D5D5D5;
+	float:left;
+	text-align: center; line-height: 120px;
+}
+
+div.left-menu > ul {
+	width: 100%; height: 100%;
+	float:left; padding-left: 0;
+	list-style: none;
+}
+
+div.left-menu > ul > li {
+	width: 100%; height: 120px;
+	border: 1px solid #D5D5D5;
+	outline: none;
+	background-color: #353535;
+	color: white; font-weight: bolder;
+}
+
+div.left-menu > ul > li.active {
+	width: 100%; height: 120px;
+	border: 1px solid #D5D5D5;
+	background-color: #4374D9;
+	color: white; font-weight: bolder;
+}
+
+li.choice-movie, li.choice-schedule, li.choice-time {
+	cursor: pointer;
+}
+
+hr{
+	width: 90%;
+}
