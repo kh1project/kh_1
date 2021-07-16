@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
 	let mainposter = document.querySelector("#mainposter");
 	let subposter = document.querySelector("#subposter");
 	
@@ -11,4 +11,4 @@ $(document).ready(function(){
 		let label = subposter.nextElementSibling;
 		label.innerText = subposter.value.split("\\")[2];
 	}
-});
+});*/

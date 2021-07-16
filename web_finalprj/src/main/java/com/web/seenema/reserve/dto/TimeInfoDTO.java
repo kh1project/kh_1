@@ -2,7 +2,6 @@ package com.web.seenema.reserve.dto;
 
 import java.sql.Date;
 
-// 시간
 public class TimeInfoDTO {
 	private int id;
 	private int mtid;

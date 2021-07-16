@@ -1,7 +1,6 @@
 package com.web.seenema.reserve.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,11 +71,11 @@ public class ReserveController {
 		List<TimeInfoDTO> timelist = ress.getTimelist(mtid, ssdto.getMoviedate(), ssdto.getStarttime(), ssdto.getEndtime());
 		int timeid = timelist.get(0).getId();
 		
-		// 상영관 List
-		List<BranchTheaterDTO> btlist = ress.getmovieTheater(mtid);
-		
 		// 상영관의 좌석 정보 가져오기.
 		List<SeatDTO> seatlists = ress.seatList(timeid);
+		
+		List<BranchTheaterDTO> btlist = ress.getmovieTheater(mtid);
+		
 		// 상영관의 총 좌석, 잔여석 가져오기.
 		Map<String, Object> seatcnt = ress.seatcntlist(mtid);
 		
@@ -99,53 +98,54 @@ public class ReserveController {
 		int mid = ress.getMovieId(rcdto.getTitle());
 		int mtid = ress.getmtid(mid, rcdto.getLocation(), rcdto.getName(), rcdto.getTname());
 		
-		// 상영관 List
 		List<BranchTheaterDTO> btlist = ress.getmovieTheater(mtid);
-		// 영화 List
+		
 		List<MovieDTO> moviedata = movies.getMovies(mid);
-		// 영화 Poster List
 		List<MovieImageDTO> poster = movies.getPoster(mid);
-		// 시간 List
+		
 		List<TimeInfoDTO> timelist = ress.getTimelist(mtid, rcdto.getMoviedate(), rcdto.getStarttime(), rcdto.getEndtime());
 		
-		List<SeatDTO> seatlist = new ArrayList<SeatDTO>();
-		// 체크된 좌석 정보
+		String Seat ="";
 		String[] seatinfo = req.getParameterValues("seat");
 		for(int i = 0; i < seatinfo.length; i++) {
-			seatlist.addAll(ress.getSeatlist(Integer.parseInt(seatinfo[i])));
-			System.out.println("체크된 좌석 : " + seatinfo[i]);
+			if(i < seatinfo.length - 1) {
+				Seat += seatinfo[i] + ", ";
+			} else if(i == seatinfo.length - 1) {
+				Seat += seatinfo[i];
+			}
 		}
 		
 		// 가격 가져오기
-		int adult = rcdto.getAdult();
-		int teenager = rcdto.getTeenager();
+		PayDTO pay = new PayDTO();
+		
+		int adult = 0;
+		int teenager = 0;
 		int adultPrice = 0;
 		int teenPrice = 0;
 		int peple = 0;
 		
+		
 		if(req.getParameter("adult") != null) {
 			adult = Integer.parseInt(req.getParameter("adult"));
-			// 성인 가격
 			adultPrice = (ress.getprice(2))*adult;
 			peple = teenager + adult;
 		}
 		
 		if(req.getParameter("teenager") != null) {
 			teenager = Integer.parseInt(req.getParameter("teenager"));
-			// 청소년 가격
+			pay.setId(1);
 			teenPrice = (ress.getprice(1))*teenager;
 			peple = teenager + adult;
 		}
 		
 		int price = adultPrice + teenPrice;
 		
-		// 필요한 값 전달
 		mv.addObject("timelist", timelist);
 		mv.addObject("poster", poster);
 		mv.addObject("moviedata", moviedata);
 		mv.addObject("btlist", btlist);
 		mv.addObject("peple", peple);
-		mv.addObject("seatlist", seatlist);
+		mv.addObject("Seat", Seat);
 		mv.addObject("price", price);
 		
 		return mv;

@@ -96,15 +96,15 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public List<List<MyMovieDTO>> mywatchList(int aid) throws Exception {
 		List<Integer> temp = dao.selectMyMovieList(aid);
-//		List<Integer> midlist = temp.stream().distinct().collect(Collectors.toList());
-//		
-//		LinkedList<List<MyMovieDTO>> datalist = new LinkedList<List<MyMovieDTO>>();
-//		
-//		for(int i = 0; i < midlist.size(); i++) {
-//			List<MyMovieDTO> data = mdao.selectWatchMovieList(midlist.get(i));
-//			datalist.add(data);
-//		}
-		return null;
+		List<Integer> midlist = temp.stream().distinct().collect(Collectors.toList());
+		
+		LinkedList<List<MyMovieDTO>> datalist = new LinkedList<List<MyMovieDTO>>();
+		
+		for(int i = 0; i < midlist.size(); i++) {
+			List<MyMovieDTO> data = mdao.selectWatchMovieList(midlist.get(i));
+			datalist.add(data);
+		}
+		return datalist;
 	}
 	
 	@Override

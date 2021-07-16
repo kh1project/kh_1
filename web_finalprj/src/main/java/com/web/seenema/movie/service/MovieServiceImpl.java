@@ -88,7 +88,7 @@ public class MovieServiceImpl implements MovieService {
 	
 	@Override
 	public Map<Integer, String> getReserveRate() {
-		Map<Integer, String> map = new HashMap<Integer, String>();
+		Map<Integer, String> map = new HashMap<>();
 		
 		List<MovieDTO> list = getAllMovies(1);
 		int rcntAll = 0;
@@ -192,7 +192,7 @@ public class MovieServiceImpl implements MovieService {
 	
 	@Override
 	public Map<Integer, Integer> getGcnt() {
-		Map<Integer, Integer> res = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> res = new HashMap<>();
 		for(MovieGcntDTO item : dao.getGcnt()) 
 			res.put(item.getMid(), item.getGcnt());
 		

@@ -7,14 +7,9 @@ public class ReviewListDTO {
 	private int id;
 	private int btype;
 	private int aid;
-	public int getBtype() {
-		return btype;
-	}
-	public void setBtype(int btype) {
-		this.btype = btype;
-	}
 	private String nickname;
 	private int mid;
+	private int star;
 	private String title;
 	private String imgurl;
 	private String contents;
@@ -28,6 +23,12 @@ public class ReviewListDTO {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getBtype() {
+		return btype;
+	}
+	public void setBtype(int btype) {
+		this.btype = btype;
 	}
 	public int getAid() {
 		return aid;
@@ -46,6 +47,12 @@ public class ReviewListDTO {
 	}
 	public void setMid(int mid) {
 		this.mid = mid;
+	}
+	public int getStar() {
+		return star;
+	}
+	public void setStar(int star) {
+		this.star = star;
 	}
 	public String getTitle() {
 		return title;
