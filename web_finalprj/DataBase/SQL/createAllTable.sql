@@ -43,7 +43,6 @@ DROP SEQUENCE theater_seq;
 DROP SEQUENCE time_seq;
 DROP SEQUENCE line_seq;
 DROP SEQUENCE pay_seq;
-DROP SEQUENCE account_seq;
 --*************************************
 
 --*************************************
@@ -448,10 +447,3 @@ ALTER TABLE pay MODIFY price CONSTRAINT pay_price_nn NOT NULL;
 
 COMMENT ON COLUMN pay.id IS '나이 식별번호';
 COMMENT ON COLUMN pay.price IS '영화가격';
-
--- 회원 액션 테이블(로그인 연동처리는 시간되면 구현하기로..)
---CREATE TABLE account_action (
---	aid NUMBER,
---	reviewGcnt NUMBER,
---	reviewBcnt NUMBER,
---);

@@ -1,13 +1,10 @@
 package com.web.seenema.review.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.web.seenema.board.dto.BoardSearchDTO;
 import com.web.seenema.comment.dto.CommentSimpleDTO;
 import com.web.seenema.movie.dto.MovieDTO;
 import com.web.seenema.movie.dto.MovieImageDTO;
@@ -16,6 +13,7 @@ import com.web.seenema.review.dto.ReviewAddDTO;
 import com.web.seenema.review.dto.ReviewDTO;
 import com.web.seenema.review.dto.ReviewListDTO;
 import com.web.seenema.review.dto.ReviewPostDTO;
+import com.web.seenema.review.dto.ReviewSimpleDTO;
 import com.web.seenema.review.repository.ReviewRepositoryImpl;
 
 @Service
@@ -32,36 +30,6 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public List<ReviewListDTO> reviewList() throws Exception {
 		List<ReviewListDTO> data = dto.selectReviewList();
-		return data;
-	}
-	
-	@Override
-	public List<ReviewListDTO> reviewLikeList() throws Exception {
-		List<ReviewListDTO> data = dto.selectOrderbyLikeList();
-		return data;
-	}
-
-	@Override
-	public List<ReviewListDTO> reviewSearchList(BoardSearchDTO search) throws Exception {
-		List<ReviewListDTO> data = dto.selectReviewSearchList(search);
-		return data;
-	}
-	
-	@Override
-	public List<ReviewListDTO> reviewSeenList(int aid) throws Exception {
-		List<ReviewListDTO> data = dto.selectReviewSeenList(aid);
-		return data;
-	}
-	
-	@Override
-	public List<ReviewListDTO> reviewLikeSeenList(int aid) throws Exception {
-		List<ReviewListDTO> data = dto.selectOrderbyLikeSeenList(aid);
-		return data;
-	}
-
-	@Override
-	public List<ReviewListDTO> reviewSearchSeenList(BoardSearchDTO search) throws Exception {
-		List<ReviewListDTO> data = dto.selectReviewSearchSeenList(search);
 		return data;
 	}
 
@@ -255,21 +223,14 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<String> firstContent(String cont) throws Exception {
-		List<ReviewPostDTO> contents = MergePost(cont);
+	public List<String> firstContent(String mid) throws Exception {
+		List<ReviewPostDTO> contents = dto.selectMergePost(mid);
 		List<String> firstPost = new ArrayList<String>();
-		
-		if(contents.get(0).getPosttext() != null && contents.get(0).getPostimg() != null) {
-			firstPost.add(contents.get(0).getPosttext());
-			firstPost.add(contents.get(0).getPostimg());
-		} else {
-			System.out.println("!!!!firstPost 정보 담지 못 함!!!!");
-		}
-		
+		firstPost.add(contents.get(0).getPosttext());
+		firstPost.add(contents.get(0).getPostimg());
 		if(firstPost.size() == 0) {
 			firstPost.add("-1");
 		}
-		
 		return firstPost;
 	}
 
@@ -284,9 +245,6 @@ public class ReviewServiceImpl implements ReviewService {
 	public int updateBcnt(int id) throws Exception {
 		ReviewDTO rdto = dto.selectReview(id);
 		rdto.setBcnt(rdto.getBcnt() + 1);
-		if(rdto.getBcnt() > 50) {
-			dto.blockReview(id);
-		}
 		return dto.updateBcnt(rdto);
 	}
 	
@@ -296,15 +254,5 @@ public class ReviewServiceImpl implements ReviewService {
 		rdto.setVcnt(rdto.getVcnt() + 1);
 		return dto.updateVcnt(rdto);
 		
-	}
-
-	@Override
-	public String getNickname(int id) throws Exception {
-		return dto.selectUserNickname(id);
-	}
-
-	@Override
-	public List<Integer> myAddReviewList(int aid) throws Exception {
-		return dto.selectAddReviewList(aid);
 	}
 }

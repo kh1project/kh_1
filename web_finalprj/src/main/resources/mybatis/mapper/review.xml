@@ -16,67 +16,14 @@
 		SELECT * FROM post WHERE mergePost = #{mergeId}
 	</select>
 	<insert id="insertReview" parameterType="reviewadd">
-		INSERT INTO board(id, btype, mid, aid, title, contents, star)
-			VALUES(board_seq.NEXTVAL, 1, #{mid}, #{aid}, #{title}, #{contents}, #{star})
+		INSERT INTO board(id, btype, mid, aid, title, contents)
+			VALUES(board_seq.NEXTVAL, 1, #{mid}, #{aid}, #{title}, #{contents})
 	</insert>
 	<select id="selectReviewList" resultType="reviewlist">
-		SELECT * FROM board WHERE btype = 1 AND deleted = 'N' AND nodel = 'N' ORDER BY id DESC
-	</select>
-	<select id="selectOrderbyLikeList" resultType="reviewlist">
-		SELECT * FROM board WHERE btype = 1 AND deleted = 'N' AND nodel = 'N' ORDER BY (gcnt - bcnt) DESC
-	</select>
-	<select id="selectReviewSearchList" parameterType="boardSearch" resultType="reviewlist">
-		SELECT a.* FROM board a
-        LEFT OUTER JOIN movie b ON a.mid = b.id
-        LEFT OUTER JOIN account c ON a.aid = c.id        
-        WHERE REGEXP_LIKE(b.title, '${search}', 'x')
-           OR REGEXP_LIKE(b.genre, '${search}', 'x')
-           OR REGEXP_LIKE(b.director, '${search}', 'x')
-           OR REGEXP_LIKE(b.actor, '${search}', 'x')
-           OR REGEXP_LIKE(c.nickname, '${search}', 'x')
-           AND btype = 1 AND deleted = 'N' AND nodel = 'N'
-	</select>
-	<select id="selectReviewSeenList" parameterType="int" resultType="reviewlist">
-		SELECT * FROM board WHERE btype = 1 AND deleted = 'N' AND nodel = 'N' AND mid IN (
-		SELECT a.mid FROM board a
-		  LEFT OUTER JOIN account b ON a.aid = b.id
-		  LEFT OUTER JOIN movie_theater c ON a.mid = c.mid
-		  LEFT OUTER JOIN time d ON c.tid = d.id
-		  LEFT OUTER JOIN reservation e ON d.id = e.timeid
-		 WHERE b.id = ${id}
-      GROUP BY a.mid) ORDER BY id DESC
-	</select>
-	<select id="selectOrderbyLikeSeenList" parameterType="int" resultType="reviewlist">
-		SELECT * FROM board WHERE btype = 1 AND deleted = 'N' AND nodel = 'N' AND mid IN (
-		SELECT a.mid FROM board a
-		  LEFT OUTER JOIN account b ON a.aid = b.id
-		  LEFT OUTER JOIN movie_theater c ON a.mid = c.mid
-		  LEFT OUTER JOIN time d ON c.tid = d.id
-		  LEFT OUTER JOIN reservation e ON d.id = e.timeid
-		 WHERE b.id = ${id}
-      GROUP BY a.mid) ORDER BY (gcnt - bcnt) DESC
-	</select>
-	<select id="selectReviewSearchSeenList" parameterType="boardSearch" resultType="reviewlist">
-		SELECT a.id, a.btype, a.mid, a.aid, a.title, a.contents, a.gcnt, a.bcnt, a.cdate, a.star FROM board a
-        LEFT OUTER JOIN movie b ON a.mid = b.id
-        LEFT OUTER JOIN account c ON a.aid = c.id        
-        WHERE REGEXP_LIKE(b.title, '${search}', 'x')
-           OR REGEXP_LIKE(b.genre, '${search}', 'x')
-           OR REGEXP_LIKE(b.director, '${search}', 'x')
-           OR REGEXP_LIKE(b.actor, '${search}', 'x')
-           OR REGEXP_LIKE(c.nickname, '${search}', 'x')
-           AND btype = 1 AND deleted = 'N' AND nodel = 'N' AND mid IN (
-           SELECT d.mid FROM board d
-				  LEFT OUTER JOIN account e ON d.aid = e.id
-				  LEFT OUTER JOIN movie_theater f ON d.mid = f.mid
-				  LEFT OUTER JOIN time g ON f.tid = g.id
-				  LEFT OUTER JOIN reservation h ON g.id = h.timeid
-				 WHERE e.id = ${id}
-		      GROUP BY d.mid
-           ) ORDER BY id DESC;
+		SELECT * FROM board WHERE btype = 1 AND deleted = 'N' ORDER BY id DESC
 	</select>
 	<select id="selectReview" parameterType="int" resultType="review">
-		SELECT * FROM board WHERE id = ${rid} AND deleted = 'N' AND nodel = 'N'
+		SELECT * FROM board WHERE id = ${rid} AND deleted = 'N'
 	</select>
 	<update id="firstUpdatePost" parameterType="reviewpost">
 		UPDATE post
@@ -134,15 +81,4 @@
 		 	SELECT vcnt FROM board WHERE id = #{id}
 		 </selectKey>
 	</update>
-	<update id="blockReview" parameterType="int">
-		UPDATE board
-		   SET nodel = 'Y'
-		 WHERE id = #{id}
-	</update>
-	<select id="selectUserNickname" parameterType="int" resultType="String">
-		SELECT nickname FROM account WHERE id = ${id}
-	</select>
-	<select id="selectAddReviewList" parameterType="int" resultType="int">
-		SELECT mid FROM board WHERE aid = ${aid} AND deleted = 'Y' AND nodel = 'N' GROUP BY mid
-	</select>
 </mapper>

@@ -44,6 +44,7 @@
 html {
     height: 100%;
 }
+
 body {
     margin: 0;
     height: 100%;
@@ -55,6 +56,7 @@ body {
     height: 44px;
     cursor: pointer;
 }
+
 #header {
     padding-top: 62px;
     padding-bottom: 20px;
@@ -64,17 +66,21 @@ body {
     position: relative;
     height: 100%;
 }
+
 #content {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
     width: 460px;
 }
+
+
 h3 {
     margin: 19px 0 8px;
     font-size: 14px;
     font-weight: 700;
 }
+
 .box {
     display: block;
     width: 100%;
@@ -85,6 +91,7 @@ h3 {
     background: #fff;
     position: relative;
 }
+
 .int {
     display: block;
     position: relative;
@@ -94,18 +101,23 @@ h3 {
     background: #fff;
     font-size: 15px;
 }
+
 input {
     font-family: Dotum,'돋움',Helvetica,sans-serif;    
 }
+
 .box.int_id {
     padding-right: 110px;
 }
+
 .box.int_pass {
     padding-right: 40px;
 }
+
 .box.int_pass_check {
     padding-right: 40px;
 }
+
 .step_url {
     position: absolute;
     top: 16px;
@@ -113,6 +125,7 @@ input {
     font-size: 15px;
     color: #8e8e8e;
 }
+
 select {
     width: 100%;
     height: 29px;
@@ -126,9 +139,11 @@ select {
     cursor: default;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
 }
+
 .btn_area {
     margin: 30px 0 91px;
 }
+
 #btnJoin {
     width: 100%;
     padding: 21px 0 17px;
@@ -140,6 +155,7 @@ select {
     font-weight: 400;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
 }
+
 #btnCancel {
     width: 100%;
     padding: 21px 0 17px;
@@ -151,6 +167,7 @@ select {
     font-weight: 400;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
 }
+
 </style>
 <title>SEENEMA의 가족이 되어주세요!</title>
 </head>
@@ -163,10 +180,9 @@ select {
 
 	<form name="account_form" action="${join }" method="post">
 
-        <div id="header"> 
-           	<button type="button" onclick="location.href='${main }'" style="margin-top: 10px;  border: none;">
-					<img src="<%=request.getContextPath() %>/resources/images/common/logo.png"
-					 width="30" height="30" class="d-inline-block align-top" alt="로고">
+        <div id="header">
+           	<button type="button" onclick="location.href='${main }'" style="margin-top: 10px;">
+					<img src="#" width="30" height="30" class="d-inline-block align-top" alt="로고">
 			</button>
 		</div>
 
@@ -178,9 +194,10 @@ select {
                     </h3>
                     <span class="box int_id">
                         <input type="text" id="id_email" class="int" maxlength="20" name="email" required>
+                        <span class="step_url">@seenema.com</span>
                     </span>
-						<button type="button" onclick="emailCheck();" class="btn btn-outline-secondary" style="margin-top: 1px;">중복확인</button>
-						<label id="email_check_res" style="padding-top: 10px; padding-left:5px; color:red"></label>
+						<button type="button" onclick="emailCheck();">중복확인</button>
+						<label id="email_check_res"></label>
                 </div>
 
                 <!-- PW1 -->
@@ -205,11 +222,12 @@ select {
                     <span class="box int_name">
                         <input type="text" id="id_nickname" class="int" name="nickname" maxlength="20"
                         oninput="nicknameCheck('${nickname_check }', this.value);" required>
-                        <label id="nickname_check_res" style="padding-top: 15px; color:red"></label>
+                        <label id="nickname_check_res"></label>
                     </span>
 
                 </div>
-				&nbsp;
+
+
 				<div>
                     <h3 class="join_title"><label for="name">나이</label></h3>
                     <span class="box int_name">
@@ -237,7 +255,7 @@ select {
                 </div>
 
                 <div class="btn_area">
-                    <button type="button" onclick="send(); return ; " id="btnJoin">
+                    <button type="button" onclick="send(); return ;" id="btnJoin">
                         <span>가입하기</span>
                     </button>
                     &nbsp;
@@ -274,6 +292,7 @@ function send() {
 		username.focus();
 		return;
 	}
+
 	var nickname_check = document.getElementById("nickname_check_res").innerText;
 	if(nickname_check == "" || nickname_check == undefined) {
 		alert("닉네임을 입력하세요.");

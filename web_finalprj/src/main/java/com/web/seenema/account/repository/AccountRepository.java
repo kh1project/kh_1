@@ -3,7 +3,6 @@ package com.web.seenema.account.repository;
 import java.util.List;
 
 import com.web.seenema.account.dto.AccountDTO;
-import com.web.seenema.account.dto.AccountGradeDTO;
 
 public interface AccountRepository {
 	public List<Integer> selectMyMovieList(int aid) throws Exception;
@@ -15,5 +14,4 @@ public interface AccountRepository {
 	public boolean insert(AccountDTO dto) throws Exception;
 	public boolean update(AccountDTO dto) throws Exception;
 	public boolean delete(AccountDTO dto) throws Exception;
-	public List<AccountGradeDTO> getAdminList();
 }

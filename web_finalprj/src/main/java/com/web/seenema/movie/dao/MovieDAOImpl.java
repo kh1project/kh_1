@@ -1,6 +1,5 @@
 package com.web.seenema.movie.dao;
 
-import java.io.File;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.web.seenema.movie.dto.AddmovieDTO;
 import com.web.seenema.movie.dto.MovieDTO;
 import com.web.seenema.movie.dto.MovieGcntDTO;
-import com.web.seenema.movie.dto.MovieImageDTO;
 import com.web.seenema.movie.dto.MovieLikeDTO;
 
 @Repository
@@ -99,43 +96,9 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 	
 	@Override
-	public MovieDTO getLastMovieNum() {
-		return sqlSession.selectOne("movie.getLastMovieNum");
+	public int getLastMovieNum() {
+		MovieDTO dto = sqlSession.selectOne("movie.getLastMovieNum");
+		
+		return dto.getId();
 	}
-	
-	@Override
-	public List<MovieImageDTO> getMoviePosters(Integer mid) {
-		return sqlSession.selectList("movie.getMoviePosters", mid);
-	}
-	
-	@Override
-	public List<MovieImageDTO> getMovieStillcuts(Integer mid) {
-		return sqlSession.selectList("movie.getMovieStillcuts", mid);
-	}
-	
-	@Override
-	public void insertFile(MovieImageDTO midto) {
-		sqlSession.insert("movie.insertFile", midto);
-	}
-	
-	@Override
-	public void insertMovieData(MovieDTO dto) {
-		sqlSession.insert("movie.insertMovieData", dto);
-	}
-	
-	@Override
-	public List<MovieImageDTO> getPoster(int mid) {
-		return sqlSession.selectList("movie.getPosterInfo", mid);
-	}
-	
-	@Override
-	public List<MovieImageDTO> getStillcut(int mid) {
-		return sqlSession.selectList("movie.getStillcutInfo", mid);
-	}
-	
-	@Override
-	public List<MovieImageDTO> getOnePoster() {
-		return sqlSession.selectList("movie.getOnePoster");
-	}
-	
 }

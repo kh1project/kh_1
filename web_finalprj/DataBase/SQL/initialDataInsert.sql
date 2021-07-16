@@ -536,7 +536,7 @@ INSERT INTO movie_theater(id, mid, tid, enddate) VALUES(movie_t_seq.NEXTVAL, 1, 
 INSERT INTO movie_theater(id, mid, tid, enddate) VALUES(movie_t_seq.NEXTVAL, 2, 1, TO_DATE('21/09/13','YY/MM/DD'));
 INSERT INTO movie_theater(id, mid, tid, enddate) VALUES(movie_t_seq.NEXTVAL, 3, 1, TO_DATE('21/09/14','YY/MM/DD'));
 -- 강남 2관 (tid : 2)
-INSERT INTO movie_theater(id, mid, tid, enddate) VALUES(movie_t_seq.NEXTVAL, 1, 2, TO_DATE('21/09/15','YY/MM/DD'));
+INSERT INTO movie_theater(id, mid, tid, enddate) VALUES(movie_t_seq.NEXTVAL, 4, 2, TO_DATE('21/09/15','YY/MM/DD'));
 INSERT INTO movie_theater(id, mid, tid, enddate) VALUES(movie_t_seq.NEXTVAL, 5, 2, TO_DATE('21/09/15','YY/MM/DD'));
 INSERT INTO movie_theater(id, mid, tid, enddate) VALUES(movie_t_seq.NEXTVAL, 6, 2, TO_DATE('21/09/15','YY/MM/DD'));
 
@@ -819,7 +819,7 @@ INSERT INTO time(id, mtid, moviedate, starttime, endtime) VALUES(time_seq.NEXTVA
 INSERT INTO time(id, mtid, moviedate, starttime, endtime) VALUES(time_seq.NEXTVAL, 6, TO_DATE('21/07/14', 'YY/MM/DD'), '13:34:00', '15:18:00');
 INSERT INTO time(id, mtid, moviedate, starttime, endtime) VALUES(time_seq.NEXTVAL, 6, TO_DATE('21/07/14', 'YY/MM/DD'), '17:40:00', '19:10:00');
 
--- UPDATE time SET moviedate = TO_DATE('21/07/15', 'YY/MM/DD');
+--UPDATE time SET moviedate = TO_DATE('21/07/14', 'YY/MM/DD');
 
 
 --*************************************
@@ -956,23 +956,21 @@ INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 
 --*************************************
 -- 회원테이블 INSERT (SEQUENCE 없는 상태)
 --*************************************
-CREATE SEQUENCE account_seq;
-INSERT INTO ACCOUNT (id, username, nickname, email, phone, password, gender, age, joindate)
-	VALUES(account_seq.NEXTVAL, '어드민', '어드민', 'admin@admin.com', '010-1234-1234', 'admin', 'F', 25, SYSDATE);
+INSERT INTO ACCOUNT (id, username, nickname, email, phone, password, gender, age, joindate) VALUES(1, '어드민', '어드민', 'admin@admin.com', '010-1234-1234', 'admin', 'F', 25, SYSDATE);
 
 --*************************************
 -- 예매테이블 INSERT
 --*************************************
 CREATE SEQUENCE res_seq;
 
-INSERT INTO reservation(id, orderid, sid, timeid, aid, rdate,  rcnt, totalpay, payment)
-	VALUES(res_seq.NEXTVAL, '21071411A1', 1, 1, 1, SYSDATE, 1, 13000, 'k');
-INSERT INTO reservation(id, orderid, sid, timeid, aid, rdate,  rcnt, totalpay, payment)
-	VALUES(res_seq.NEXTVAL, '21071421A3', 3, 2, 1, SYSDATE, 1, 13000, 'k');
-INSERT INTO reservation(id, orderid, sid, timeid, aid, rdate,  rcnt, totalpay, payment)
-	VALUES(res_seq.NEXTVAL, '21071482A8', 8, 8, 1, SYSDATE, 1, 13000, 'k');
-INSERT INTO reservation(id, orderid, sid, timeid, aid, rdate,  rcnt, totalpay, payment)
-	VALUES(res_seq.NEXTVAL, '21071482A5', 5, 10, 1, SYSDATE, 1, 13000, 'k');
+INSERT INTO reservation(id, sid, timeid, aid, rdate,  rcnt, totalpay, payment)
+	VALUES(res_seq.NEXTVAL, 1, 1, 1, SYSDATE, 1, 13000, 'k');
+INSERT INTO reservation(id, sid, timeid, aid, rdate,  rcnt, totalpay, payment)
+	VALUES(res_seq.NEXTVAL, 3, 2, 1, SYSDATE, 1, 13000, 'k');
+INSERT INTO reservation(id, sid, timeid, aid, rdate,  rcnt, totalpay, payment)
+	VALUES(res_seq.NEXTVAL, 8, 8, 1, SYSDATE, 1, 13000, 'k');
+INSERT INTO reservation(id, sid, timeid, aid, rdate,  rcnt, totalpay, payment)
+	VALUES(res_seq.NEXTVAL, 5, 10, 1, SYSDATE, 1, 13000, 'k');
 	
 --*************************************
 -- line테이블 INSERT

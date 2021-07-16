@@ -42,7 +42,7 @@ select * from ALL_TAB_COLUMNS where TABLE_NAME = 'board' ;
 select * from board;
 
 COMMENT ON COLUMN board.id IS '게시판 식별번호';
-COMMENT ON COLUMN board.btype IS '게시판 타입 구분 번호';
+COMMENT ON COLUMN board.btype IS '게시판 구분 번호';
 COMMENT ON COLUMN board.mid IS '게시판 영화 구분 번호';
 COMMENT ON COLUMN board.aid IS '게시판 작성자명';
 COMMENT ON COLUMN board.title IS '게시판 제목';
@@ -63,18 +63,7 @@ INSERT INTO board_type(id, name) VALUES (board_type_seq.NEXTVAL, '영화리뷰')
 CREATE SEQUENCE board_seq;
 ------------------------------------------------
 select id,title from movie where id = 1;
-SELECT * FROM board WHERE btype = 1 ORDER BY (gcnt - bcnt) DESC;
-
--- 내가본 영화 쿼리 테스트
-SELECT * FROM board WHERE btype = 1 AND deleted = 'N' AND nodel = 'N' AND mid IN (
-		SELECT a.mid FROM board a
-		  LEFT OUTER JOIN account b ON a.aid = b.id
-		  LEFT OUTER JOIN movie_theater c ON a.mid = c.mid
-		  LEFT OUTER JOIN time d ON c.tid = d.id
-		  LEFT OUTER JOIN reservation e ON d.id = e.timeid
-		 WHERE b.id = 1
-      GROUP BY a.mid) ORDER BY id DESC;
- 
+SELECT * FROM board WHERE btype = 1 ORDER BY id DESC;
 
 DROP SEQUENCE board_seq;
 DELETE FROM board WHERE id  <= 100;

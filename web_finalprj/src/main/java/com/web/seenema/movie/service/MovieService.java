@@ -1,14 +1,8 @@
 package com.web.seenema.movie.service;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.web.multipart.MultipartFile;
-
-import com.web.seenema.movie.dto.AddmovieDTO;
 import com.web.seenema.movie.dto.MovieDTO;
 import com.web.seenema.movie.dto.MovieImageDTO;
 import com.web.seenema.movie.dto.MovieLikeDTO;
@@ -31,13 +25,4 @@ public interface MovieService {
 	public int getAudi();
 	public Map<Integer, Integer> getGcnt();
 	public int getLastMovieNum();
-	public List<MovieImageDTO> getMoviePosters(Integer mid);
-	public List<MovieImageDTO> getMovieStillcuts(Integer mid);
-	public void posterUpload(MultipartFile[] poster, int mid, HttpServletRequest req) throws IOException;
-	public void stillcutUpload(MultipartFile[] stillcut, int mid, HttpServletRequest req) throws IOException;
-	public void insertMovieData(MovieDTO dto);
-	public Map<Integer, List<MovieImageDTO>> getPosterInfo(int size);
-	public Map<Integer, List<MovieImageDTO>> getStillcutInfo(int size);
-	public List<MovieImageDTO> getOnePoster();
-	public int getAid(HttpServletRequest request);
 }

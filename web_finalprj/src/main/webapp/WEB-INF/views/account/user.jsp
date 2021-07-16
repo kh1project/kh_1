@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>나의 SEENEMA</title>
 </head>
 <body>
-	<h1>reservelist.jsp 입니다.</h1>
-	<h3>예매내역 조회 페이지 입니다.</h3>
+	<h1>user.jsp 입니다.</h1>
+	<h3>마이 페이지 입니다.</h3>
 </body>
 </html>

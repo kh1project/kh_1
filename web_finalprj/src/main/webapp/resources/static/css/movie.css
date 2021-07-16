@@ -78,6 +78,7 @@
 .page-util{
 	background-color: #edf7f4;
 	height: 43px;
+	top: 8px;
     position: relative;
 }
 
@@ -112,7 +113,6 @@
     font-weight: 300;
     color: #fff;
     text-shadow: 2px 2px 2px rgb(0 0 0 / 80%);
-    z-index: 1;
 }
 
 #filter-container{
@@ -163,10 +163,4 @@ hr{
     width: 2px;
     margin: 0px 3px -2px 6px;
     display: inline-block;
-}
-
-.add-btn{
-	vertical-align: super;
-    float: right;
-    margin-right: 10px;	
 }

@@ -12,7 +12,6 @@ import com.web.seenema.movie.dto.MyMovieDTO;
 import com.web.seenema.movie.repository.MovieRepositoryImpl;
 
 import com.web.seenema.account.dto.AccountDTO;
-import com.web.seenema.account.dto.AccountGradeDTO;
 import com.web.seenema.account.repository.AccountRepositoryImpl;
 
 @Service
@@ -97,32 +96,20 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public List<List<MyMovieDTO>> mywatchList(int aid) throws Exception {
 		List<Integer> temp = dao.selectMyMovieList(aid);
-		List<Integer> midlist = temp.stream().distinct().collect(Collectors.toList());
-		
-		LinkedList<List<MyMovieDTO>> datalist = new LinkedList<List<MyMovieDTO>>();
-		
-		for(int i = 0; i < midlist.size(); i++) {
-			List<MyMovieDTO> data = mdao.selectWatchMovieList(midlist.get(i));
-			datalist.add(data);
-		}
-		return datalist;
+//		List<Integer> midlist = temp.stream().distinct().collect(Collectors.toList());
+//		
+//		LinkedList<List<MyMovieDTO>> datalist = new LinkedList<List<MyMovieDTO>>();
+//		
+//		for(int i = 0; i < midlist.size(); i++) {
+//			List<MyMovieDTO> data = mdao.selectWatchMovieList(midlist.get(i));
+//			datalist.add(data);
+//		}
+		return null;
 	}
 	
 	@Override
 	public List<MyMovieDTO> mywatchSelect(int aid) throws Exception {
 		List<MyMovieDTO> data = mdao.selectWatchMovieList(aid);
 		return data;
-	}
-	
-	@Override
-	public Boolean adminCheck(int aid) {
-		List<AccountGradeDTO> agdto = dao.getAdminList();
-		Boolean res = false;
-		for(AccountGradeDTO item : agdto) {
-			if(aid == item.getId())
-				res = true;
-		}
-		
-		return res;
 	}
 }

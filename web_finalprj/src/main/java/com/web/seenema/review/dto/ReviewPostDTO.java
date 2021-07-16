@@ -30,9 +30,4 @@ public class ReviewPostDTO {
 	public void setPosttext(String posttext) {
 		this.posttext = posttext;
 	}
-	@Override
-	public String toString() {
-		return "ReviewPostDTO [id=" + id + ", mergePost=" + mergePost + ", postimg=" + postimg + ", posttext="
-				+ posttext + "]";
-	}
 }

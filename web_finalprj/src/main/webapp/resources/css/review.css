@@ -32,8 +32,7 @@
 .tab-header h5 span { color:#01738b; font-weight:600; }
 .tab-header-right { display:flex; }
 .tab-header-right span {line-height:42px; padding:0 .3rem; }
-.tab-header-right span:hover { text-decoration:underline; cursor:pointer; }
-.tab-header-right span.on { color:#5127b5; font-weight:600; }
+.tab-header-right span:hover { color:#5127b5; cursor:pointer; }
 .tab-header-search { margin-left:20px; } 
 .tab-header-search input { border:0; border-bottom:1px solid #bbb; padding:0.5rem; }
 .tab-header-search button { border:0; background:none; }
@@ -66,7 +65,6 @@
 .post textarea { border:0; padding:.5rem 1rem .5rem; resize:none; border:1px solid #e5e5e5; border-top:0; height:90px; }
 .post.selected textarea { border-color:#fff; }
 .pTextCnt { font-size:12px; position:absolute; bottom:28px; right:28px; color:#aaa; }
-.listnull { width:100%; text-align:center; margin:8rem 0; }
 
 #add-step2 .btn_wrap,
 #update .btn_wrap { display:flex; justify-content: center; align-items: center; padding:2rem 0; }
@@ -95,8 +93,4 @@
 .detail-btn-wrap { display:flex; justify-content:center; padding-top:1rem; }
 .detail-btn-wrap button { border:0; background:none; }
 .btn-gcnt .fa-thumbs-up,
-.btn-bcnt .fa-thumbs-down,
-.btn-cnt .fa-comment-alt { color:#999; }
-.btn-cnt { cursor:initial !important; }
-.btn-cnt:hover { background:inherit !important; color:inherit !important; border-color:#bbb !important; }
-.btn-cnt .fa-comment-alt { color:#999; }
+.btn-bcnt .fa-thumbs-down { color:#999; }

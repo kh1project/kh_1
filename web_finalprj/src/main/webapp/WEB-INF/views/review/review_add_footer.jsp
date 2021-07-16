@@ -13,21 +13,13 @@ $(document).ready(function(){
 	$('#post1').addClass("selected");
 	const step2wrap = $('#add-step2 > form > .row > .col-6');
 	$(step2wrap).css("height", window.innerHeight - 300);
-	
-	$(".starRating i").on('click', function(e) {
-		const star = $(this).attr("data-rating");
-		$(this).parent().children("i").attr("class", "far fa-star");
-		$(this).attr("class", "fas fa-star").prevAll().attr("class", "fas fa-star");
-		$("#star").val(star);
-		return false;
-	});
 });
 
 var movienum;
 
 function selectmovie(num) {
 	movienum = num;
-	if(window.location.pathname == "<%=request.getContextPath() %>/review/add") {
+	if(window.location.pathname == "/seenema/review/add") {
 		var ckbg = document.getElementById("checkbg" + num);
 		var anotherckbg = document.getElementsByClassName("checkbg");
 		var ckradio = document.getElementById("wm" + num);
@@ -75,7 +67,7 @@ function selectPost(num) {
 function selectImg(num) {
 	if(document.getElementsByClassName("selectImg")) {
 		if($(".post.selected").length < 1) {
-			$(".postwrap").find(".post").first().addClass("selected");
+			$(".postwrap").find(".post").addClass("selected");
 		}
 		$(".selected .selectImg").remove();
 		$("#smovieimg" + num).clone().prependTo(".post.selected").last(); //last post id를 가져와야 함.
@@ -112,31 +104,26 @@ function addPost(){
 var nullFlag = false;
 
 function nullCheck() {
-	if($("#star").val() == 0) {
-		alert("평점을 입력해주세요.");
-		return;
-	} else {
-		for(i = 0; i < postClass.length; i++) {
-			console.log("---------- 현재 포스터의 개수 : " + postClass.length);
-			var postnum = $("#"+postClass[i].id);
-			if(postnum.length) {
-				var postimgSrc = postnum.children("img").attr("src");
-				var posttextVal = postnum.children("textarea").val();
-				
-				console.log("----------현재 " + (i + 1) + "번째 포스터 체크중----------");
-				if(postimgSrc == "/seenema/resources/images/sub/bg-img-select.png"){
-					console.log((i + 1) + "번째 이미지 확인중");
-					alert("이미지를 선택해주세요.");
-					nullFlag = false;
-					console.log((i + 1) + "번째 이미지 없음");
-					return;
-				} else if(posttextVal.length < 1) {
-					console.log((i + 1) + "번째 내용 확인중");
-					alert("내용을 입력해주세요.");
-					nullFlag = false;
-					console.log((i + 1) + "번째 내용 없음");
-					return;
-				}
+	for(i = 0; i < postClass.length; i++) {
+		console.log("---------- 현재 포스터의 개수 : " + postClass.length);
+		var postnum = $("#"+postClass[i].id);
+		if(postnum.length) {
+			var postimgSrc = postnum.children("img").attr("src");
+			var posttextVal = postnum.children("textarea").val();
+			
+			console.log("----------현재 " + (i + 1) + "번째 포스터 체크중----------");
+			if(postimgSrc == "/seenema/resources/images/sub/bg-img-select.png"){
+				console.log((i + 1) + "번째 이미지 확인중");
+				alert("이미지를 선택해주세요.");
+				nullFlag = false;
+				console.log((i + 1) + "번째 이미지 없음");
+				return;
+			} else if(posttextVal.length < 1) {
+				console.log((i + 1) + "번째 내용 확인중");
+				alert("내용을 입력해주세요.");
+				nullFlag = false;
+				console.log((i + 1) + "번째 내용 없음");
+				return;
 			}
 		}
 	}

@@ -43,8 +43,8 @@
   	</select>
   
   	<insert id="insertAccount" parameterType="account">
-  		INSERT INTO account(id, email, password,  username, nickname, age, phone)
-  	    	 VALUES(account_seq.NEXTVAL, #{email}, #{password}, #{username}, #{nickname}, #{age}, #{phone})
+  		INSERT INTO account(id, email, password,  username, nickname, gender, age, phone)
+  	    	 VALUES(account_seq.NEXTVAL, #{email}, #{password}, #{username}, #{nickname}, #{gender}, #{age}, #{phone})
   	</insert>
   
   	<update id="loginDate">
@@ -66,9 +66,5 @@
        	SET expiredate = SYSDATE
      	WHERE id = #{id}
   	</update>
-  	
-  	<select id="getAdminList" resultType="com.web.seenema.account.dto.AccountGradeDTO">
-  		SELECT id, name FROM account_type WHERE name = 'admin'
-  	</select>
   	
 </mapper>

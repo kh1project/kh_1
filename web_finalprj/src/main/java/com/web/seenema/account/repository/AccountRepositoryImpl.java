@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.web.seenema.account.dto.AccountDTO;
-import com.web.seenema.account.dto.AccountGradeDTO;
 
 @Repository
 public class AccountRepositoryImpl implements AccountRepository {
@@ -65,11 +64,6 @@ public class AccountRepositoryImpl implements AccountRepository {
 	@Override
 	public boolean delete(AccountDTO dto) throws Exception {
 		return false;
-	}
-
-	@Override
-	public List<AccountGradeDTO> getAdminList() {
-		return sqlSession.selectList("accountMapper.getAdminList");
 	}
 	
 }

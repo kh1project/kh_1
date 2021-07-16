@@ -19,13 +19,16 @@
 	--purple-color: #8041D9;
 }
 	
+
 *{
 	margin:0;
 	padding:0;
 }
+
 body{
 	background:var(--body-background-color);
 }
+
 .main-container{
 	width:100%;
 	display:flex;
@@ -35,6 +38,7 @@ body{
 }
 .main-container .main-wrap{
 	width:768px;
+
 }
 .main-container .main-wrap .logo-wrap{
 	padding-top:55px;
@@ -55,6 +59,7 @@ body{
 	flex-direction: column;
 	align-items: center;
 }
+
 .login-input-wrap{
 	width: 465px;
 	height :48px;
@@ -101,11 +106,14 @@ body{
 	padding-left: 5px;
 	line-height: 25px;
 }
+
 .Easy-sgin-in-wrap{
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding-top: 40px;
+
 }
 .Easy-sgin-in-wrap h2{
 	font-size: 20px;
@@ -145,6 +153,7 @@ body{
 	color:var(--font-color);
 	font-size: 14px;
 	padding-top: 10px;
+
 }
 </style>
 </head>
@@ -163,9 +172,8 @@ body{
 			<div class="logo-wrap">
 				
 				
-			<button type="button" onclick="location.href='${main }'" style="margin-top: 10px; border: none;">
-					<img src="<%=request.getContextPath() %>/resources/images/common/logo.png"
-					 width="30" height="30" class="d-inline-block align-top" alt="로고">
+			<button type="button" onclick="location.href='${main }'" style="margin-top: 10px;">
+					<img src="#" width="30" height="30" class="d-inline-block align-top" alt="로고">
 			</button>
 				
 				

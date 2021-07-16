@@ -1,6 +1,6 @@
 package com.web.seenema.reserve.dto;
 
-
+// 예매 시 선택된 정보.
 public class ReserveCheckDTO {
 	private String location;
 	private String name;

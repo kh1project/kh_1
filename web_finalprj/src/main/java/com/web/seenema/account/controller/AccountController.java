@@ -41,7 +41,6 @@ public class AccountController {
 		boolean result = account.join(dto);
 		if(result) {
 			// 가입 성공 했을 때 로그인 페이지로 리다이렉트
-			//alert("가입이 완료되었습니다.");
 			forward = "redirect:/account/login";
 		} else {
 			// 가입 실패 했을 때 회원가입 페이지 재전송
@@ -68,7 +67,7 @@ public class AccountController {
 			HttpSession session = req.getSession();
 			session.setAttribute("account", dto);
 			session.setAttribute("logined", true);
-			forward = "redirect:/index";
+			forward = "redirect:/";
 		} else {
 			// dto.getId() 값이 0 보다 크지 않은 경우 로그인 실패
 			m.addAttribute("data", dto);

@@ -3,16 +3,18 @@ package com.web.seenema.review.repository;
 import java.util.*;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.web.seenema.board.dto.BoardSearchDTO;
 import com.web.seenema.comment.dto.CommentSimpleDTO;
 import com.web.seenema.movie.dto.MovieDTO;
+import com.web.seenema.movie.dto.MyMovieDTO;
 import com.web.seenema.review.dto.ReviewAddDTO;
 import com.web.seenema.review.dto.ReviewDTO;
 import com.web.seenema.review.dto.ReviewListDTO;
 import com.web.seenema.review.dto.ReviewPostDTO;
+import com.web.seenema.review.dto.ReviewSimpleDTO;
 
 @Repository
 public class ReviewRepositoryImpl implements ReviewRepository {
@@ -23,31 +25,6 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 	@Override
 	public List<ReviewListDTO> selectReviewList() throws Exception {
 		return sqlSession.selectList("reviewMapper.selectReviewList");
-	}
-
-	@Override
-	public List<ReviewListDTO> selectOrderbyLikeList() throws Exception {
-		return sqlSession.selectList("reviewMapper.selectOrderbyLikeList");
-	}
-	
-	@Override
-	public List<ReviewListDTO> selectReviewSearchList(BoardSearchDTO search) throws Exception {
-		return sqlSession.selectList("reviewMapper.selectReviewSearchList", search);
-	}
-
-	@Override
-	public List<ReviewListDTO> selectReviewSeenList(int aid) throws Exception {
-		return sqlSession.selectList("reviewMapper.selectReviewSeenList", aid);
-	}
-
-	@Override
-	public List<ReviewListDTO> selectOrderbyLikeSeenList(int aid) throws Exception {
-		return sqlSession.selectList("reviewMapper.selectOrderbyLikeSeenList", aid);
-	}
-
-	@Override
-	public List<ReviewListDTO> selectReviewSearchSeenList(BoardSearchDTO search) throws Exception {
-		return sqlSession.selectList("reviewMapper.selectReviewSearchSeenList", search);
 	}
 
 	@Override
@@ -184,19 +161,5 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 			System.out.println("[Repo] updateVcnt 정상동작 - data : " + data);
 		}
 		return data;
-	}
-
-	public int blockReview(int id) throws Exception {
-		return sqlSession.update("reviewMapper.blockReview", id);
-	}
-
-	@Override
-	public String selectUserNickname(int id) throws Exception {
-		return sqlSession.selectOne("reviewMapper.selectUserNickname", id);
-	}
-
-	@Override
-	public List<Integer> selectAddReviewList(int aid) throws Exception {
-		return sqlSession.selectList("reviewMapper.selectAddReviewList", aid);
 	}
 }

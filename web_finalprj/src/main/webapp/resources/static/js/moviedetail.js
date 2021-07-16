@@ -1,4 +1,4 @@
-$(document).ready(function(){
+window.onload = function() {
 	const likeBtn = document.querySelector(".like-btn");
 	likeBtn.onmouseover = function() {
 		likeBtn.style.backgroundColor = "white";
@@ -11,13 +11,11 @@ $(document).ready(function(){
 	
 	const shareBtn = document.querySelector(".share");
 	shareBtn.onclick = function(){
-		document.body.classList.add("no-scroll");
 		document.querySelector("#modal").style.display = "flex";
 	}
 	
 	const closeBtn = document.querySelector(".close-btn");
 	closeBtn.onclick = function(){
-	document.body.classList.remove("no-scroll");
 		document.querySelector("#modal").style.display = "none";
 	}
 	
@@ -28,25 +26,8 @@ $(document).ready(function(){
 		alert("URL이 복사되었습니다. 클립보드로 복사하세요.");
 	}
 	
-	const menu = document.querySelector(".menues");
-	let mid = window.location.search;
-	menu.children[0].onclick = function(){
-		window.location= "/seenema/movie/detail"+mid;
-	}
 	
-	menu.children[1].onclick = function(){
-		window.location= "/seenema/movie/detail/comment"+mid;
-	}
-	
-	menu.children[2].onclick = function(){
-		window.location= "/seenema/movie/detail/post"+mid;
-	}
-	
-	menu.children[3].onclick = function(){
-		window.location= "/seenema/movie/detail/stillcut"+mid;
-	}
-	
-});
+}
 
 function doLike(mid) {
 	$.ajax({
