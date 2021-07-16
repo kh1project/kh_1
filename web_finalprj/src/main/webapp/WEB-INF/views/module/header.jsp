@@ -12,12 +12,29 @@ body { padding-top:66px !important; }
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <!--
   	<div class="mini-menu">
-  		<a href="<%=request.getContextPath() %>/account/join">회원가입</a>
-  		<a href="<%=request.getContextPath() %>/account/login">로그인</a>
+  		<%
+			if(session.getAttribute("account") != null) {
+		%>
+			<ul class="nav justify-content-end">
+					<li class="nav-item">
+						<a class="nav-link" href="<%=request.getContextPath() %>/account/mypage">마이페이지</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="<%=request.getContextPath() %>/account/logout">로그아웃</a>
+					</li>
+				</ul>
+		<% } else { %>
+				<ul class="nav justify-content-end">
+					<li class="nav-item">
+						<a class="nav-link" href="<%=request.getContextPath() %>/account/login">로그인</a>
+					</li>				
+					<li class="nav-item">
+						<a class="nav-link" href="<%=request.getContextPath() %>/account/join">회원가입</a>
+					</li>
+				</ul>
+		<% } %>
   	</div>
-  	-->
   	<div class="menu">
 	  	<a href="<%=request.getContextPath() %>/movie">영화</a>
 	  	<a href="<%=request.getContextPath() %>/reserve">영화관</a>
@@ -27,38 +44,3 @@ body { padding-top:66px !important; }
     </div>
   </div>
 </nav>
-&nbsp;  
-  	<div class="container" style="font-size:1.2rem;">
-			<ul class="nav justify-content-end">
-			
-		<%
-			if(session.getAttribute("account") != null) {
-		%>
-					<li class="nav-item">
-						<%
-							if(getServletInfo().equals("mypage")) {
-						%>
-								<a class="nav-link active" href="<%=request.getContextPath() %>/account/mypage" style="color: #4C4C4C">마이페이지</a>
-						<%		
-							} else {
-						%>
-								<a class="nav-link" href="<%=request.getContextPath() %>/account/mypage" style="color: #4C4C4C">마이페이지</a>
-						<%
-							}
-						%>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="<%=request.getContextPath() %>/account/logout">로그아웃</a>
-					</li>
-				</ul>
-		<% } else { %>
-				<ul class="nav justify-content-end">
-					<li class="nav-item">
-						<a class="nav-link" href="<%=request.getContextPath() %>/account/login" style="color: #4C4C4C">로그인</a>
-					</li>				
-					<li class="nav-item">
-						<a class="nav-link" href="<%=request.getContextPath() %>/account/join" style="color: #4C4C4C">회원가입</a>
-					</li>
-				</ul>
-		<% } %>
-  </div>

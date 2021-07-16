@@ -44,7 +44,6 @@
 html {
     height: 100%;
 }
-
 body {
     margin: 0;
     height: 100%;
@@ -56,7 +55,6 @@ body {
     height: 44px;
     cursor: pointer;
 }
-
 #header {
     padding-top: 62px;
     padding-bottom: 20px;
@@ -66,21 +64,17 @@ body {
     position: relative;
     height: 100%;
 }
-
 #content {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
     width: 460px;
 }
-
-
 h3 {
     margin: 19px 0 8px;
     font-size: 14px;
     font-weight: 700;
 }
-
 .box {
     display: block;
     width: 100%;
@@ -91,7 +85,6 @@ h3 {
     background: #fff;
     position: relative;
 }
-
 .int {
     display: block;
     position: relative;
@@ -101,23 +94,18 @@ h3 {
     background: #fff;
     font-size: 15px;
 }
-
 input {
     font-family: Dotum,'돋움',Helvetica,sans-serif;    
 }
-
 .box.int_id {
     padding-right: 110px;
 }
-
 .box.int_pass {
     padding-right: 40px;
 }
-
 .box.int_pass_check {
     padding-right: 40px;
 }
-
 .step_url {
     position: absolute;
     top: 16px;
@@ -125,7 +113,6 @@ input {
     font-size: 15px;
     color: #8e8e8e;
 }
-
 select {
     width: 100%;
     height: 29px;
@@ -139,11 +126,9 @@ select {
     cursor: default;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
 }
-
 .btn_area {
     margin: 30px 0 91px;
 }
-
 #btnJoin {
     width: 100%;
     padding: 21px 0 17px;
@@ -155,7 +140,6 @@ select {
     font-weight: 400;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
 }
-
 #btnCancel {
     width: 100%;
     padding: 21px 0 17px;
@@ -167,7 +151,6 @@ select {
     font-weight: 400;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
 }
-
 </style>
 <title>SEENEMA의 가족이 되어주세요!</title>
 </head>
@@ -291,7 +274,6 @@ function send() {
 		username.focus();
 		return;
 	}
-
 	var nickname_check = document.getElementById("nickname_check_res").innerText;
 	if(nickname_check == "" || nickname_check == undefined) {
 		alert("닉네임을 입력하세요.");
