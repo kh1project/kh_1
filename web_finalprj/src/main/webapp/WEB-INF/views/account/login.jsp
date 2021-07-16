@@ -18,7 +18,7 @@
 	--border-gray-color : #dadada;
 	--purple-color: #8041D9;
 }
-	
+
 *{
 	margin:0;
 	padding:0;

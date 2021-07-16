@@ -191,7 +191,6 @@ select {
                     </span>
                 </div>
 
-
                 <div>
                     <h3 class="join_title"><label for="id_username">이름</label></h3>
                     <span class="box int_name">
