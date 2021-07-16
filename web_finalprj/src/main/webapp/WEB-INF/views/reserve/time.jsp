@@ -82,7 +82,7 @@
 		<input type="hidden" name="name" value="${param.name }">
 		<input type="hidden" name="rating" value="${param.rating }">
         <input type="hidden" name="title" value="${param.title }">
-        <input type="hidden" name="tid" value="${param.tid }">
+        <input type="hidden" name="tid" value="${TimeDTO.tid }">
         <input type="hidden" name="starttime" value="${param.startime }">
         <input type="hidden" name="endtime" value="${param.endtime }">
         <input id="idnow" type="hidden" name="moviedate">

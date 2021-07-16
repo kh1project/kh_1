@@ -113,18 +113,18 @@
 	</select>
 	
 	<select id="timelist" parameterType="HashMap" resultType="time">
-		SELECT
-		    m.id,
+		SELECT DISTINCT
+			t.id,
+		    t.starttime,
+		    t.endtime,
 		    m.playdate,
 		    th.bid,
 		    th.name,
+            s.tid,
 		    mt.mid,
-		    mt.tid,
 		    mt.enddate,
-		    t.starttime,
-		    t.endtime,
-			(SELECT count(*) FROM seat s WHERE s.tid = th.id) as seat_count,
-			(SELECT count(*) FROM seat s WHERE s.reserved = 'y') as seat_reserved
+			(SELECT count(*) FROM seat s WHERE s.tid = t.id) as seat_count,
+			(SELECT count(*) FROM seat s WHERE s.tid = t.id AND s.reserved = 'y' AND th.id = mt.tid) as seat_reserved
 		FROM time t
 		JOIN movie_theater mt
 		ON t.mtid = mt.id
@@ -134,8 +134,11 @@
 		ON mt.tid = th.id
 		JOIN branch b
 		ON th.bid = b.id
+        JOIN seat s
+        ON s.tid = t.id
 		WHERE b.location = #{location} AND b.name = #{name}
 			AND m.rating = #{rating} AND m.title = #{title} AND TO_CHAR(t.moviedate, 'yyyy-mm-dd') = #{moviedate}
+		ORDER BY id
 	</select>
 	
 </mapper>
