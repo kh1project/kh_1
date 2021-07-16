@@ -143,6 +143,6 @@
 		SELECT nickname FROM account WHERE id = ${id}
 	</select>
 	<select id="selectAddPossibleList" parameterType="int" resultType="int">
-		select mid from board where aid = 2 and not(deleted = 'Y' AND nodel = 'N') group by mid
+		select mid from board where aid = ${aid} and not(deleted = 'Y' AND nodel = 'N') group by mid
 	</select>
 </mapper>
