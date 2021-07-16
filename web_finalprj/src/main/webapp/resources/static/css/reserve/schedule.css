@@ -1,4 +1,21 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
+*:not(i) { font-family: 'Noto Sans KR', sans-serif; }
+
+body { padding-top: 3rem!important }
+a { color:inherit; }
+a:hover { text-decoration:none; color:inherit; }
+#container > div.container { padding:50px 0 100px; }
+
+/**
+* BootStrap Base Design Change Code
+*/
+.card { border-radius:.5rem; }
+.btn-outline-secondary { border-color:#bbb; }
+.btn-outline-secondary:hover { background-color:#f2f2f2; }
+.row-cols-lg-4>* { padding:0.5rem; }
 
 hr { margin: 3px; }
 .row { text-align: center; }
@@ -15,6 +32,13 @@ hr { margin: 3px; }
 }
 .list-group-item {
 	width: 100%;
+}
+.page-util {
+    background-color: #4397a9;
+    position: relative;
+    color: #fff;
+    font-weight: 400;
+    line-height: calc(3rem - 8px);
 }
 div #schedule_form {
 	border: 1px solid #D5D5D5;

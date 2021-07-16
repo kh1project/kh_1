@@ -11,17 +11,25 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/jquery/js/jquery-3.6.0.min.js"></script>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/css/bootstrap.min.css">
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/reserve/reserve.css">
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/reserve/time.css">
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/static/css/common.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/static/css/reserve/reserve.css">
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/static/css/reserve/time.css">
 <!-- 툴팁 활성화시 필요! -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="https://kit.fontawesome.com/74ba2bf207.js" crossorigin="anonymous"></script>
 </head>
-<body class="pt-5">
+<body class="pt-3">
   <header>
   	<%@ include file="../module/header.jsp" %>
   </header>
   <section class="reserve-frame pt-5">
+   	<div class="page-util">
+		<div class="container">
+			<i class="fas fa-home"></i>
+			<i class="fas fa-angle-right"></i>
+			<span class="page-util-text"> <a href="<%=request.getContextPath()%>/reserve?location="> 예매 </a></span>
+		</div>
+	</div>
   <c:url var="location" value="/reserve" />
   <form method="get" action="${location }/seats">
 	  <div class="reserve-window">

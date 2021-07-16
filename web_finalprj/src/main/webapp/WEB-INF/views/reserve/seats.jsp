@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>좌석 - SEENEMA</title>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/css/bootstrap.min.css">
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/reserve/reserve.css">
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/reserve/seats.css">
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/static/css/reserve/reserve.css">
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/static/css/reserve/seats.css">
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/jquery/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
 </head>
