@@ -163,8 +163,9 @@ body{
 			<div class="logo-wrap">
 				
 				
-			<button type="button" onclick="location.href='${main }'" style="margin-top: 10px;">
-					<img src="#" width="30" height="30" class="d-inline-block align-top" alt="로고">
+			<button type="button" onclick="location.href='${main }'" style="margin-top: 10px; border: none;">
+					<img src="<%=request.getContextPath() %>/resources/images/common/logo.png"
+					 width="30" height="30" class="d-inline-block align-top" alt="로고">
 			</button>
 				
 				

@@ -163,8 +163,8 @@ select {
 
 	<form name="account_form" action="${join }" method="post">
 
-        <div id="header">
-           	<button type="button" onclick="location.href='${main }'" style="margin-top: 10px;">
+        <div id="header"> 
+           	<button type="button" onclick="location.href='${main }'" style="margin-top: 10px;  border: none;">
 					<img src="<%=request.getContextPath() %>/resources/images/common/logo.png"
 					 width="30" height="30" class="d-inline-block align-top" alt="로고">
 			</button>
