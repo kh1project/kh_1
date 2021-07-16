@@ -74,10 +74,55 @@ SELECT * FROM board WHERE btype = 1 AND deleted = 'N' AND nodel = 'N' AND mid IN
 		  LEFT OUTER JOIN reservation e ON d.id = e.timeid
 		 WHERE b.id = 1
       GROUP BY a.mid) ORDER BY id DESC;
- 
+      
+      SELECT * FROM board WHERE aid = 2 AND nodel = 'N' AND deleted = 'N' -- 등록된 게시글 중 사용자에게 노출이 되고 있는 목록
+
+-- 작성가능하게 바뀐 항목들
+SELECT mid FROM board WHERE aid = 2 AND deleted = 'Y' AND nodel = 'N';
+
+-- 이미 작성돼서 노출되고 있는 항목들
+SELECT mid FROM board WHERE aid = 2 AND deleted = 'N' AND Nodel = 'N';
+
+-- 작성가능한 mid에서 작성돼서 노출되고있는 게시글의 mid를 제한 나머지가 등록가능한거
+SELECT mid FROM board WHERE aid = 2 AND deleted = 'Y' AND nodel = 'N' AND mid IN( -- 그 중에 deleted가 y인게 있으면 그건 작성이 가능한거 : 작성이 가능한걸 반환
+	SELECT mid FROM board WHERE aid = 2 AND deleted = 'N' AND Nodel = 'N' GROUP BY mid -- 이미 작성된거
+) GROUP BY mid;
+
+-- 작성가능한 mid에서 작성돼서 노출되고있는 게시글의 mid를 제한 나머지가 등록가능한거
+	SELECT * FROM board WHERE aid = 2 AND deleted = 'Y' AND nodel = 'N' AND mid NOT IN( -- 그 중에서 블럭된거. 등록할 수 X
+		SELECT mid FROM board WHERE aid = 2 GROUP BY mid -- 내가 쓴글 전체 조회. 다 등록할 수 없음.
+	);
+	
+select * from board  where aid = 2 not exists(SELECT * FROM board WHERE aid = 2 AND deleted = 'Y' AND nodel = 'N');
+
+
+	
+
+
+-- 작성가능한 mid에서 작성돼서 노출되고있는 게시글의 mid를 제한 나머지가 등록가능한거
+SELECT mid FROM board WHERE aid = 2 AND deleted = 'N' AND nodel = 'N' GROUP BY mid
+UNION ALL
+SELECT mid FROM board WHERE aid = 2 AND deleted = 'N' AND nodel = 'Y' GROUP BY mid
+UNION ALL
+SELECT mid FROM board WHERE aid = 2 AND deleted = 'Y' AND nodel = 'Y' GROUP BY mid
+
+-- 작성가능한 mid에서 작성돼서 노출되고있는 게시글의 mid를 제한 나머지가 등록가능한거
+SELECT * FROM board WHERE aid = 2 AND deleted = 'N' AND nodel = 'N'
+UNION ALL
+SELECT * FROM board WHERE aid = 2 AND deleted = 'N' AND nodel = 'Y'
+UNION ALL
+SELECT * FROM board WHERE aid = 2 AND deleted = 'Y' AND nodel = 'Y'
+
+select mid from board where aid = 2 and not(deleted = 'Y' AND nodel = 'N') group by mid;
+
+SELECT * FROM board WHERE aid = 2
+DELETE FROM board WHERE id = 71;
+
+update board set nodel = 'N' WHERE aid = 2;
+SELECT * FROM board WHERE aid = 2;
 
 DROP SEQUENCE board_seq;
-DELETE FROM board WHERE id  <= 100;
+DELETE FROM board WHERE id  <= 300;
 CREATE SEQUENCE board_seq;
 
 -- 좋아요 확인

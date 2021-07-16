@@ -7,6 +7,7 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.web.seenema.account.repository.AccountRepositoryImpl;
 import com.web.seenema.board.dto.BoardSearchDTO;
 import com.web.seenema.comment.dto.CommentSimpleDTO;
 import com.web.seenema.movie.dto.MovieDTO;
@@ -28,6 +29,9 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Autowired
 	private MovieRepositoryImpl mdto;
+	
+	@Autowired
+	private AccountRepositoryImpl adto;
 
 	@Override
 	public List<ReviewListDTO> reviewList() throws Exception {
@@ -304,7 +308,14 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Integer> myAddReviewList(int aid) throws Exception {
-		return dto.selectAddReviewList(aid);
+	public List<Integer> myAddPossibleList(int aid) throws Exception {
+		List<Integer> possiblelist = dto.selectAddPossibleList(aid);
+//		if(possiblelist.size() == 0) {
+//			possiblelist = adto.selectMyMovieList(aid);
+//		}
+		if(possiblelist.size() == 0) {
+			possiblelist.add(-1);
+		}
+		return possiblelist;
 	}
 }

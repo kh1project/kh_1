@@ -195,15 +195,16 @@ public class ReviewController {
 		if(aid == 0) {
 			return "redirect:/review";
 		} else {
-			List<List<MyMovieDTO>> mywlist = account.mywatchList(aid);
-			List<Integer> myaddlist = review.myAddReviewList(aid);
-			System.out.println("[controller] 내가 작성한 리뷰 목록의 사이즈 : " + myaddlist.size());
-			for(int i:myaddlist) {
-				System.out.println("[controller] 내가 작성한 리뷰 id" + i);
-			}
+			List<List<MyMovieDTO>> mywlist = account.mywatchList(aid); //내가 본 영화의 목록(영화의 이미지 목록)이 있는 상태
+			List<Integer> possiblelist = review.myAddPossibleList(aid);
 			
+			System.out.println("[controller] 작성불가 영화 개수 : " + possiblelist.size());
+			for(int i:possiblelist) {
+				System.out.println("[controller] 작성불가 영화 id" + i);
+			}
+
 			m.addAttribute("mywlist", mywlist);
-			m.addAttribute("myaddlist", myaddlist);	
+			m.addAttribute("possiblelist", possiblelist);
 		}
 		
 		m.addAttribute("sessionAid", aid);

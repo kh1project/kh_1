@@ -35,5 +35,5 @@ public interface ReviewRepository {
     public int updateBcnt(ReviewDTO rdto) throws Exception;
     public int updateVcnt(ReviewDTO rdto) throws Exception;
     public String selectUserNickname(int id) throws Exception;
-    public List<Integer> selectAddReviewList(int aid) throws Exception;
+    public List<Integer> selectAddPossibleList(int aid) throws Exception;
 }

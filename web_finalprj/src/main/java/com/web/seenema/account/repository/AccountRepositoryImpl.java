@@ -17,6 +17,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 	
 	@Override
 	public List<Integer> selectMyMovieList(int aid) throws Exception {
+		//내가 본 영화의 mid 목록
 		List<Integer> data = sqlSession.selectList("accountMapper.myMovieSearch", aid);
 		return data;
 	}

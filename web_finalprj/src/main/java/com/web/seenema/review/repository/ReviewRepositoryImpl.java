@@ -196,7 +196,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 	}
 
 	@Override
-	public List<Integer> selectAddReviewList(int aid) throws Exception {
-		return sqlSession.selectList("reviewMapper.selectAddReviewList", aid);
+	public List<Integer> selectAddPossibleList(int aid) throws Exception {
+		return sqlSession.selectList("reviewMapper.selectAddPossibleList", aid);
 	}
 }
