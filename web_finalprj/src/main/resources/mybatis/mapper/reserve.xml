@@ -4,15 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="reserveMapper">
-	<select id="ReserveList" parameterType="HashMap" resultType="reservation">
-		SELECT * FROM reservation
-		 WHERE orderid = #{orderid}
-		   AND aid = #{aid}
-	</select>
-
-	<delete id="ReserveDelete">
-		DELETE reservation WHERE id = #{id}
-	</delete>
 
 	<select id="getTimeid" parameterType="HashMap" resultType="timeinfo">
 		SELECT * FROM time
@@ -42,18 +33,18 @@
 	  	INSERT INTO reservation(id, orderid, sid, timeid, aid, rdate,  rcnt, totalpay, payment)
 		VALUES(res_seq.NEXTVAL, #{orderid}, #{sid}, #{timeid}, #{aid}, SYSDATE, #{rcnt}, #{totalpay}, #{payment})
 	</insert>
-	
-	<select id="Seatlist" resultType="seat">
-		SELECT * FROM seat WHERE id = #{id}
-	</select>
 
 	<update id="updateSeat">
 	    UPDATE seat SET reserved = 'y' WHERE id = #{sid}
 	</update>
-	
-	<update id="cencelSeat">
-	    UPDATE seat SET reserved = 'n' WHERE id = #{sid}
-	</update>
+
+	<select id="checkseat" parameterType="HashMap" resultType="seat">
+    	SELECT * FROM seat
+    	 WHERE tid = #{tid}
+    	   AND seatrow = #{row}
+    	   AND seatcol = #{col}
+    	   AND reserved = 'n'
+	</select>
 	
 	<select id="seatcnt" resultType="_int">
     	SELECT count(*)
@@ -122,18 +113,18 @@
 	</select>
 	
 	<select id="timelist" parameterType="HashMap" resultType="time">
-		SELECT DISTINCT
-			t.id,
-		    t.starttime,
-		    t.endtime,
+		SELECT
+		    m.id,
 		    m.playdate,
 		    th.bid,
 		    th.name,
-            s.tid,
 		    mt.mid,
+		    mt.tid,
 		    mt.enddate,
-			(SELECT count(*) FROM seat s WHERE s.tid = t.id) as seat_count,
-			(SELECT count(*) FROM seat s WHERE s.tid = t.id AND s.reserved = 'y' AND th.id = mt.tid) as seat_reserved
+		    t.starttime,
+		    t.endtime,
+			(SELECT count(*) FROM seat s WHERE s.tid = th.id) as seat_count,
+			(SELECT count(*) FROM seat s WHERE s.reserved = 'y') as seat_reserved
 		FROM time t
 		JOIN movie_theater mt
 		ON t.mtid = mt.id
@@ -143,11 +134,8 @@
 		ON mt.tid = th.id
 		JOIN branch b
 		ON th.bid = b.id
-        JOIN seat s
-        ON s.tid = t.id
 		WHERE b.location = #{location} AND b.name = #{name}
 			AND m.rating = #{rating} AND m.title = #{title} AND TO_CHAR(t.moviedate, 'yyyy-mm-dd') = #{moviedate}
-		ORDER BY id
 	</select>
 	
 </mapper>

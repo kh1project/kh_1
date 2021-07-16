@@ -73,5 +73,34 @@
 		SELECT * FROM image_files WHERE mid = #{mid} AND path LIKE '%stillcut%'
 	</select>
 	
+	<insert id="insertFile" parameterType="movieImage">
+		INSERT INTO image_files(id, mid, name, path) VALUES(image_files_seq.NEXTVAL, #{mid}, #{name}, #{path})
+	</insert>
 	
+	<insert id="insertMovieData" parameterType="com.web.seenema.movie.dto.MovieDTO">
+		INSERT INTO movie(id, title, subtitle, summary, type, director, genre, runningtime, rating, actor, playdate)
+		VALUES(#{id}, #{title}, #{subtitle}, #{summary}, #{type}, #{director}, #{genre}, #{runningtime}, #{rating}, #{actor}, #{playdate})
+	</insert>
+	
+	<select id="getPosterInfo" resultType="movieImage">
+		SELECT * FROM image_files WHERE mid=#{mid} AND path LIKE '%poster%'
+	</select>
+	
+	<select id="getStillcutInfo" resultType="movieImage">
+		SELECT * FROM image_files WHERE mid=#{mid} AND path LIKE '%stillcut%'
+	</select>
+	
+	<select id="getOnePoster" resultType="movieImage">
+		SELECT img.id, img.mid, img.path, img.name 
+		FROM image_files img 
+		WHERE img.id 
+		IN (SELECT MIN(id) FROM image_files GROUP BY mid) 
+		AND img.path 
+		LIKE '%poster%' 
+		ORDER BY mid
+	</select>
+	
+	<select id="getAdminList" resultType="com.web.seenema.account.dto.AccountGradeDTO">
+  		SELECT id, name FROM account_type WHERE name = 'admin'
+  	</select>
 </mapper>

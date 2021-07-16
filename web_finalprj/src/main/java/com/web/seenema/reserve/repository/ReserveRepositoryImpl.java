@@ -1,5 +1,6 @@
 package com.web.seenema.reserve.repository;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,10 @@ import com.web.seenema.movie.dto.MovieDTO;
 import com.web.seenema.reserve.dto.BranchDTO;
 import com.web.seenema.reserve.dto.BranchTheaterDTO;
 import com.web.seenema.reserve.dto.ReservationDTO;
+import com.web.seenema.reserve.dto.RstepDTO;
 import com.web.seenema.reserve.dto.SeatDTO;
+import com.web.seenema.reserve.dto.SeatSelectDTO;
+import com.web.seenema.reserve.dto.TableRstepDTO;
 import com.web.seenema.reserve.dto.TimeDTO;
 import com.web.seenema.reserve.dto.TimeInfoDTO;
 
@@ -22,9 +26,14 @@ public class ReserveRepositoryImpl implements ReserveRepository{
 	@Autowired
 	SqlSession sqlSession;
 
+//	@Override
+//	public List<Map<String, Object>> selectMovieList() throws Exception {
+//		return sqlSession.selectList("reserveMapper.movieAll_list");
+//	}
+	
 	@Override
 	public List<MovieDTO> selectMovieList(String location, String name) throws Exception {
-		Map<String, Object> data = new HashMap<String, Object>();
+		Map<String, Object> data = new HashMap<>();
 		data.put("location", location);
 		data.put("name", name);
 		return sqlSession.selectList("reserveMapper.movieAll_list", data);
@@ -33,7 +42,7 @@ public class ReserveRepositoryImpl implements ReserveRepository{
 	@Override
 	public List<TimeDTO> selectTimeList(String location, String name,
 			int rating, String title, String moviedate) throws Exception {
-		Map<String, Object> data = new HashMap<String, Object>();
+		Map<String, Object> data = new HashMap<>();
 		data.put("location", location);
 		data.put("name", name);
 		data.put("rating", rating);
@@ -46,6 +55,36 @@ public class ReserveRepositoryImpl implements ReserveRepository{
 	@Override
 	public List<BranchDTO> selectBranchList(String location) throws Exception {
 		return sqlSession.selectList("reserveMapper.branchlist", location);
+	}
+
+	@Override
+	public List<TableRstepDTO> selectRestInfo(TableRstepDTO dto) throws Exception {
+		return null;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectSeatCnt(RstepDTO dto) throws Exception {
+		return null;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectSeatFrame(RstepDTO dto) throws Exception {
+		return null;
+	}
+
+	@Override
+	public List<Integer> selectRseatList(RstepDTO dto) throws Exception {
+		return null;
+	}
+
+	@Override
+	public boolean updateSeat(RstepDTO dto) throws Exception {
+		return false;
+	}
+
+	@Override
+	public int selectPrice(RstepDTO dto) throws Exception {
+		return 0;
 	}
 
 	@Override
@@ -80,25 +119,25 @@ public class ReserveRepositoryImpl implements ReserveRepository{
 		
 		return mtlist;
 	}
-	
+
 	@Override
-	public List<SeatDTO> Seatlist(int id) throws Exception {
-		return sqlSession.selectList("reserveMapper.Seatlist", id);
+	public int selectSeat(int tid, char row, int col) throws Exception {
+		Map<String, Object> data = new HashMap<>();
+		data.put("tid", tid);
+		data.put("row", row);
+		data.put("col", col);
+		List<SeatDTO> sdto = sqlSession.selectList("reserveMapper.checkseat", data);
+		return sdto.get(0).getId();
 	}
 
 	@Override
 	public int updateSeat(int sid) throws Exception{
 		return sqlSession.update("reserveMapper.updateSeat", sid);
 	}
-	
-	@Override
-	public int cencelSeat(int sid) throws Exception {
-		return sqlSession.update("reserveMapper.cencelSeat", sid);
-	}
 
 	@Override
 	public int getBranchTheater(String location, String name, String tname) throws Exception {
-		Map<String, Object> data = new HashMap<String, Object>();
+		Map<String, Object> data = new HashMap<>();
 		data.put("location", location);
 		data.put("name", name);
 		data.put("tname", tname);
@@ -112,7 +151,7 @@ public class ReserveRepositoryImpl implements ReserveRepository{
 
 	@Override
 	public int getMTid(int mid, String location, String name, String tname) {
-		Map<String, Object> data = new HashMap<String, Object>();
+		Map<String, Object> data = new HashMap<>();
 		data.put("mid", mid);
 		data.put("location", location);
 		data.put("name", name);
@@ -123,7 +162,7 @@ public class ReserveRepositoryImpl implements ReserveRepository{
 
 	@Override
 	public List<TimeInfoDTO> getTimelist(int mtid, String moviedate, String starttime, String endtime) throws Exception {
-		Map<String, Object> data = new HashMap<String, Object>();
+		Map<String, Object> data = new HashMap<>();
 		data.put("mtid", mtid);
 		data.put("moviedate", moviedate);
 		data.put("starttime", starttime);
@@ -145,19 +184,6 @@ public class ReserveRepositoryImpl implements ReserveRepository{
 		resdto.setPayment(payment);
 		
 		return sqlSession.insert("reserveMapper.reserveInsert", resdto);
-	}
-
-	@Override
-	public int deletReservation(int id) throws Exception {
-		return sqlSession.delete("reserveMapper.ReserveDelete", id);
-	}
-
-	@Override
-	public List<ReservationDTO> Reservelist(String orderid, int aid) throws Exception {
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("orderid", orderid);
-		data.put("aid", aid);
-		return sqlSession.selectList("reserveMapper.ReserveList", data);
 	}
 
 }

@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>박스오피스 - SEENEMA</title>
 <!-- jstl context path -->
-<c:url var="root" value="/" /> 
+<c:url var="root" value="/" />
 <script type="text/javascript"
 	src="${root}resources/jquery/js/jquery-3.6.0.min.js"></script>
 <link type="text/css" rel="stylesheet"
@@ -21,8 +21,7 @@
 	href="${root}resources/static/css/movie.css">
 <link type="text/css" rel="stylesheet"
 	href="${root}resources/static/css/common.css">
-<script type="text/javascript"
-	src="${root}resources/static/js/movie.js"></script>
+<script type="text/javascript" src="${root}resources/static/js/movie.js"></script>
 <style>
 @import
 	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;500&display=swap')
@@ -60,7 +59,8 @@ ul {
 	<div class="page-util">
 		<div class="inner-wrap">
 
-			<span class="svg"> <a href="<%=request.getContextPath()%>/index"> <svg
+			<span class="svg"> <a
+				href="<%=request.getContextPath()%>/index"> <svg
 						xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 						fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
 					  <path fill-rule="evenodd"
@@ -108,6 +108,10 @@ ul {
 						</c:otherwise>
 					</c:choose>
 				</select>
+				<c:if test="${isAdmin eq true }">
+					<button type="button" class="btn btn-primary add-btn">Add
+						Movie</button>
+				</c:if>
 			</div>
 			<br>
 			<div class="movie-center">
@@ -117,9 +121,8 @@ ul {
 					<div class="movies shadow bg-white rounded">
 						<div class="poster">
 							<div class="rank">${numRank = numRank+1 }</div>
-							<a
-								href="${root}movie/detail?mid=${item.getId() }"><img
-								src="${root}resources/images/movie/${item.getId() }/poster/movie_image.jpg"
+							<a href="${root}movie/detail?mid=${item.getId() }"><img
+								src="${root}/${mainposter.get(item.getId()-1).getPath()}/${mainposter.get(item.getId()-1).getName()}"
 								alt="${item.getTitle() }"></a>
 						</div>
 						<div class="title-box">
@@ -190,7 +193,7 @@ ul {
 									</c:otherwise>
 								</c:choose>
 								<span class="btn btn-outline-dark" id="reserve-${item.getId() }"
-									onclick="window.location.href = '/seenema/reserve?location=';">
+									onclick="window.location.href = '${root}reserve?location=';">
 									예매 </span>
 							</div>
 						</div>

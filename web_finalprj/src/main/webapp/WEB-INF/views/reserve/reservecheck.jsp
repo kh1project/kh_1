@@ -1,26 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri ="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>영화 - 결제요청</title>
+<title>결제요청 페이지</title>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/css/bootstrap.min.css">
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/jquery/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/reserve/reserve.css">
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/reserve/payment.css">
-<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/static/css/common.css">
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/jquery/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
 </head>
 <body class="pt-5">
 	<header>
 		<%@ include file="../module/header.jsp" %>
 	</header>
+	
 	<c:url var="url_payment" value="/kakaopay" />
+	<form action="${url_payment }" id="payment-form" method="post" onsubmit="return send()">
 	<section class="reserve-frame pt-5">
-		<form action="${url_payment }" id="payment-form" method="post" onsubmit="return send()">
 		<div class="reserve-window">
 			<%@ include file="../module/ReserveFrame.jsp" %>
 			
@@ -56,49 +56,34 @@
 						<div class="movie-info">
 							<div class="poster">
 								<img src="<c:url value="/resources/img/${posterId }/poster/${postername }" />">
-							</div>							
+							</div>
 								<c:choose>
-								 	<c:when test="${rating eq 0}">
-								 		<span class="badge badge-pill badge-success">ALL</span>
-							     	</c:when>
-							     	<c:when test="${rating eq 12}">
-							     		<span class="badge badge-pill badge-primary">12</span>
-						     		</c:when>
-						     		<c:when test="${rating eq 15}">
-							        	<span class="badge badge-pill badge-warning">15</span>
-						        	</c:when>
-						        	<c:otherwise>
-							        	<span class="badge badge-pill badge-danger">19</span>
-						        	</c:otherwise>
-					        	</c:choose>
+									<c:when test="${rating eq 0 }">
+										<c:set var="age" value="all" />
+									</c:when>
+									<c:otherwise>
+										<c:set var="age" value="${rating }" />
+									</c:otherwise>
+								</c:choose>
+							
+								<label class="rating-${age }">${age }</label>
 								<input type="text" class="info title" name="title" value="${title }" readonly>
 								<label class="type">${type }</label>
-								<hr class="check">
+								<hr>
 							<div class="info">
-								<div class="movietheater">
 								<label class="list">영화관</label>
 								<input type="text" name="location" class="info cinema" value="${location }" readonly>
 								<input type="text" name="name" class="info cinema" value="${spot }" readonly>
 								<input type="text" name="tname" class="info cinema" value="${theater }" readonly>
 								<label class="list">인원</label><input type="text" name="peple" class="info peple" value="${peple }" readonly><p class="p-peple">명</p>
-								</div>
-								<hr class="check">
-								<div class="moviedate">
-									<label class="list">상영일</label>
-									<input type="text" name="moviedate" class="info moviedate" value="${moviedate }" readonly>
-									<label class="list">상영시간</label>
-									<div class="time">
-										<input type="text" name="starttime" class="info starttime" value="${starttime }" readonly><p class="p-time">~</p>
-										<input type="text" name="endtime" class="info endtime" value="${endtime }" readonly>
-									</div>
-								</div>
-								<div class="seat">
-									<label class="list">좌석</label>
-								<c:forEach var="seatlist" items="${seatlist }">
-									<input type="hidden" name="seat" value="${seatlist.id}" readonly>
-									<input type="text" style="width: 30px; " class="info seat" value="${seatlist.seatrow }${seatlist.seatcol }" readonly>
-								</c:forEach>
-								</div>
+								<hr>
+								<label class="list">상영일</label><input type="text" name="moviedate" class="info moviedate" value="${moviedate }" readonly>
+								<hr>
+								<label class="list">상영시간</label>
+								<input type="text" name="starttime" class="info starttime" value="${starttime }" readonly><p class="p-time">~</p>
+								<input type="text" name="endtime" class="info endtime" value="${endtime }" readonly>
+								<hr>
+								<label class="list">좌석</label><input type="text" name="seat" class="info seat" value="${Seat }" readonly>
 								
 							</div>
 						</div>
@@ -124,16 +109,16 @@
 				<c:set var="division" value="0" />
 				<div class="pay-info">
 					<div class="price-left">
-						<input type="text" class="pay-info" value="예매 금액 :" readonly>
-						<input type="text" class="pay-info" value="할인 금액 :" readonly>
-						<input type="text" class="pay-info" value="결제 금액 :" readonly>
-						<input type="text" class="pay-info" value="결제 수단 :" readonly>
+						<input type="text" value="예매 금액 :" readonly>
+						<input type="text" value="할인 금액 :" readonly>
+						<input type="text" value="결제 금액 :" readonly>
+						<input type="text" value="결제 수단 :" readonly>
 					</div>
 					<div class="price-right">
-						<input type="text" class="pay-info" name="price" value="${price }" readonly>
-						<input type="text" class="pay-info" name="division" value="${division }" readonly>
-						<input type="text" class="pay-info" name="total" value="${price + division }" readonly>
-						<input type="text" class="pay-info" id="how-pay" name="methodPay" value="" readonly>
+						<input type="text" name="price" value="${price }" readonly>
+						<input type="text" name="division" value="${division }" readonly>
+						<input type="text" name="total" value="${price + division }" readonly>
+						<input type="text" id="how-pay" name="methodPay" value="" readonly>
 					</div>
 					<div class="pay-btn">
 						<button class="pay" onclick="send()">결제하기</button>
@@ -141,8 +126,8 @@
 				</div>
 			</div>
 		</div>
-		</form>
 	</section>
+	</form>
 	
 	<footer>
 		<%@ include file="../module/footer.jsp" %>

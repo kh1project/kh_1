@@ -51,12 +51,18 @@ function iHateIt(mid){
     })
 }
 
-window.onload = function(){
-    let filter = document.querySelector(".custom-select")
-    filter.onchange = function(){
-        window.location = "/seenema/movie?sort="+filter.value;
+$(document).ready(function(){
+        let btn = document.querySelector(".add-btn");
+        btn.onclick = function(){
+        	window.location = "/seenema/movie/add";
+        }
+        
+    	let filter = document.querySelector(".custom-select");
+    	filter.onchange = function(){
+        	window.location = "/seenema/movie?sort="+filter.value;
+        
     }
-}
+});
 
 /* <span class="inner-btn unlike" id="unlike-${item.getId() }"
     onmouseover="mouseoverUnlike(${item.getId() })" 

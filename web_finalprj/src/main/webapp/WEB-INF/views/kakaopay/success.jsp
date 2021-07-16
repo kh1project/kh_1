@@ -12,27 +12,6 @@
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/reserve/reservation.css">
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/jquery/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
-<c:url var="cencel" value="/ajax/reserve/cencel"/>
-<script type="text/javascript">
-	function cencel() {
-		$.ajax({
-			url: "${cencel}",
-			type: "get",
-			datatype: "json",
-			data: {
-				orderid: document.getElementById("id_orderid").value
-			},
-			success: function(data) {
-				if(data.result == false) {
-					alert("예매를 취소 할 수 없습니다.");
-				} else {
-					alert("예매를 취소했습니다.");
-					location.href="<%=request.getContextPath() %>/index";
-				}
-			}
-		});
-	}
-</script>
 </head>
 <body class="pt-5">
 	<header>
@@ -53,16 +32,24 @@
 				</c:forEach>
 				
 				<c:forEach var="btlist" items="${btlist }">
-						<c:set var="location" value="${btlist.location }" />
-						<c:set var="spot" value="${btlist.name }" />
-						<c:set var="theater" value="${btlist.tname }" />
-					</c:forEach>
+					<c:set var="location" value="${btlist.location }" />
+					<c:set var="spot" value="${btlist.name }" />
+					<c:set var="theater" value="${btlist.tname }" />
+				</c:forEach>
 				
-				<c:forEach var="paylist" items="${paylist }">
-					<c:set var="title" value="${paylist.title }" />
-					<c:set var="rcnt" value="${paylist.peple }" />
-					<c:set var="payment" value="${paylist.methodPay }" />
-					<c:set var="totalpay" value="${paylist.total }" />
+				<c:forEach var="reslist" items="${resmap }">
+					<c:if test="${reslist.key eq 'orderid' }">
+						<c:set var="orderid" value="${reslist.value }" />
+					</c:if>
+					<c:if test="${reslist.key eq 'rcnt' }">
+						<c:set var="rcnt" value="${reslist.value }" />
+					</c:if>
+					<c:if test="${reslist.key eq 'totalpay' }">
+						<c:set var="totalpay" value="${reslist.value }" />
+					</c:if>
+					<c:if test="${(reslist.key eq 'payment') eq 'k' }">
+						<c:set var="payment" value="Kakao Pay" />
+					</c:if>
 				</c:forEach>
 				
 				<c:forEach var="timelist" items="${timelist }">
@@ -78,18 +65,13 @@
 						</div>
 						<div class="list-ticket">
 							<label class="reserve-list">예매 내역</label>
-							<hr class="check">
-							<label class="list">예매 번호</label><input class="info reservation" name="reservationId" id="id_orderid" value="${orderid }" readonly>
+							<hr>
+							<label class="list">예매 번호</label><input class="info reservation" name="reservationId" value="${orderid }" readonly>
 							<label class="list">예매 영화</label><input class="info" name="movieTitle" value="${title }" readonly>
 							<label class="list">상영관</label><input class="info" name="BranchTheater" value="${location } ${spot } ${theater }" readonly>
 							<label class="list">예매 일시</label><input class="info" name="moviedate" value="${moviedate }" readonly>
 							<label class="list">인원</label><input class="info" name="rcnt" value="${rcnt }" readonly>
-							<label class="list">좌석</label>
-							<div class="info-seat">
-							<c:forEach var="seatlist" items="${seatlist }">
-								<input class="info-seat" name="seats" value="${seatlist.seatrow }${seatlist.seatcol }" readonly>
-							</c:forEach>
-							</div>
+							<label class="list">좌석</label><input class="info" name="seats" value="${seats }" readonly>
 							<label class="list">결제 금액</label><input class="info" name="totalpay" value="${totalpay }" readonly>
 							<label class="list">결제 수단</label><input class="info" name="payment" value="${payment }" readonly>
 						</div>
@@ -97,7 +79,7 @@
 				</div>
 				<div class="mainpage">
 					<input type="button" class="mainbnt" value="Home" onclick="location.href='<%=request.getContextPath() %>/index';">
-					<input type="button" class="cancelbnt" value="예매 취소" onclick="cencel()">
+					<input type="button" class="cancelbnt" value="예매 취소" onclick="">
 				</div>
 			</div>
 		</div>

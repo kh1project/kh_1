@@ -22,13 +22,7 @@ public class MovieAjaxController {
 	@RequestMapping(value = "/like")
 	public int movieLike(@RequestParam("mid") int mid, HttpServletRequest request) {
 		
-		HttpSession session = request.getSession();
-		
-		int aid = 0;
-		if(session.getAttribute("account") != null) {
-			AccountDTO adto = (AccountDTO) session.getAttribute("account");
-			aid = adto.getId();
-		}
+		int aid = service.getAid(request);
 		
 		//로그인 체크
 		if(aid == 0)
@@ -48,12 +42,7 @@ public class MovieAjaxController {
 							@RequestParam("mid") int mid,
 							HttpServletRequest request) {
 
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("account") != null) {
-			AccountDTO adto = (AccountDTO) session.getAttribute("account");
-			aid = adto.getId();
-		}
+		aid = service.getAid(request);
 		
 		//로그인 체크
 		if(aid == 0)

@@ -150,5 +150,13 @@ public class MovieDTO {
 	public void setGrade(float grade) {
 		this.grade = grade;
 	}
+
+	@Override
+	public String toString() {
+		return "MovieDTO [id=" + id + ", title=" + title + ", subtitle=" + subtitle + ", summary=" + summary + ", type="
+				+ type + ", director=" + director + ", genre=" + genre + ", runningtime=" + runningtime + ", rating="
+				+ rating + ", actor=" + actor + ", playdate=" + playdate + ", rcnt=" + rcnt + ", gcnt=" + gcnt
+				+ ", grade=" + grade + "]";
+	}
 	
 }

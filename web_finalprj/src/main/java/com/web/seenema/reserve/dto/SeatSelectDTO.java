@@ -1,6 +1,7 @@
 package com.web.seenema.reserve.dto;
 
-// 시간 -> 좌석 페이지 값
+import java.sql.Date;
+
 public class SeatSelectDTO {
 	private String location;	// branch 지역명
 	private String name;		// branch 지점명

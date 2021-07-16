@@ -1,5 +1,6 @@
 package com.web.seenema.reserve.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,10 @@ import com.web.seenema.movie.dto.MovieDTO;
 import com.web.seenema.reserve.dto.BranchDTO;
 import com.web.seenema.reserve.dto.BranchTheaterDTO;
 import com.web.seenema.reserve.dto.ReservationDTO;
+import com.web.seenema.reserve.dto.RstepDTO;
 import com.web.seenema.reserve.dto.SeatDTO;
+import com.web.seenema.reserve.dto.SeatSelectDTO;
+import com.web.seenema.reserve.dto.TableRstepDTO;
 import com.web.seenema.reserve.dto.TimeDTO;
 import com.web.seenema.reserve.dto.TimeInfoDTO;
 import com.web.seenema.reserve.repository.ReserveRepository;
@@ -44,51 +48,50 @@ public class ReserveServiceImpl implements ReserveService {
 
 	@Override
 	public Map<String, Object> seatcntlist(int tid) throws Exception {
-		// 좌석 수 List
 		Map<String, Object> seatlist = dao.selectSeatCnt(tid);
 		return seatlist;
 	}
 	
 	@Override
 	public List<SeatDTO> seatList(int timeid) throws Exception {
-		// 좌석 list
 		List<SeatDTO> seatlist = dao.selectSeatAll(timeid);
 		return seatlist;
 	}
 
 	@Override
+	public int totalprice(RstepDTO dto) throws Exception {
+		return 0;
+	}
+
+	@Override
 	public int getprice(int id) throws Exception {
-		// 영화 가격 가져오기
-		return dao.searchprice(id);
+		int price = dao.searchprice(id);
+		return price;
 	}
 
 	@Override
 	public List<BranchTheaterDTO> getmovieTheater(int tid) throws Exception {
-		// 상영관 List
 		List<BranchTheaterDTO> data = dao.selectMovieTheater(tid);
 		return data;
 	}
 
 	@Override
-	public int updateSeat(int sid) throws Exception {
-		// 좌석 'n'-> 'y' 업데이트
-		return dao.updateSeat(sid);
+	public int selectSeat(int tid, char row, int col) throws Exception {
+		return dao.selectSeat(tid, row, col);
 	}
-	
+
 	@Override
-	public int Seatcencel(int sid) throws Exception {
-		return dao.cencelSeat(sid);
+	public int updateSeat(int sid) throws Exception {
+		return dao.updateSeat(sid);
 	}
 
 	@Override
 	public int getMovieId(String title) throws Exception {
-		// 영화 아이디 값 가져오기.
 		return dao.getMovieId(title);
 	}
 
 	@Override
 	public int getmtid(int mid, String location, String name, String tname) throws Exception {
-		// 영화 상영관 아이디 값 가져오기
 		return dao.getMTid(mid, location, name, tname);
 	}
 	
@@ -99,7 +102,6 @@ public class ReserveServiceImpl implements ReserveService {
 
 	@Override
 	public List<TimeInfoDTO> getTimelist(int mtid, String moviedate, String starttime, String endtime) throws Exception {
-		// 시간 List 가져오기
 		return dao.getTimelist(mtid, moviedate, starttime, endtime);
 	}
 
@@ -107,22 +109,6 @@ public class ReserveServiceImpl implements ReserveService {
 	public int insertReserve(String orderid, int sid, int timeid, int userid, int rcnt,
 			int totalpay, char payment) throws Exception {
 		return dao.insertReserve(orderid, sid, timeid, userid, rcnt, totalpay, payment);
-	}
-
-	@Override
-	public int ResDelete(int id) throws Exception {
-		return dao.deletReservation(id);
-	}
-
-	@Override
-	public List<ReservationDTO> Reservelist(String orderid, int aid) throws Exception {
-		return dao.Reservelist(orderid, aid);
-	}
-
-	@Override
-	public List<SeatDTO> getSeatlist(int id) throws Exception {
-		// 좌석 정보 가져오기
-		return dao.Seatlist(id);
 	}
 	
 }
