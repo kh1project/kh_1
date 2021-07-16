@@ -283,6 +283,13 @@ public class ReviewServiceImpl implements ReviewService {
 		rdto.setGcnt(rdto.getGcnt() + 1);
 		return dto.updateGcnt(rdto);
 	}
+	
+	@Override
+	public int updateGcntDown(int id) throws Exception {
+		ReviewDTO rdto = dto.selectReview(id);
+		rdto.setGcnt(rdto.getGcnt() - 1);
+		return dto.updateGcntDown(rdto);
+	}
 
 	@Override
 	public int updateBcnt(int id) throws Exception {
@@ -310,9 +317,6 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public List<Integer> myAddPossibleList(int aid) throws Exception {
 		List<Integer> possiblelist = dto.selectAddPossibleList(aid);
-//		if(possiblelist.size() == 0) {
-//			possiblelist = adto.selectMyMovieList(aid);
-//		}
 		if(possiblelist.size() == 0) {
 			possiblelist.add(-1);
 		}

@@ -165,6 +165,15 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 		}
 		return data;
 	}
+
+	public int updateGcntDown(ReviewDTO rdto) throws Exception  {
+		int rs = sqlSession.update("reviewMapper.updateGcnt", rdto);
+		int data = rdto.getGcnt();
+		if(rs == 1) {
+			System.out.println("[Repo] updateGcntDown 정상동작 - data : " + data);
+		}
+		return data;
+	}
 	
 	@Override
 	public int updateBcnt(ReviewDTO rdto) throws Exception {

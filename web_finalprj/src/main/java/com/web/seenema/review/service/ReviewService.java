@@ -35,5 +35,6 @@ public interface ReviewService {
 	public int updateVcnt(int id) throws Exception;
 	public String getNickname(int id) throws Exception;
 	public List<Integer> myAddPossibleList(int aid) throws Exception;
+	public int updateGcntDown(int id) throws Exception;
     
 }
