@@ -55,9 +55,9 @@
   
   	<update id="updateAccount" parameterType="account">
   		UPDATE account
-  	   	SET nickname = #{nickname}
-  	     	, gender = #{gender}
-  	     	, age = #{age}
+  	   	SET password = #{password}
+  	     	, nickname = #{nickname}
+  	     	, phone = #{phone}
   	 	WHERE id = #{id}
   	</update>
   

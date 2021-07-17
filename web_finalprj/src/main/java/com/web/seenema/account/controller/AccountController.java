@@ -41,7 +41,7 @@ public class AccountController {
 		boolean result = account.join(dto);
 		if(result) {
 			// 가입 성공 했을 때 로그인 페이지로 리다이렉트
-			//alert("가입이 완료되었습니다.");
+			//m.addAttribute("msg", "가입이 완료되었습니다.");
 			forward = "redirect:/account/login";
 		} else {
 			// 가입 실패 했을 때 회원가입 페이지 재전송
@@ -88,14 +88,22 @@ public class AccountController {
 		return "redirect:/index";
 	}
 	
-	@RequestMapping(value = "/mypage")
-	public ModelAndView mypage() {
-		ModelAndView mv = new ModelAndView("account/mypage");
-		mv.addObject("", "");
-		
-		return mv;
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String account(Model m, @ModelAttribute AccountDTO dto) throws Exception {
+		AccountDTO data = account.accountInfoDetail(dto);
+		m.addAttribute("data", data);
+		System.out.println(data.toString());
+		return "account/mypage";
 	}
 	
+	@RequestMapping(value = "/updateAccount", method = RequestMethod.GET)
+	public String UpdateAccount(Model m, @ModelAttribute AccountDTO dto) throws Exception {
+		AccountDTO data = account.accountInfoDetail(dto);
+		m.addAttribute("data", data);
+		System.out.println(data.toString());
+		return "account/updateAccount";
+	}
+
 	@RequestMapping(value = "/expire")
 	public ModelAndView expire() {
 		ModelAndView mv = new ModelAndView("account/expire");
@@ -104,17 +112,17 @@ public class AccountController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/account", method = RequestMethod.GET)
-	public ModelAndView accountGet() {
-		ModelAndView mv = new ModelAndView("account/account");
-		mv.addObject("", "");
-		
-		return mv;
-	}
+//	@RequestMapping(value = "/updateAccount", method = RequestMethod.GET)
+//	public ModelAndView accountGet() {
+//		ModelAndView mv = new ModelAndView("account/updateAccount");
+//		mv.addObject("", "");
+//		
+//		return mv;
+//	}
 	
-	@RequestMapping(value = "/account", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateAccount", method = RequestMethod.POST)
 	public ModelAndView accountPost() {
-		ModelAndView mv = new ModelAndView("account/account");
+		ModelAndView mv = new ModelAndView("account/updateAccount");
 		mv.addObject("", "");
 		
 		return mv;

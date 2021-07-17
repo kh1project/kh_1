@@ -23,7 +23,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 	
 	@Override
 	public AccountDTO select(AccountDTO dto) throws Exception {
-		return sqlSession.selectOne("accountMapper.selectAccount", dto);
+		AccountDTO data = sqlSession.selectOne("accountMapper.selectAccount", dto);
+		return data;
 	}
 
 	@Override
@@ -55,7 +56,6 @@ public class AccountRepositoryImpl implements AccountRepository {
 		}
 		return result;
 	}
-
 
 	@Override
 	public boolean update(AccountDTO dto) throws Exception {

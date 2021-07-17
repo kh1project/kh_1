@@ -5,11 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/jquery/js/jquery-3.6.0.min.js"></script>
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/common.css">
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/review.css">
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/jquery/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://kit.fontawesome.com/74ba2bf207.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/static/js/common.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <c:url var="email_check" value="/accountAjax/email" />
 <c:url var="nickname_check" value="/accountAjax/nickname" />
@@ -134,7 +138,7 @@ select {
     padding: 21px 0 17px;
     border: 0;
     cursor: pointer;
-    color: #fff;
+    color: #FFFFFF;
     background-color: #8041D9;
     font-size: 20px;
     font-weight: 400;
@@ -160,16 +164,18 @@ select {
 	<header>
 		<%@ include file="../module/header.jsp" %>
 	</header>
-
+	<container id="container">
+		<div class="page-util">
+			<div class="container">
+				<i class="fas fa-home"></i>
+				<i class="fas fa-angle-right"></i>
+				<span class="page-util-text"> <a href="<%=request.getContextPath()%>/account/join"> 회원가입 </a></span>
+			</div>
+		</div>	
+		<div class="page-title"><div class="container"><h1>회원가입</h1></div>
+		
 	<form name="account_form" action="${join }" method="post">
-
-        <div id="header"> 
-           	<button type="button" onclick="location.href='${main }'" style="margin-top: 10px;  border: none;">
-					<img src="<%=request.getContextPath() %>/resources/images/common/logo.png"
-					 width="30" height="30" class="d-inline-block align-top" alt="로고">
-			</button>
-		</div>
-
+                    
             <div id="content">
 
                 <div>
@@ -179,6 +185,7 @@ select {
                     <span class="box int_id">
                         <input type="text" id="id_email" class="int" maxlength="20" name="email" required>
                     </span>
+                    
 						<button type="button" onclick="emailCheck();" class="btn btn-outline-secondary" style="margin-top: 1px;">중복확인</button>
 						<label id="email_check_res" style="padding-top: 10px; padding-left:5px; color:red"></label>
                 </div>
@@ -190,7 +197,6 @@ select {
                         <input type="password" id="id_password" class="int" maxlength="20" name="password" required>
                     </span>
                 </div>
-
 
                 <div>
                     <h3 class="join_title"><label for="id_username">이름</label></h3>
@@ -232,25 +238,21 @@ select {
                 <div>
                     <h3 class="join_title"><label for="id_phone">연락처</label></h3>
                     <span class="box int_mobile">
-                        <input type="tel" id="id_phone" class="int" name="phone" maxlength="16" placeholder="전화번호 입력" required>
+                        <input type="tel" id="id_phone" class="int" name="phone" maxlength="16" placeholder="010-****-****" required>
                     </span>  
                 </div>
 
                 <div class="btn_area">
-                    <button type="button" onclick="send(); return ; " id="btnJoin">
-                        <span>가입하기</span>
+                    <button type="button" onclick="send(); return ;" id="btnJoin" >
+                        <span style="color: white;">가입하기</span>
                     </button>
                     &nbsp;
-                    <button type="button" onclick="history.back();" id="btnCancel">
+                    <button type="button" onclick="history.back();" id="btnCancel" >
                         <span>취소</span>
                     </button>
                 </div>
             </div> 
-
 	</form>
-	<!-- <footer>
-		<%@ include file="../module/footer.jsp" %>
-	</footer> -->
 </body>
 <script>
 function send() {

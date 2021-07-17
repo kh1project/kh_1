@@ -15,7 +15,9 @@ public interface AccountService {
 	public boolean login() throws Exception;
 	public boolean changeNickname() throws Exception;
 	public boolean changePassword() throws Exception;
+	public boolean changePhone() throws Exception;
 	public List<List<MyMovieDTO>> mywatchList(int aid) throws Exception;
 	public List<MyMovieDTO> mywatchSelect(int aid) throws Exception;
 	public Boolean adminCheck(int aid);
+	public AccountDTO findId(int id) throws Exception;
 }

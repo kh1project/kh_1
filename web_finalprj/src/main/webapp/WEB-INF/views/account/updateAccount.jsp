@@ -43,8 +43,47 @@ table.my td {
 </head>
 <c:url var="reservelist" value="/account/reservelist" />
 <c:url var="myreview" value="/account/myreview" />
-<c:url var="updateAccount" value="/account/updateAccount" />
+<c:url var="expire" value="/accountAjax/expire" />
 
+<script type="text/javascript">
+function updateInfo() {
+	var nickCheck = document.getElementById("nickname_check_res").innerText;
+	var nickname = document.getElementById("id_nickname").value
+	
+	if(nickname == "") {
+		alert("닉네임을 입력하세요.");
+		return;
+	}
+	
+	if(nickname != "${account.getNickname() }" && nickCheck == "사용 가능한 닉네임입니다.") {
+		// 닉네임을 변경하는 경우
+		document.update_account.submit();
+	} else if(nickname == "${account.getNickname() }") {
+		// 닉네임을 변경하지 않고 성별 및 나이만 변경하는 경우
+		document.update_account.submit();
+	} else {
+		alert("닉네임 중복 체크 먼저 진행하세요.");
+	}
+}
+function expire() {
+	$.ajax({
+		url: "${expire }",
+		type: "post",
+		datatype: "json",
+		data: {
+			id: document.getElementById("id").value
+		},
+		success: function(data) {
+			if(data.res == "success") {
+				alert("탈퇴 처리가 완료되었습니다.")
+				location.href = "${pageContext.request.contextPath }/account/logout"
+			} else {
+				alert("탈퇴 처리에 실패하였습니다.")
+			}
+		}
+	});
+}
+</script>
 <c:url var="nickname_check" value="/accountAjax/nickname" />
 <c:url var="update" value="/account/mypage" />
 
@@ -57,24 +96,21 @@ table.my td {
 			<div class="container">
 				<i class="fas fa-home"></i>
 				<i class="fas fa-angle-right"></i>
-				<span class="page-util-text"> <a href="<%=request.getContextPath()%>/account/mypage"> 마이페이지 </a></span>
+				<span class="page-util-text"> <a href="<%=request.getContextPath()%>/account/mypage?id=${account.id  }"> 마이페이지 </a></span>
+				<i class="fas fa-angle-right"></i>
+				<span class="page-util-text"> <a href="<%=request.getContextPath()%>/account/updateAccount?id=${account.id  }"> 회원정보 수정 </a></span>
 			</div>
 		</div>	
-	<div class="page-title"><div class="container"><h1>마이 페이지</h1>
+	<div class="page-title"><div class="container"><h1>회원정보 수정하기</h1>
 
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
- 	 		<button class="btn btn-primary me-md-2" type="button" onclick="location.href='${myreview }'"
- 	 		 style="margin-right: 10px; border: none;  
- 	 		padding: 12px 25px 12px 25px; font-size:1.0rem; background-color: #503396;">내가 쓴 리뷰</button>
  	 		
-  			<button class="btn btn-primary" type="button" onclick="location.href='${reservelist }'" style="border: none; 
-  			padding: 12px 25px 12px 25px; font-size:1.0rem; background-color: #503396;">예매한 영화</button>
+  			<button class="btn btn-primary" type="button" onclick="history.back();" style="border: none; 
+  			padding: 12px 25px 12px 25px; font-size:1.0rem; background-color: #503396;">취소하기</button>
 		</div>
 	</div>
 </div>
-	
 	<form name="update_account" action="${account }" method="post">
-	
 	<input type="hidden" id="id" name="id" value="${requestScope.account.getId() }">
 	&nbsp;
 	
@@ -86,7 +122,7 @@ table.my td {
 			  </tr>
 			  <tr>
 			    <th scope="row">비밀번호</th>
-			    <td><input id="id_password" type="password" name="password" value="${data.getPassword() }" disabled></td>
+			    <td><input id="id_password" type="password" name="password" value="${data.getPassword() }"></td>
 			  </tr>
 			</table>
 		</div>
@@ -99,7 +135,9 @@ table.my td {
 			  </tr>
 			  <tr>
 			    <th scope="row">닉네임</th>
-			    <td><input id="id_nickname" type="text" name="nickname" value="${data.getNickname() }" disabled></td>
+			    <td><input id="id_nickname" type="text" name="nickname" value="${requestScope.account.getNickname() }">
+					<button type="button" onclick="nicknameCheck('${nickname_check }', document.getElementById('id_nickname').value);">중복확인</button>
+					<label id="nickname_check_res"></label></td>
 			  </tr>
 			  <tr>
 			    <th scope="row">나이</th>
@@ -107,26 +145,28 @@ table.my td {
 			  </tr>
 			  <tr>
 			    <th scope="row">성별</th>
-			    <td><input id="id_gender" type="text" name="gender" value=$("#gender option:selected").val(); disabled></td>
+			    <td>성별</td>
 			  </tr>
 			  <tr>
 			    <th scope="row">연락처</th>
-			    <td><input id="id_phone" type="tel" name="phone" value="${data.getPhone() }" disabled></td>
+			    <td><input id="id_phone" type="tel" name="phone" placeholder="010-****-****" value="${requestScope.account.getPhone() }"></td>
 			  </tr>
 			  <tr>
 			    <th scope="row">가입일자</th>
 			    <td><input id="id_joindate" type="date" name="joindate" value="${data.getJoindate() }" disabled></td>
 			  </tr>
 			</table>
-
 		&nbsp;
 		<div style="text-align: center;">
 			<button type="button" class="btn btn-primary btn-lg" style="margin-right: 10px; border: none; background-color: #503396;" 
-			onclick="location.href='/seenema/account/updateAccount?id=${account.id  }'">회원정보 수정하기</button>
+			onclick="updateInfo();">수정</button>
+			
+			<button type="button" class="btn btn-secondary btn-lg" style="border: none; background-color: #A6A6A6;" 
+			onclick="expire();">탈퇴</button>
 		</div>
 	</div>
 		&nbsp;
 		&nbsp;
-	
+	 
 </body>
 </html> 
