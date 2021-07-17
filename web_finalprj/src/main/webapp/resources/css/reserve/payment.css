@@ -1,16 +1,5 @@
 @charset "UTF-8";
 
-html {
-  height:100%;
-}
-
-body:before{
-  content:'';
-  height:100%;
-  display:inline-block;
-  vertical-align:middle;
-}
-
 div.center-frame{
 	width: 60%; height: 100%;
 	border: 1px solid #D5D5D5;
@@ -23,50 +12,6 @@ div.title {
 	float:left;
 }
 
-label.rating-19{
-	display: inline-block;
-	width: 20px; height: 20px;
-	border-radius: 50%; background-color: #BA2B2B;
-	color: white; font-size: 10pt;
-	text-align: center; font-weight: 300;
-	line-height: 20px;
-	margin-left: 10px;
-}
-
-label.rating-12{
-	display: inline-block;
-	width: 20px; height: 20px;
-	border-radius: 50%; background-color: #BA2B2B;
-	color: white; font-size: 10pt;
-	text-align: center; font-weight: 300;
-	line-height: 20px;
-	margin-left: 10px;
-}
-
-label.rating-15{
-	display: inline-block;
-	width: 20px; height: 20px;
-	border-radius: 50%; background-color: #BA2B2B;
-	color: white; font-size: 10pt;
-	text-align: center; font-weight: 300;
-	line-height: 20px;
-	margin-left: 10px;
-}
-
-label.rating-all{
-	display: inline-block;
-	width: 20px; height: 20px;
-	border-radius: 50%; background-color: #BA2B2B;
-	color: white; font-size: 10pt;
-	text-align: center; font-weight: 300;
-	line-height: 20px;
-	margin-left: 10px;
-}
-
-div. {
-	text-align: left;
-}
-
 div.poster{
 	justify-content: center;
 	align-items: center;
@@ -76,27 +21,26 @@ img {
 	margin: 10px; width: 150px;
 }
 
-hr {
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-div.info > label{
-	display: inline;
-}
-
-div.info > label.list{
-	width: 100%; margin-bottom: 0px;
+div.movietheater > label.list, div.moviedate > label.list, div.seat > label.list {
 	font-size: 10pt;
+	width: 100%;
 	font-weight: bold;
-	float: left;
 }
 
-div.info > input.info{
-	border: 0; font-size: 10pt; text-align: right;
+input.info{
+	border: 0;
+	font-size: 10pt;
+}
+
+input.moviedate{
+	text-align: center;
 }
 
 input.cinema {
-	float: left;
+	width: 80px;
+	float: right;
+	text-align: right;
+	margin-right: 10px;
 }
 
 input.title {
@@ -105,8 +49,12 @@ input.title {
 	font-size: 10pt; margin: 5px;
 }
 
+div.time {
+	padding: auto;
+}
+
 input.peple {
-	width: 80px;
+	width: 40px;
 }
 
 p.p-peple{
@@ -114,15 +62,22 @@ p.p-peple{
 	font-size: 10px;
 }
 
-p.p-time {
+
+input.starttime{
 	float: left;
-	width: 20px;
-	margin-left: 10px;
+	width: 65px;
+	text-align: right;
 }
 
-input.starttime, input.endtime{
+p.p-time {
 	float: left;
-	width: 70px;
+	width: 65px;
+}
+
+input.endtime{
+	float: left;
+	text-align: left;
+	width: 65px;
 }
 
 label.type, label.seatinfo{
@@ -132,8 +87,8 @@ label.type, label.seatinfo{
 label.reserve-info, label.method-of-payment, label.pay {
 	width: 100%; height:10%;
 	color: white; font-weight: bolder;
-	line-height: 50px;
-	background-color: black;
+	line-height: 70px;
+	background-color: #46375D;
 	text-align: center;
 	margin-bottom: 0;
 }
@@ -152,8 +107,8 @@ div.payment{
 }
 
 input.payment-type, input.use-of-benefits {
-	margin: 10px; color: #4374D9; font-weight: bold;
-	border:2px solid #4374D9; border-radius: 5px;
+	margin: 10px; color: #503396; font-weight: bold;
+	border:2px solid #503396; border-radius: 5px;
 	width: 200px; height: 50px;
 }
 
@@ -170,7 +125,7 @@ div.right-frame > div.benefits{
 
 div.pay-info {
 	width: 100%; height: 40%;
-	background-color: #21262c;
+	background-color: #46375D;
 	color: white;
 }
 
@@ -183,7 +138,7 @@ div.price-left > input{
 	border: 0; height: 40px;
 	color: white; background-color:transparent;
 	line-height: 40px; font-size: 10pt;
-	text-align: left; padding-left: 10px;
+	text-align: right; padding-right: 10px;
 }
 
 div.price-right > input{
@@ -205,7 +160,7 @@ div.pay-btn{
 }
 
 button.pay{
-	background: #4374D9;
+	background: #503396;
 	color: #fff;
 	border: none;
 	position: relative;
@@ -217,10 +172,12 @@ button.pay{
 	outline: none;
 	margin: 10px;
 }
+
 button.pay:hover{
 	background:#fff;
-	color: #4374D9;
+	color: #503396;
 }
+
 button.pay:before,button.pay:after{
 	content: '';
 	position: absolute;
@@ -228,7 +185,7 @@ button.pay:before,button.pay:after{
 	right: 0;
 	height: 2px;
 	width: 0;
-	background: #4374D9;
+	background: #503396;
 	transition: 400ms ease all;
 }
 button.pay:after{
@@ -237,6 +194,7 @@ button.pay:after{
 	left: 0;
 	bottom: 0;
 }
+
 button.pay:hover:before,button.pay:hover:after{
 	width: 100%;
 	transition: 800ms ease all;

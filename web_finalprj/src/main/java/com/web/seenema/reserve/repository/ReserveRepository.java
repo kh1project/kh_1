@@ -6,6 +6,7 @@ import java.util.Map;
 import com.web.seenema.movie.dto.MovieDTO;
 import com.web.seenema.reserve.dto.BranchDTO;
 import com.web.seenema.reserve.dto.BranchTheaterDTO;
+import com.web.seenema.reserve.dto.ReservationDTO;
 import com.web.seenema.reserve.dto.RstepDTO;
 import com.web.seenema.reserve.dto.SeatDTO;
 import com.web.seenema.reserve.dto.TableRstepDTO;
@@ -28,11 +29,15 @@ public interface ReserveRepository {
 	public List<SeatDTO> selectSeatAll(int timeid) throws Exception;
 	public int searchprice(int id) throws Exception;
 	public List<BranchTheaterDTO> selectMovieTheater(int tid) throws Exception;
-	public int selectSeat(int id, char row, int col) throws Exception;
+	public List<SeatDTO> Seatlist(int id) throws Exception;
 	public int updateSeat(int sid) throws Exception;
+	public int cencelSeat(int sid) throws Exception;
 	public int insertReserve(String orderid, int sid, int timeid, int userid, int rcnt, int totalpay, char payment) throws Exception;
 	public int getMovieId(String title) throws Exception;
 	public int getBranchTheater(String location, String name, String tname) throws Exception;
 	public int getMTid(int mid, String location, String name, String tname) throws Exception;
 	public List<TimeInfoDTO> getTimelist(int mtid, String moviedate, String starttime, String endtime) throws Exception;
+	public List<SeatDTO> getSeatlist(int id) throws Exception;
+	public int deletReservation(int id) throws Exception;
+	public List<ReservationDTO> Reservelist(String orderid, int aid) throws Exception;
 }
