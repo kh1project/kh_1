@@ -39,6 +39,14 @@ public class ReserveController {
 	@Autowired
 	private MovieService movies;
 	
+	@RequestMapping(value = "/theater", method = RequestMethod.GET)
+	public ModelAndView theater() throws Exception {
+		ModelAndView mv = new ModelAndView("reserve/theater");
+		mv.addObject("", "");
+		
+		return mv;
+	}
+	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String selectLocation(@RequestParam String location, Model m) throws Exception {
 		List<BranchDTO> b = ress.branchList(location);

@@ -37,7 +37,7 @@ body { padding-top:66px !important; }
   	</div>
   	<div class="menu">
 	  	<a href="<%=request.getContextPath() %>/movie">영화</a>
-	  	<a href="<%=request.getContextPath() %>/reserve">영화관</a>
+	  	<a href="<%=request.getContextPath() %>/reserve/theater">영화관</a>
 	    <img src="<%=request.getContextPath() %>/resources/images/common/logo.png" class="d-inline-block align-top" alt="SEENEMA 로고" onclick="location.href='<%=request.getContextPath() %>/index';">
 	    <a href="<%=request.getContextPath() %>/reserve?location=${branchDTO.location }">예매</a>
 	    <a href="<%=request.getContextPath() %>/review">리뷰</a>
