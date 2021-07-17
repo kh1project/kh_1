@@ -64,58 +64,7 @@ function deleteLine(ele, lid) {
 	});
 }
 
-$(function() {
-	$('.page-link').on('click', function() {
-		let selected_page = ele.innerText;
-		let i = 0;
-		let email = document.querySelectorAll('.user-info');
-		let star = document.querySelectorAll('.line-star');
-		let contents = document.querySelectorAll('.line-contents');
-		let gcntIcon = document.querySelectorAll('.line-gcntIcon');
-		let gcnt = document.querySelectorAll('.line-gcnt');
-		let cdate = document.querySelectorAll('.line-date');
-	
-		$.ajax({
-			url: "/seenema/lineajax/paging",
-			type: "get",
-			datatype: "json",
-			//contentType: "application/json",
-			data: {
-				selected_page: selected_page,
-				mid: mid,
-				totalrow: totalrow,
-				max_page: max_page
-			},
-			success: function(data) {
-				
-							/* 수정해야 함: 2개 동시 순회: console.log(Object.values(data.pgdatas)[0]);*/
-				for(var pgdata of data.pgdatas) {
-	
-					email[i].innerText = pgdata.email;
-					star[i].innerHTML = pgdata.star;
-					contents[i].innerHTML = pgdata.contents;
-					$(gcntIcon[i]).on('click', function() {
-						incGcnt(gcntIcon[i], pgdata.id);
-					});
-					gcnt[i].innerHTML = pgdata.gcnt;
-					cdate[i].children[0].innerText = pgdata.cdate;
-					i++;
-				}
-			}
-		});
-	
-		if(ele.innerText == max_page) {
-			// 요소들 삭제
-			let remainder = max_page % 10;
-			let lineone_outer = document.querySelectorAll('.lineone-outer');
-			let line_date = document.querySelectorAll('.line-date');
-			for(let i = remainder; i < 10; i++) {
-				lineone_outer[i].remove();
-				line_date[i].remove();
-			}		
-		}	
-	});
-});
+
 
 /* 잘못된 paging */
 function paging(ele, mid, totalrow, max_page) {
@@ -173,19 +122,26 @@ function paging(ele, mid, totalrow, max_page) {
 function star(cnt) {
 	let ele = document.getElementById(cnt);
 	let nextele = document.getElementById(cnt + 1);
-	if (ele.children[0].getAttribute('class') != 'bi bi-star-fill') {
-		for(let i = 1; i <= cnt; i++) {
-			document.getElementById(i).innerHTML = 
-			'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>';
-		}
-	} else if (cnt <= 4) {
-		if(nextele.children[0].getAttribute('class') == 'bi bi-star-fill') {
-			for(let j = 5; j > cnt; j--) {
-				document.getElementById(j).innerHTML =
-				'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16"><path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/></svg>';
-			}
-		}
-	}
 	
 	document.querySelector('.starForm').firstChild.value = cnt;
+	
+	if (ele.children[0].getAttribute('class') != 'fa fa-star') {
+		for(let i = 1; i <= cnt; i++) {
+			starcss(i);
+			document.getElementById(i).innerHTML = '<i class="fa fa-star" aria-hidden="true"></i>';
+		}
+	} else if (cnt <= 4) {
+		if(nextele.children[0].getAttribute('class') == 'fa fa-star') {
+			for(let j = 5; j > cnt; j--) {
+				document.getElementById(j).innerHTML = '<i class="fa fa-star-o" aria-hidden="true"></i>';
+			}
+		} else {
+			ele.innerHTML = '<i class="fa fa-star-o" aria-hidden="true"></i>';
+			document.querySelector('.starForm').firstChild.value = 0;
+		}
+	}
+}
+
+function starcss(starid) {
+	$(starid).css({'font-size':'x-large', 'font-weight':300, 'color':'#545151'});
 }

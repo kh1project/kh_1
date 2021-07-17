@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.web.seenema.dto.BoxofficeDTO;
+import com.web.seenema.dto.MyGcntDTO;
+import com.web.seenema.movie.dto.MovieLikeDTO;
 
 @Repository
 public class MainRepositoryImpl implements MainRepository {
@@ -49,4 +51,32 @@ public class MainRepositoryImpl implements MainRepository {
 	public int selectGcnt(int id) {
 		return sqlSession.selectOne("mainMapper.getGcnt", id);
 	}
+	
+	@Override
+	public boolean checkGcntDup(MovieLikeDTO info) {
+		boolean result = false;
+		int res = sqlSession.selectOne("mainMapper.checkGcntDup", info);
+		if(res == 1) {
+			result = true;
+		}
+		
+		return result;
+	}
+
+	@Override
+	public boolean insertMovielike(MovieLikeDTO info) {
+		boolean result = false;
+		int res = sqlSession.insert("mainMapper.addMovielike", info);
+		if(res == 1) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public List<Integer> getMygcnt(MyGcntDTO mygcnt) {
+		return sqlSession.selectList("mainMapper.mygcnt", mygcnt);
+	}
 }
+

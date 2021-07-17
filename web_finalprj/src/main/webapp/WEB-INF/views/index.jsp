@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,30 +10,43 @@
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/css/bootstrap.min.css">
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/resources/static/css/font.css">
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/resources/static/css/main.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/jquery/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
-<c:url var="url" value="/mainAjax" />
+<c:url var="url" value="/indexAjax" />
 <script type="text/javascript">
-	function like(id, ele) {
-		$.ajax({
-			url: "${url }",
-			type: "get",
-			datatype: "json",
-			data: {
-				id: id
-			},
-			success: function(data) {
-				if(data.res == "success") {
-					var span = ele.children;
-					span.gcnt.innerText = data.gcnt;
-					span.heart.innerText = "♥ ";
-					span.heart.style.color = "red";
+	function like(mid, ele) {
+		if(ele.children.heart.innerText == '♥ ') {
+			alert('이미 좋아요를 누른 영화입니다.');
+			return;
+		}
+		
+		// el태그 표기법 확인해야 함.
+		if(${sessionScope.account != null && sessionScope.account.id == mygcnt.aid }) {
+			// 로그인이 된 상태
+			$.ajax({
+				url: "${url }",
+				type: "get",
+				datatype: "json",
+				data: {
+					mid: mid
+				},
+				success: function(data) {
+					if(data.res == "success") {
+						var span = ele.children;
+						span.gcnt.innerText = data.gcnt;
+						span.heart.innerText = "♥ ";
+						span.heart.style.color = "red";
+					}
 				}
-			}
-			/*error: function(request, status, error) {
-				console.log("error code: " + request.status + "\nmessage: " + request.responseText + "\nerror: " + error);
-			}*/
-		});
+				/*error: function(request, status, error) {
+					console.log("error code: " + request.status + "\nmessage: " + request.responseText + "\nerror: " + error);
+				}*/
+			});
+		} else {
+			// 로그인이 안 된 상태
+			alert('로그인 후 이용가능한 서비스입니다.');
+		}
 	}
 </script>
 </head>
@@ -45,6 +59,7 @@
 	}
 </style>
 -->
+
 <body class="pt-5">
     <%@ include file="./module/header.jsp" %>
 
@@ -66,7 +81,7 @@
 	      			<div class="carousel-item">
 	      		</c:otherwise>
 	      	</c:choose>
-	      		<c:url var="path1" value="/resources/img/${item }/stillcut/movie_image.jpg" />
+	      		<c:url var="path1" value="/resources/images/movie/${item }/stillcut/movie_image (5).jpg" />
 	      		<img src="${path1 }">
 	      	</div>
 	      </c:forEach>
@@ -81,8 +96,11 @@
 	    </a>
 	  </div>
 	</div>
+	
+	
+	
+	
 	    
-
 	<div id="boxoffice">
 		<div class="caption">
 			박스오피스
@@ -97,18 +115,43 @@
 			  <c:forEach var="item" items="${boxoffice }" varStatus="status" >
 				  <div class="col-md-2">
 				    <div class="card">     
-				        <c:url var="path2" value="/resources/img/${item.id }/poster/movie_image.jpg" />
-				  		<a href=""><img class="card-img mb-2" src="${path2 }"></a>
+				    	<c:url var="path2" value="/resources/img/${item.id }/poster/movie_image.jpg" />
+				  		<img class="card-img mb-2" src="${path2 }">
 					    <div class="card-img-overlay">
 				      		<h1 class="card-title">${status.count }</h1>
 				      	</div>
-				      	<div class="card-img-overlay summary">
+				      	<!-- <c:url var="detail" value="/movie/detail?id=${item.id }" /> -->
+				      	<div class="card-img-overlay summary" onclick="location.href='/seenema/movie/detail?id=${item.id }'">
 				      		<p class="card-text">${item.summary }</p>
 				      	</div>
 				    </div>
 				    <div class="cover">
-				        <button class="btn btn1 btn-outline-light" onclick="like(${item.id }, this);"><span name="heart">♡ </span><span name="gcnt">${item.gcnt }</span></button>
-				        <a href="<c:url value="/reserve?location=" />" class="btn btn2 btn-primary">예매하기</a>
+				        <button class="btn btn1 btn-outline-light" onclick="like(${item.id }, this);">
+				        
+				        	<c:choose>
+					        	<c:when test="${empty mygcnt }">
+							        <span name="heart">♡ </span><span name="gcnt">${item.gcnt }</span>
+					        	</c:when>
+					        	<c:otherwise>
+					        		<c:set var="flag" value="false" />
+							        <c:forEach var="mv" items="mygcnt" varStatus="i">
+							        	<c:if test="${varStatus <= 3 && not flag}">
+							        		<c:choose>
+							        			<c:when test="${item.id == mv }">
+							        				<span name="heart">♥ </span><span name="gcnt">${item.gcnt }</span>
+							        				<c:set var="flag" value="true" />
+							        			</c:when>
+							        			<c:otherwise>
+							        				<span name="heart">♡ </span><span name="gcnt">${item.gcnt }</span>
+							        			</c:otherwise>
+							        		</c:choose>
+							        	</c:if>
+							        </c:forEach>
+					        	</c:otherwise>
+					        </c:choose>
+					        
+				        </button>
+				        <a href="<c:url value='/reserve?location=' />" class="btn btn2 btn-primary">예매하기</a>
 					</div>
 				  </div> 
 			  </c:forEach>
@@ -117,13 +160,20 @@
 			  </div>
 		   </div>
 		</div>
-	</div>	      
+	</div>
+	
+	
 
 	
     <%@ include file="./module/footer.jsp" %>
 
-<script type="text/javascript">	
-	$(function(){
+<script type="text/javascript">
+	$(function() {
+		$('.container:first-child').on('click', function() {
+			$('#box').show();
+		});
+	});
+	$(function() {
 		// 이미지 슬라이드 컨트롤을 사용하기 위해서는 carousel를 실행해야한다.
 		var target = $('#carouselExampleIndicators').carousel({
 			// 슬라이딩 자동 순환 지연 시간

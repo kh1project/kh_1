@@ -5,13 +5,13 @@
 }
 
 
-#title, #linecnt, #extra {
+#title, #linecnt, #linecnt + span {
 	color: #5b24ad;
 	font-weight: 600;
 }
 
 .input-container {
-	margin-top: 70px;
+	margin-top: 110px;
 	margin-bottom: 60px;
 	text-align: right;
 	position: relative;
@@ -42,9 +42,17 @@
 }
 
 .starForm {
-	text-align: left;
-	text-indent: 165px;
+	position: absolute;
 	height: 35px;
+	left: 167px;
+	bottom: 80px;
+	font-size: x-large;
+	font-weight: 300;
+	color: #545151;
+}
+
+.starForm span {
+	display: inline-block;
 }
 
 .currcnt-outer {
@@ -54,7 +62,7 @@
 .currcnt {
 	position: absolute;
 	left: 910px;
-	bottom: 48px;
+	bottom: 80px;
 }
 
 
@@ -184,12 +192,14 @@ path:hover .line-date {
 	background-color: red;
 }
 
-.paging {
-	text-align: center;
+
+.pagination {
+	justify-content: center;
 }
 
-
-
+.paging {
+	margin-bottom: 20px;
+}
 
 
 /*
