@@ -56,9 +56,13 @@ public class MovieAjaxController {
 			return service.getGcnt().get(mid);
 	}
 	
-	@RequestMapping(value = "/detailfilter")
-	public int DetailFilter(@RequestParam("mid") String mid) {
+	@RequestMapping(value = "/edit/remove")
+	public int removeImage(@RequestParam("removeList[]") String[] removeList) {
+		System.out.println("ajax까지는 왔다.");
+		if(removeList.length > 0) 
+			service.deleteImage(removeList);
 		
+		System.out.println("컨트롤러 지났다..");
 		return 0;
 	}
 	

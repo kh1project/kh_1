@@ -1,6 +1,5 @@
 package com.web.seenema.movie.dao;
 
-import java.io.File;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.web.seenema.movie.dto.AddmovieDTO;
+import com.web.seenema.movie.dto.ImageArrayDTO;
 import com.web.seenema.movie.dto.MovieDTO;
 import com.web.seenema.movie.dto.MovieGcntDTO;
 import com.web.seenema.movie.dto.MovieImageDTO;
@@ -136,6 +135,20 @@ public class MovieDAOImpl implements MovieDAO {
 	@Override
 	public List<MovieImageDTO> getOnePoster() {
 		return sqlSession.selectList("movie.getOnePoster");
+	}
+	
+	@Override
+	public void deleteImage(String[] removeList) {
+		System.out.println("삭제dao 실행");
+		for(String item : removeList)
+			System.out.println(item);
+		sqlSession.delete("movie.deleteImageFromEdit", removeList);
+		
+	}
+	
+	@Override
+	public void updateMovieData(MovieDTO dto) {
+		sqlSession.update("movie.updateMovieData", dto);		
 	}
 	
 }

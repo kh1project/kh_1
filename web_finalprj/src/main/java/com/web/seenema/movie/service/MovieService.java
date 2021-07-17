@@ -40,4 +40,6 @@ public interface MovieService {
 	public Map<Integer, List<MovieImageDTO>> getStillcutInfo(int size);
 	public List<MovieImageDTO> getOnePoster();
 	public int getAid(HttpServletRequest request);
+	public void deleteImage(String[] removeList);
+	public void updateMovieData(MovieDTO dto);
 }
