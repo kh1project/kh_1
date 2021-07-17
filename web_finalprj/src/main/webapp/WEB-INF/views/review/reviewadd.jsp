@@ -8,29 +8,65 @@
 	<div id="pageContainer" class="container">
 	
 		<div id="add-step1">
-			<div class="add-step-header">리뷰를 작성하실 영화를 선택해주세요!<span>등록가능한 영화 <strong>${myaddlist.size() } </strong>건</span></div>
+			<div class="add-step-header">리뷰를 작성하실 영화를 선택해주세요!
+				<c:if test="${possiblelist[0] == -1 }">
+					<span>등록가능한 영화<strong>&nbsp;${mywlist.size() } </strong>건</span>
+				</c:if>
+				<c:if test="${mywlist.size() > possiblelist.size() and possiblelist[0] != -1 }">
+					<span>등록가능한 영화<strong>&nbsp;${mywlist.size() - possiblelist.size() } </strong>건</span>
+				</c:if>
+			</div>
 	
 			<div class="row row-cols-lg-4">
-				<c:forEach var="i" items="${myaddlist }" varStatus="iLoop">
-					<c:forEach var="j" items="${mywlist[iLoop.index] }" begin="0" end="0" varStatus="jLoop">
-						<c:choose>
-							<c:when test="${myaddlist[iLoop.index] ne j.getId()}">
-								${myaddlist[jLoop.index]} / ${j.getId() }
-								<label for="wm${j.getId() }" onclick="selectmovie(${j.getId() });"><div id="wm${j.getId() }wrap" class="p-3 border bg-light wmwrap">
-									<div id="checkbg${j.getId() }" class="checkbg"><i class="fa fa-check"></i></div>
-							</c:when>
-							<c:otherwise>
-								${myaddlist[iLoop.index]} / ${j.getId() }
-								<label for="wm${j.getId() }"><div id="wm${j.getId() }wrap" class="p-3 border bg-light wmwrap">
-									<div id="checkbg${j.getId() }" class="checkbg on"><span>작성완료</span></div>
-							</c:otherwise>
-						</c:choose>
-								<img src="<%=request.getContextPath() %>${j.getPath() }${j.getName() }">
-								<p>${j.getTitle() }</p>
-								<input type="radio" name="wm" id="wm${j.getId() }" class="r_movieselect" value="wm${j.getId() }">
-							</div></label>
+				<c:if test="${possiblelist[0] == -1 }"> <!-- 모두 등록 가능 -->
+					<c:forEach var="i" items="${mywlist }" varStatus="iloop">
+						<label for="wm${i[iloop.index].id }" onclick="selectmovie(${i[iloop.index].id });"><div id="wm${i[iloop.index].id }wrap" class="p-3 border bg-light wmwrap">
+							<div id="checkbg${i[iloop.index].id }" class="checkbg"><i class="fa fa-check"></i></div>
+							<img src="<%=request.getContextPath() %>${i[iloop.index].path }${i[iloop.index].name }">
+							<p>${i[iloop.index].title }</p>
+							<input type="radio" name="wm" id="wm${i[iloop.index].id }" class="r_movieselect" value="wm${i[iloop.index].id }">									
+						</div></label>
 					</c:forEach>
-				</c:forEach>
+				</c:if>
+				<c:if test="${possiblelist[0] != -1 and possiblelist.size() != mywlist.size() }"> <!-- DB에서 작성할 수 없는 영화 ID가 넘어올 예정 -->
+					<c:forEach var="i" items="${mywlist }" varStatus="iloop">
+						<c:forEach var="j" items="${possiblelist }" varStatus="jloop">
+							<c:set var="jloop_flag" value="false" />
+							<c:choose>
+								<c:when test="${i[iloop.index].id eq j }">
+									<label for="wm${i[iloop.index].id }"><div id="wm${i[iloop.index].id }wrap" class="p-3 border bg-light wmwrap">
+										<div id="checkbg${i[iloop.index].id }" class="checkbg on"><span>작성완료</span></div>
+										<img src="<%=request.getContextPath() %>${i[iloop.index].path }${i[iloop.index].name }">
+										<p>${i[iloop.index].title }</p>
+										<input type="radio" name="wm" id="wm${i[iloop.index].id }" class="r_movieselect" value="wm${i[iloop.index].id }">									
+									</div></label>
+									<c:set var="loop_flag" value="true" />
+								</c:when>
+								<c:otherwise>
+									<c:if test="${not jloop_flag }">
+										<label for="wm${i[iloop.index].id }" onclick="selectmovie(${i[iloop.index].id });"><div id="wm${i[iloop.index].id }wrap" class="p-3 border bg-light wmwrap">
+											<div id="checkbg${i[iloop.index].id }" class="checkbg"><i class="fa fa-check"></i></div>
+											<img src="<%=request.getContextPath() %>${i[iloop.index].path }${i[iloop.index].name }">
+											<p>${i[iloop.index].title }</p>
+											<input type="radio" name="wm" id="wm${i[iloop.index].id }" class="r_movieselect" value="wm${i[iloop.index].id }">									
+										</div></label>
+										
+									</c:if>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</c:forEach>
+				</c:if>
+				<c:if test="${possiblelist.size() == mywlist.size() }"> <!-- 모두 등록 불가능 -->
+					<c:forEach var="i" items="${mywlist }" varStatus="iloop">
+						<label for="wm${i[iloop.index].id }"><div id="wm${i[iloop.index].id }wrap" class="p-3 border bg-light wmwrap">
+							<div id="checkbg${i[iloop.index].id }" class="checkbg on"><span>작성완료</span></div>
+							<img src="<%=request.getContextPath() %>${i[iloop.index].path }${i[iloop.index].name }">
+							<p>${i[iloop.index].title }</p>
+							<input type="radio" name="wm" id="wm${i[iloop.index].id }" class="r_movieselect" value="wm${i[iloop.index].id }">									
+						</div></label>
+					</c:forEach>
+				</c:if>
 			</div>
 		</div>
 		

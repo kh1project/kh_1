@@ -24,6 +24,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
 	@Override
 	public List<MyMovieDTO> selectWatchMovieList(int mid) throws Exception {
+		//영화id,영화제목,영화이미지경로,영화이미지이름이 담긴 리스트
 		List<MyMovieDTO> data = sqlSession.selectList("movie.myMovieSearch", mid);
 //		System.out.println("리포지터리 data.size() : " + data.size());
 //		for(int i = 0; i < data.size(); i++) {

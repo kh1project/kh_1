@@ -34,6 +34,7 @@ public interface ReviewService {
 	public int updateBcnt(int id) throws Exception;
 	public int updateVcnt(int id) throws Exception;
 	public String getNickname(int id) throws Exception;
-	public List<Integer> myAddReviewList(int aid) throws Exception;
+	public List<Integer> myAddPossibleList(int aid) throws Exception;
+	public int updateGcntDown(int id) throws Exception;
     
 }

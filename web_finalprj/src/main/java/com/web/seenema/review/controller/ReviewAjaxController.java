@@ -2,10 +2,13 @@ package com.web.seenema.review.controller;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,24 +83,66 @@ public class ReviewAjaxController {
 	
 	@RequestMapping(value = "/upGcnt", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int upGcnt(HttpServletRequest req, @RequestParam int id) throws Exception {
+	public int upGcnt(HttpServletRequest req, HttpServletResponse resp, @RequestParam int id) throws Exception {
 		
-		HttpSession session = req.getSession();
-		int aid = 0;
-		
-		if(session.getAttribute("account") != null) {
-			AccountDTO dto = (AccountDTO)session.getAttribute("account");
-			aid = dto.getId();
+		Cookie[] cookies = req.getCookies();
+		int check = 0;
+		int gval = review.reviewOne(id).getGcnt();
+		String[] cookielist;
+		for(Cookie cookie : cookies) {
+			if(cookie.getName().equals("gcnt")) {
+				cookielist = cookie.getValue().split("_");
+				int[] nums = Arrays.stream(cookielist).mapToInt(Integer::parseInt).toArray();
+				for(int i = 0; i < cookielist.length; i++) {
+					if(id == nums[i]) {
+						check = 1; break;
+					}
+				}
+				if(check == 0) {
+					check = 1;
+					cookie.setValue(cookie.getValue() + "_" + (String.valueOf(id)));
+					resp.addCookie(cookie);
+					gval = review.updateGcnt(id);
+				}
+			}
 		}
-		
-		int gval = review.updateGcnt(id);
+		if(check == 0) {
+			Cookie cookie1 = new Cookie("gcnt", (String.valueOf(id)));
+			resp.addCookie(cookie1);
+			gval = review.updateGcnt(id);
+		}
 		return gval;
 	}
 	
 	@RequestMapping(value = "/upBcnt", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public int upBcnt(@RequestParam int id) throws Exception {
-		int bval = review.updateBcnt(id);
+	public int upBcnt(HttpServletRequest req, HttpServletResponse resp, @RequestParam int id) throws Exception {
+		Cookie[] cookies = req.getCookies();
+		int check = 0;
+		int bval = review.reviewOne(id).getBcnt();
+		
+		for(Cookie cookie : cookies) {
+			if(cookie.getName().equals("bcnt")) {
+				String[] cookielist = cookie.getValue().split("_");
+				int[] nums = Arrays.stream(cookielist).mapToInt(Integer::parseInt).toArray();
+				for(int i = 0; i < cookielist.length; i++) {
+					if(id == nums[i]) {
+						check = 1; break;
+					}
+				}
+				if(check == 0) {
+					check = 1;
+					cookie.setValue(cookie.getValue() + "_" + (String.valueOf(id)));
+					resp.addCookie(cookie);
+					bval = review.updateBcnt(id);
+				}
+			}
+		}
+		if(check == 0) {
+			Cookie cookie1 = new Cookie("bcnt", (String.valueOf(id)));
+			resp.addCookie(cookie1);
+			bval = review.updateBcnt(id);
+		}
 		return bval;
 	}
 }
