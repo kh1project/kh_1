@@ -4,7 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="reserveMapper">
+	<select id="ReserveList" parameterType="HashMap" resultType="reservation">
+		SELECT * FROM reservation
+		 WHERE orderid = #{orderid}
+		   AND aid = #{aid}
+	</select>
 
+	<delete id="ReserveDelete">
+		DELETE reservation WHERE id = #{id}
+	</delete>
+	
 	<select id="getTimeid" parameterType="HashMap" resultType="timeinfo">
 		SELECT * FROM time
 		 WHERE mtid = #{mtid}
@@ -33,18 +42,18 @@
 	  	INSERT INTO reservation(id, orderid, sid, timeid, aid, rdate,  rcnt, totalpay, payment)
 		VALUES(res_seq.NEXTVAL, #{orderid}, #{sid}, #{timeid}, #{aid}, SYSDATE, #{rcnt}, #{totalpay}, #{payment})
 	</insert>
+	
+	<select id="Seatlist" resultType="seat">
+		SELECT * FROM seat WHERE id = #{id}
+	</select>
 
 	<update id="updateSeat">
 	    UPDATE seat SET reserved = 'y' WHERE id = #{sid}
 	</update>
-
-	<select id="checkseat" parameterType="HashMap" resultType="seat">
-    	SELECT * FROM seat
-    	 WHERE tid = #{tid}
-    	   AND seatrow = #{row}
-    	   AND seatcol = #{col}
-    	   AND reserved = 'n'
-	</select>
+	
+	<update id="cencelSeat">
+	    UPDATE seat SET reserved = 'n' WHERE id = #{sid}
+	</update>
 	
 	<select id="seatcnt" resultType="_int">
     	SELECT count(*)
