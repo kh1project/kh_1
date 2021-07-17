@@ -95,6 +95,12 @@ public class AccountServiceImpl implements AccountService {
 	}
 	
 	@Override
+	public boolean changePhone() throws Exception {
+		return false;
+	}
+	
+	
+	@Override
 	public List<List<MyMovieDTO>> mywatchList(int aid) throws Exception {
 		List<Integer> temp = dao.selectMyMovieList(aid);
 		List<Integer> midlist = temp.stream().distinct().collect(Collectors.toList());
@@ -125,4 +131,14 @@ public class AccountServiceImpl implements AccountService {
 		
 		return res;
 	}
+
+	@Override
+	public AccountDTO findId(int id) throws Exception {
+		AccountDTO data = new AccountDTO();
+		data.setId(id);
+		return dao.select(data);
+	}
+
+
+
 }

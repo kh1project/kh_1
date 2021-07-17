@@ -8,8 +8,17 @@
 <title>SEENEMA - 환영합니다!</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link type="text/css" rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/css/bootstrap.min.css">
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/common.css">
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/review.css">
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/jquery/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://kit.fontawesome.com/74ba2bf207.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/static/js/common.js"></script>
+
+	<c:url var="main" value="/index" />
+	<c:url var="login" value="/account/login" />
+	<c:url var="join" value="/account/join" />
 
 <style type="text/css">
 :root{
@@ -18,7 +27,7 @@
 	--border-gray-color : #dadada;
 	--purple-color: #8041D9;
 }
-
+	
 *{
 	margin:0;
 	padding:0;
@@ -81,6 +90,7 @@ body{
 	font-size: 20px;
 	background: var(--purple-color);
 	color: white;
+	border: none;
 }
 .login-stay-sign-in{
 	width: 465px;
@@ -126,51 +136,32 @@ body{
 	width: 465px;
 	height: 56px;
 	border: solid 1px var(--border-gray-color);
-	text-align: left;
+	text-align: center;
 	background: white;
 }
-.Easy-sgin-in-wrap .sign-button-list li button i{
-	padding-left: 15px;
-	font-size: 20px;
-}
-.fa-qrcode
-{
-	color:var(--purple-color);
-}
 .Easy-sgin-in-wrap .sign-button-list li button span{
-	padding-left: 20px;
 	font-size: 18px;
-}
-.Easy-sgin-in-wrap .forget-msg{
-	color:var(--font-color);
-	font-size: 14px;
-	padding-top: 10px;
 }
 </style>
 </head>
-<body class="pt-5">
 	<header>
 		<%@ include file="../module/header.jsp" %>
 	</header>
-	<c:url var="main" value="/index" />
-	<c:url var="login" value="/account/login" />
-	<c:url var="join" value="/account/join" />
+		<container id="container">
+		<div class="page-util">
+			<div class="container">
+				<i class="fas fa-home"></i>
+				<i class="fas fa-angle-right"></i>
+				<span class="page-util-text"> <a href="<%=request.getContextPath()%>/account/login"> 로그인 </a></span>
+			</div>
+		</div>	
+		<div class="page-title"><div class="container"><h1>로그인</h1></div>
+	
 	<form action="${login }" method="post">
 	
 	<div class="main-container">
 		<div class="main-wrap">
-		<header>
-			<div class="logo-wrap">
-				
-				
-			<button type="button" onclick="location.href='${main }'" style="margin-top: 10px; border: none;">
-					<img src="<%=request.getContextPath() %>/resources/images/common/logo.png"
-					 width="30" height="30" class="d-inline-block align-top" alt="로고">
-			</button>
-				
-				
-			</div>
-		</header>
+
 		<section class="login-input-section-wrap">
 			<div class="login-input-wrap">	
 				<input id="id_email" name="email" type="text" placeholder="아이디" required></input>
@@ -194,14 +185,13 @@ body{
 		<section class="Easy-sgin-in-wrap">
 			<ul class="sign-button-list">
 				<li><button type="button" class="moveRegister" onclick="location.href='${join }'"
-				text-align: center style="margin-top: 10px;"></i><span>회원가입</span></button></li>
+				style="margin-top: 10px;"></i><span>회원가입</span></button></li>
 			</ul>
 		</section>
 		</div>
 	</div>
-
 	<footer>
 		<%@ include file="../module/footer.jsp" %>	
 	</footer>
-</body>
+
 </html>
