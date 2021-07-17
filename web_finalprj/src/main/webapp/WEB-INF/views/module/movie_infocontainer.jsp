@@ -86,3 +86,8 @@
 	<img class="rounded img-fluid float-right" alt="${movie.getTitle() }"
 		src="${root }${mainposter.get(movie.getId()-1).getPath()}${mainposter.get(movie.getId()-1).getName()}">
 </div>
+<c:if test="${isAdmin eq true }">
+	<div class="pt-5 edit-btn-box">
+		<button type="button" class="btn btn-secondary btn-lg btn-block">영화 정보 수정</button>
+	</div>
+</c:if>

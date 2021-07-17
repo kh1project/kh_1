@@ -30,7 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.web.seenema.account.dto.AccountDTO;
 import com.web.seenema.movie.dao.MovieDAO;
-import com.web.seenema.movie.dto.AddmovieDTO;
+import com.web.seenema.movie.dto.ImageArrayDTO;
 import com.web.seenema.movie.dto.MovieDTO;
 import com.web.seenema.movie.dto.MovieGcntDTO;
 import com.web.seenema.movie.dto.MovieImageDTO;
@@ -334,8 +334,22 @@ public class MovieServiceImpl implements MovieService {
             AccountDTO dto = (AccountDTO) session.getAttribute("account");
             aid = dto.getId();
         }
-    	System.out.println(aid);
 		return aid;
+	}
+	
+	@Override
+	public void deleteImage(String[] removeList) {
+
+		System.out.println("서비스도 지났다..");
+			
+		dao.deleteImage(removeList);		
+	}
+	
+	@Override
+	public void updateMovieData(MovieDTO dto) {
+		
+		dao.updateMovieData(dto);
+		
 	}
 
 }

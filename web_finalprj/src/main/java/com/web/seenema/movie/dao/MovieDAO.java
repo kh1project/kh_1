@@ -1,9 +1,8 @@
 package com.web.seenema.movie.dao;
 
-import java.io.File;
 import java.util.List;
 
-import com.web.seenema.movie.dto.AddmovieDTO;
+import com.web.seenema.movie.dto.ImageArrayDTO;
 import com.web.seenema.movie.dto.MovieDTO;
 import com.web.seenema.movie.dto.MovieGcntDTO;
 import com.web.seenema.movie.dto.MovieImageDTO;
@@ -32,4 +31,6 @@ public interface MovieDAO {
 	public List<MovieImageDTO> getPoster(int mid);
 	public List<MovieImageDTO> getStillcut(int mid);
 	public List<MovieImageDTO> getOnePoster();
+	public void deleteImage(String[] removeList);
+	public void updateMovieData(MovieDTO dto);
 }

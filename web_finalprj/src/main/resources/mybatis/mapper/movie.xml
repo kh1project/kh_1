@@ -103,4 +103,23 @@
 	<select id="getAdminList" resultType="com.web.seenema.account.dto.AccountGradeDTO">
   		SELECT id, name FROM account_type WHERE name = 'admin'
   	</select>
+  	
+  	<delete id="deleteImageFromEdit" parameterType="java.lang.String">
+  		DELETE FROM image_files 
+  		WHERE (
+  		<foreach collection="array" item="item" separator="OR">
+  			id=#{item}
+  		</foreach>
+  		)
+  	</delete>
+  	
+  	<insert id="updateMovieData" parameterType="com.web.seenema.movie.dto.MovieDTO">
+		UPDATE movie 
+		SET title = #{title}, subtitle = #{subtitle}, summary = #{summary}, type = #{type}
+		, director = #{director}, genre = #{genre}, runningtime = #{runningtime}
+		, rating = #{rating}, actor = #{actor}, playdate = #{playdate}
+		WHERE id = #{id} 
+	</insert>
+  	
+  	
 </mapper>

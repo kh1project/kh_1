@@ -91,12 +91,14 @@ public class MovieController {
         Map<Integer, Integer> gcnt = service.getGcnt(); // 좋아요 갯수 가져오기(전체)
         List<MovieLikeDTO> likeList = service.getMovieLikeList(aid); // 좋아요 받은 영화 리스트 가져오기
         List<MovieImageDTO> mainposter = service.getOnePoster();
+        Boolean isAdmin = aservice.adminCheck(aid); //관리자 계정인지 확인용
         
         model.addAttribute("movie", dto);        
         model.addAttribute("reserveRating", reserveRating.get(mid));
         model.addAttribute("likeList", likeList);
         model.addAttribute("gcnt", gcnt);
         model.addAttribute("mainposter", mainposter);
+        model.addAttribute("isAdmin", isAdmin);
         
         /** 아영님 코드 시작 */
         // 1page 에 출력할 한줄평 데이터
@@ -251,10 +253,22 @@ public class MovieController {
     }
     
     @RequestMapping(value = "/movie/edit")
-    public String movieEdit(Model model, @RequestParam("mid") int mid) {        
-        System.out.println(mid);
+    public String movieEdit(Model model, HttpServletRequest request, @RequestParam("mid") int mid) {        
+    	int aid = service.getAid(request);
+    	
+        if(!aservice.adminCheck(aid))
+    		return "redirect:/movie";
         
-        return "movie/movieEdit";
+        MovieDTO dto = mdao.getMovie(mid);
+        List<MovieImageDTO> moviePosters = service.getMoviePosters(mid);
+        List<MovieImageDTO> movieStillcuts = service.getMovieStillcuts(mid);
+        
+        model.addAttribute("mid", mid);
+        model.addAttribute("movie", dto);
+        model.addAttribute("moviePosters", moviePosters);
+        model.addAttribute("movieStillcuts", movieStillcuts);
+        
+        return "movie/movieedit";
     }
     
     @RequestMapping(value = "/movie/add")
@@ -270,17 +284,42 @@ public class MovieController {
         return "movie/movieadd";
     }
     
-    //영화 등록 로직
     @RequestMapping(value = "/movie/add/register")
-    public String movieAdd(Model model, 
+    public String movieAddReg(Model model, 
     		@RequestParam("poster") MultipartFile[] poster,
 			@RequestParam("stillcut") MultipartFile[] stillcut, 
 			@ModelAttribute MovieDTO dto,
-			HttpServletRequest req) throws Exception {
+			HttpServletRequest request) throws Exception {
 		
+    	int aid = service.getAid(request); 
+    	
+    	if(!aservice.adminCheck(aid))
+    		return "redirect:/movie";
+    	
     	service.insertMovieData(dto);
-    	service.posterUpload(poster, dto.getId(), req);
-    	service.stillcutUpload(stillcut, dto.getId(), req);
+    	service.posterUpload(poster, dto.getId(), request);
+    	service.stillcutUpload(stillcut, dto.getId(), request);
+	
+		return "redirect:/movie/detail?mid="+dto.getId();
+	}
+    
+    @RequestMapping(value = "/movie/edit/register")
+    public String movieEditReg(Model model, 
+    		@RequestParam(required = false) MultipartFile[] poster,
+			@RequestParam(required = false) MultipartFile[] stillcut, 
+			@ModelAttribute MovieDTO dto,
+			HttpServletRequest request) throws Exception {
+    	int aid = service.getAid(request); 
+    	
+    	if(!aservice.adminCheck(aid))
+    		return "redirect:/movie";
+    	
+    	if(poster != null)
+    		service.posterUpload(poster, dto.getId(), request);
+    	if(stillcut != null)
+    		service.stillcutUpload(stillcut, dto.getId(), request);
+    	
+    	service.updateMovieData(dto);
 	
 		return "redirect:/movie/detail?mid="+dto.getId();
 	}

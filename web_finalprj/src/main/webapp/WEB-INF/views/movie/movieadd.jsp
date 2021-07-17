@@ -25,6 +25,9 @@
 <body class="pt-5">
      <div class="inner-wrap">
            <form class="pt-5" action="${root}movie/add/register" method="POST" enctype="multipart/form-data">
+		     	<div class="title">
+		     		<h4>영화 등록</h4>
+	     		</div>
                 <label for="mid">영화 등록번호</label>
                 <!-- 아래 input name을 mid에서 id로 바꿨습니다. -->
                 <input class="form-control" id="id" name="id" type="text" placeholder="영화 등록번호" value="${mid }" readonly></input>

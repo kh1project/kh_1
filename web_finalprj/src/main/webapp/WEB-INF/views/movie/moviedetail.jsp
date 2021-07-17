@@ -44,7 +44,8 @@
 				</div>
 			</div>
 			<div class="content-text">
-				<div class="summary">${movie.getSummary() }</div>
+				<input type="hidden" value="${movie.getSummary() }" class="before-summary">
+				<div class="summary"></div>
 				<hr>
 				<div class="movie-textinfo">
 					<div>상영타입 : ${movie.getType() }</div>

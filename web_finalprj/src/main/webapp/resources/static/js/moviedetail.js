@@ -46,6 +46,20 @@ $(document).ready(function(){
 		window.location= "/seenema/movie/detail/stillcut"+mid;
 	}
 	
+	const editBtn = document.querySelector(".edit-btn-box > button");
+	/*const movieid = window.location.search.slice(5);*/
+	editBtn.onclick = function(){
+		window.location = "/seenema/movie/edit"+mid;
+	}
+	
+	const summary = document.querySelector(".before-summary");
+	const changedSummary = summary.value.replaceAll('\n', '<br>');
+	document.querySelector(".summary").innerHTML = changedSummary;
+	const firstline = document.querySelector('.summary').firstChild;
+	const h2 = document.createElement('h2');
+	h2.append(firstline);
+	document.querySelector(".summary").prepend(h2)
+	
 });
 
 function doLike(mid) {
