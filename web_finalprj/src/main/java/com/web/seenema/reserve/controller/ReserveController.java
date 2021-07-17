@@ -47,6 +47,22 @@ public class ReserveController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/timelist", method = RequestMethod.GET)
+	public ModelAndView theater_time() throws Exception {
+		ModelAndView mv = new ModelAndView("reserve/theater_time");
+		mv.addObject("", "");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/price", method = RequestMethod.GET)
+	public ModelAndView theater_price() throws Exception {
+		ModelAndView mv = new ModelAndView("reserve/theater_price");
+		mv.addObject("", "");
+		
+		return mv;
+	}
+	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String selectLocation(@RequestParam String location, Model m) throws Exception {
 		List<BranchDTO> b = ress.branchList(location);

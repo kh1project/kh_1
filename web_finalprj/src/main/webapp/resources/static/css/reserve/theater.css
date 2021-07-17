@@ -18,6 +18,7 @@ a:hover { text-decoration:none; color:inherit; }
 .btn-outline-secondary:hover { background-color:#f2f2f2; }
 .row-cols-lg-4>* { padding:0.5rem; }
 
+* { margin: auto auto; }
 .page-util {
     background-color: #4397a9;
     position: relative;
@@ -42,9 +43,13 @@ a:hover { text-decoration:none; color:inherit; }
     padding: 0.6rem 2rem;
     font-weight: bold;
 }
+a.nav-link.active {
+	font-weight: bolder;
+}
 button#tooltip:hover {
-	background-color: #17a2b89e;
-	border-color: #17a2b89e;
+	color: #fff;
+	background-color: #503396e0;
+	border-color: #503396e0;
 	border-width: 2px;
 }
 section.theater-frame {

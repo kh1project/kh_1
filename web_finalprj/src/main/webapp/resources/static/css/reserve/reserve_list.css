@@ -44,7 +44,7 @@ div #title {
 	font-weight: bold;
 	font-size: 14pt;
 	padding: 5px;
-	background-color: black;
+	background-color: #46375D;
 	color: white;
 }
 div #movielist {
@@ -61,6 +61,15 @@ label#sub {
 }
 input.btn.btn-outline-primary {
     font-weight: bold;
+}
+input.btn.btn-outline-primary:hover {
+	background-color: #503396e0;
+	border-color: #503396e0;
+}
+a.list-group-item.active {
+	background-color: #50339691;
+	border-color: #50339691;
+    border-radius: 10px 10px;
 }
 ::-webkit-scrollbar {
   width: 10px;

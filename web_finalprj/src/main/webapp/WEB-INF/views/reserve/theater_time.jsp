@@ -27,7 +27,7 @@
 				<i class="fas fa-angle-right"></i>
 				<span class="page-util-text"> <a href="<%=request.getContextPath()%>/reserve/theater"> 영화관 </a></span>
 				<i class="fas fa-angle-right"></i>
-				<span class="page-util-text"> <a href="<%=request.getContextPath()%>/reserve/theater"> 극장정보 </a></span>
+				<span class="page-util-text"> <a href="<%=request.getContextPath()%>/reserve/timelist"> 상영시간표 </a></span>
 			</div>
 		</div>
 		<div class="page-title">
@@ -44,18 +44,15 @@
 			<section class="pt-4">
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
-						<a class="nav-link active" href="${location }/theater">극장정보</a>
+						<a class="nav-link" href="${location }/theater">극장정보</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="${location }/timelist">상영시간표</a>
+						<a class="nav-link active" href="${location }/timelist">상영시간표</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="${location }/price">관람료</a>
 					</li>
 				</ul>
-			</section>
-			<section>
-				
 			</section>
 		</div>
 	</section>

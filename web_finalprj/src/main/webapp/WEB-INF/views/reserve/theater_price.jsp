@@ -27,14 +27,14 @@
 				<i class="fas fa-angle-right"></i>
 				<span class="page-util-text"> <a href="<%=request.getContextPath()%>/reserve/theater"> 영화관 </a></span>
 				<i class="fas fa-angle-right"></i>
-				<span class="page-util-text"> <a href="<%=request.getContextPath()%>/reserve/theater"> 극장정보 </a></span>
+				<span class="page-util-text"> <a href="<%=request.getContextPath()%>/reserve/price"> 관람료 </a></span>
 			</div>
 		</div>
 		<div class="page-title">
 			<div class="container">
 				<h1>영화관</h1>
 				<button class="btn" id="tooltip"
-					type="button" data-toggle="tooltip" data-placement="top" title="❤">
+					type="button" data-toggle="tooltip-1" data-placement="top" title="❤">
 					<span>선호극장</span>
 				</button>
 			</div>
@@ -44,18 +44,15 @@
 			<section class="pt-4">
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
-						<a class="nav-link active" href="${location }/theater">극장정보</a>
+						<a class="nav-link" href="${location }/theater">극장정보</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="${location }/timelist">상영시간표</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="${location }/price">관람료</a>
+						<a class="nav-link active" href="${location }/price">관람료</a>
 					</li>
 				</ul>
-			</section>
-			<section>
-				
 			</section>
 		</div>
 	</section>
@@ -67,7 +64,7 @@
 		alert("[✔준비중인 페이지입니다]");
 	});
 	$(document).ready(function () {
-	  $("[data-toggle='tooltip']").tooltip();
+	  $("[data-toggle='tooltip-1']").tooltip();
 	});
 </script>
 </body>
