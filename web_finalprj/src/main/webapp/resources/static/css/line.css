@@ -48,7 +48,7 @@
 	bottom: 80px;
 	font-size: x-large;
 	font-weight: 300;
-	color: #545151;
+	color: #5b24ad;
 }
 
 .starForm span {
@@ -64,6 +64,7 @@
 	left: 910px;
 	bottom: 80px;
 }
+
 
 
 /*)
@@ -101,6 +102,7 @@ span[class|="line"] {
 	display: table-cell;
 	vertical-align: middle;
 }
+
 /* lineone-outer의 너비: 1100px */
 
 
@@ -116,6 +118,13 @@ span[class|="line"]:not(.line-star):not(.line-date) {
 .user-info {
 	width: 153px;
 	text-align: center;
+	padding-top: 20px;
+}
+
+.user-info img {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
 }
 
 .lineone {
@@ -126,6 +135,7 @@ span[class|="line"]:not(.line-star):not(.line-date) {
 .line-date {
 	height: 60px;
 	text-align: right;
+	padding-right: 8px;
 }
 
 .line-star {
@@ -201,7 +211,11 @@ path:hover .line-date {
 	margin-bottom: 20px;
 }
 
-
+.source {
+	text-align: right;
+	font-size: 5px;
+	color: lightgray;
+}
 /*
 td[class|="line"] {
 	vertical-align: middle;

@@ -100,7 +100,6 @@
 	
 	
 	
-	    
 	<div id="boxoffice">
 		<div class="caption">
 			박스오피스
@@ -115,13 +114,13 @@
 			  <c:forEach var="item" items="${boxoffice }" varStatus="status" >
 				  <div class="col-md-2">
 				    <div class="card">     
-				    	<c:url var="path2" value="/resources/img/${item.id }/poster/movie_image.jpg" />
-				  		<img class="card-img mb-2" src="${path2 }">
+				    	<c:url var="imgpath" value="/resources/img/${item.id }/poster/movie_image.jpg" />
+				  		<img class="card-img mb-2" src="${imgpath }">
 					    <div class="card-img-overlay">
 				      		<h1 class="card-title">${status.count }</h1>
 				      	</div>
 				      	<!-- <c:url var="detail" value="/movie/detail?id=${item.id }" /> -->
-				      	<div class="card-img-overlay summary" onclick="location.href='/seenema/movie/detail?id=${item.id }'">
+				      	<div class="card-img-overlay summary" onclick="location.href='/seenema/movie/detail?mid=${item.id }'">
 				      		<p class="card-text">${item.summary }</p>
 				      	</div>
 				    </div>

@@ -143,5 +143,5 @@ function star(cnt) {
 }
 
 function starcss(starid) {
-	$(starid).css({'font-size':'x-large', 'font-weight':300, 'color':'#545151'});
+	$(starid).css({'font-size':'x-large', 'font-weight':300, 'color':'#5b24ad'});
 }

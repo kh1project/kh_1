@@ -115,9 +115,6 @@
 				<c:forEach begin="1" end="5" varStatus="i" >
 					<span id="${i.index }" onclick="star(${i.index });">
 						<i class="fa fa-star-o" aria-hidden="true"></i>
-						<!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-					  		<path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-						</svg> -->
 					</span>
 				</c:forEach>
 			</div>
@@ -134,7 +131,10 @@
 			<c:forEach var="line" items="${linelist }">
 				<div class="lineone-outer">
 					<div class="user-info">
-						<!-- <img src=""> -->
+						<div>
+							<c:url var="imgpath" value="/resources/images/common/profile.png" />
+							<img src="${imgpath }">
+						</div>
 						<span>${line.email }</span>				
 					</div>
 					<div class="lineone">
@@ -215,6 +215,8 @@
 	</div>
 </body>
 
+<div class="source">아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
+
 <footer>
 	<%@ include file="../module/footer.jsp"%>
 </footer>
@@ -278,7 +280,7 @@ $(function() {
 							}
 	
 							var div = document.createElement('div');
-							div.innerHTML = "<div class='lineone-outer'><div class='user-info'><span></span></div><div class='lineone'><div class='line-star'></div><div class='line-contents'></div><div class='line-gcntIcon'></div><div class='line-gcnt'></div><div class='line-opt'></div></div></div>";
+							div.innerHTML = "<div class='lineone-outer'><div class='user-info'><div><img src=''></div><span></span></div><div class='lineone'><div class='line-star'></div><div class='line-contents'></div><div class='line-gcntIcon'></div><div class='line-gcnt'></div><div class='line-opt'></div></div></div>";
 							div.innerHTML += "<div class='line-date'><span id='cdate'></span></div>";
 							
 							
@@ -287,6 +289,8 @@ $(function() {
 	
 							var userinfo = document.querySelector('.user-info');
 							userinfo.innerText = data.line.email;
+							var img = document.querySelector('.user-info > div > img');
+							img.setAttribute('src', '<%=request.getContextPath() %>/resources/images/common/profile.png');
 							
 							var lineEle = $(linelist).find("div[class|='line']");
 							lineEle[0].innerText = data.line.star;
@@ -313,7 +317,6 @@ $(function() {
 
 (function() {
 	// 부트스트랩 기준 기본이 파란색
-	console.log('h');
 	// prev 처리
 	$("a[data-page='prev']").css('color', 'lightgray');
 
@@ -350,6 +353,5 @@ $(function() {
 		$('html').animate({scrollTop : offset.top}, 400);
 	}
 })();
-
 </script>
 </html>
