@@ -38,7 +38,7 @@
                                      <span class="input-group-text" id="inputGroupFileAddon01">포스터 등록</span>
                                 </div>
                                 <div class="custom-file">
-                                     <input type="file" class="custom-file-input" id="poster" name="poster" required aria-describedby="inputGroupFileAddon01" multiple>
+                                     <input type="file" class="custom-file-input" id="poster" name="poster" required aria-describedby="inputGroupFileAddon01" accept=".jpg, .jpeg, .png" multiple>
                                      <label class="custom-file-label" for="poster">선택된 파일 없음</label>
                                 </div>
                            </div>
@@ -47,7 +47,7 @@
                                      <span class="input-group-text" id="inputGroupFileAddon02">스틸컷 등록</span>
                                 </div>
                                 <div class="custom-file">
-                                     <input type="file" class="custom-file-input" id="stillcut" name="stillcut" required aria-describedby="inputGroupFileAddon02" multiple>
+                                     <input type="file" class="custom-file-input" id="stillcut" name="stillcut" required aria-describedby="inputGroupFileAddon02" accept=".jpg, .jpeg, .png" multiple>
                                      <label class="custom-file-label" for="stillcut">선택된 파일 없음</label>
                                 </div>
                            </div>

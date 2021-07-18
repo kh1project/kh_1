@@ -25,7 +25,7 @@ public class MovieAjaxController {
 		int aid = service.getAid(request);
 		
 		//로그인 체크
-		if(aid == 0)
+		if(aid == -1)
 			return -1;
 		
 		if(!service.movieLikeDupCheck(aid, mid))
@@ -45,7 +45,7 @@ public class MovieAjaxController {
 		aid = service.getAid(request);
 		
 		//로그인 체크
-		if(aid == 0)
+		if(aid == -1)
 			return -1;
 		
 		service.movieUnlike(new MovieLikeDTO(aid, mid));	
@@ -64,6 +64,13 @@ public class MovieAjaxController {
 		
 		System.out.println("컨트롤러 지났다..");
 		return 0;
+	}
+	
+	@RequestMapping(value = "/edit/deletemovie")
+	public int deleteMovie(@RequestParam("mid") int mid) {
+		System.out.println(mid+"번 영화 삭제");
+
+		return service.deleteMovie(mid);
 	}
 	
 }

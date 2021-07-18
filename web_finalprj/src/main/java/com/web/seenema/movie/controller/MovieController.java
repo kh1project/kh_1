@@ -1,16 +1,10 @@
 package com.web.seenema.movie.controller;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,14 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.web.seenema.account.dto.AccountDTO;
 import com.web.seenema.account.service.AccountService;
 import com.web.seenema.line.dto.LineDTO;
 import com.web.seenema.line.dto.PagingInfoDTO;
 import com.web.seenema.line.dto.SettingDataDTO;
 import com.web.seenema.line.service.LinePagingService;
 import com.web.seenema.movie.dao.MovieDAO;
-import com.web.seenema.movie.dto.AddmovieDTO;
 import com.web.seenema.movie.dto.MovieDTO;
 import com.web.seenema.movie.dto.MovieImageDTO;
 import com.web.seenema.movie.dto.MovieLikeDTO;
@@ -65,8 +57,8 @@ public class MovieController {
         Boolean isAdmin = aservice.adminCheck(aid); //관리자 계정인지 확인용
         Map<Integer, String> reserveRating = service.getReserveRate();
         List<MovieLikeDTO> likeList = service.getMovieLikeList(aid);
+        Map<Integer, MovieImageDTO> mainposter = service.getOnePoster();
         Map<Integer, Integer> gcnt = service.getGcnt();
-        List<MovieImageDTO> mainposter = service.getOnePoster();
         
         model.addAttribute("movieList", movieList);
         model.addAttribute("reserveRating", reserveRating);
@@ -87,11 +79,11 @@ public class MovieController {
              
         int aid = service.getAid(request);
         
-        MovieDTO dto = mdao.getMovie(mid); // 영화정보 1개 가져오기
+        MovieDTO dto = service.getMovie(mid); // 영화정보 1개 가져오기
         Map<Integer, String> reserveRating = service.getReserveRate(); //예매율
         Map<Integer, Integer> gcnt = service.getGcnt(); // 좋아요 갯수 가져오기(전체)
-        List<MovieLikeDTO> likeList = service.getMovieLikeList(aid); // 좋아요 받은 영화 리스트 가져오기
-        List<MovieImageDTO> mainposter = service.getOnePoster();
+        List<MovieLikeDTO> likeList = service.getMovieLikeList(aid);
+        Map<Integer, MovieImageDTO> mainposter = service.getOnePoster();
         Boolean isAdmin = aservice.adminCheck(aid); //관리자 계정인지 확인용
         
         model.addAttribute("movie", dto);        
@@ -160,14 +152,16 @@ public class MovieController {
         MovieDTO dto = mdao.getMovie(mid); // 영화정보 1개 가져오기
         Map<Integer, String> reserveRating = service.getReserveRate(); //예매율
         Map<Integer, Integer> gcnt = service.getGcnt(); // 좋아요 갯수 가져오기(전체)
-        List<MovieLikeDTO> likeList = service.getMovieLikeList(aid); // 좋아요 받은 영화 리스트 가져오기
-        List<MovieImageDTO> mainposter = service.getOnePoster();
-        
+        List<MovieLikeDTO> likeList = service.getMovieLikeList(aid);
+        Map<Integer, MovieImageDTO> mainposter = service.getOnePoster();
+        Boolean isAdmin = aservice.adminCheck(aid);
+        		
         model.addAttribute("movie", dto);        
         model.addAttribute("reserveRating", reserveRating.get(mid));
         model.addAttribute("likeList", likeList);
         model.addAttribute("gcnt", gcnt);
         model.addAttribute("mainposter", mainposter);
+        model.addAttribute("isAdmin", isAdmin);
 
         return "movie/moviecomment";
     }
@@ -183,14 +177,16 @@ public class MovieController {
         MovieDTO dto = mdao.getMovie(mid); // 영화정보 1개 가져오기
         Map<Integer, String> reserveRating = service.getReserveRate(); //예매율
         Map<Integer, Integer> gcnt = service.getGcnt(); // 좋아요 갯수 가져오기(전체)
-        List<MovieLikeDTO> likeList = service.getMovieLikeList(aid); // 좋아요 받은 영화 리스트 가져오기
-        List<MovieImageDTO> mainposter = service.getOnePoster();
+        List<MovieLikeDTO> likeList = service.getMovieLikeList(aid);
+        Map<Integer, MovieImageDTO> mainposter = service.getOnePoster();
+        Boolean isAdmin = aservice.adminCheck(aid);
         
         model.addAttribute("movie", dto);        
         model.addAttribute("reserveRating", reserveRating.get(mid));
         model.addAttribute("likeList", likeList);
         model.addAttribute("gcnt", gcnt);
         model.addAttribute("mainposter", mainposter);
+        model.addAttribute("isAdmin", isAdmin);
         
         return "movie/moviepost";
     }
@@ -206,10 +202,11 @@ public class MovieController {
         MovieDTO dto = mdao.getMovie(mid); // 영화정보 1개 가져오기
         Map<Integer, String> reserveRating = service.getReserveRate(); //예매율
         Map<Integer, Integer> gcnt = service.getGcnt(); // 좋아요 갯수 가져오기(전체)
-        List<MovieLikeDTO> likeList = service.getMovieLikeList(aid); // 좋아요 받은 영화 리스트 가져오기
         List<MovieImageDTO> moviePosters = service.getMoviePosters(mid);
         List<MovieImageDTO> movieStillcuts = service.getMovieStillcuts(mid);
-        List<MovieImageDTO> mainposter = service.getOnePoster();
+        List<MovieLikeDTO> likeList = service.getMovieLikeList(aid);
+        Map<Integer, MovieImageDTO> mainposter = service.getOnePoster();
+        Boolean isAdmin = aservice.adminCheck(aid);
         
         model.addAttribute("movie", dto);        
         model.addAttribute("reserveRating", reserveRating.get(mid));
@@ -218,6 +215,7 @@ public class MovieController {
         model.addAttribute("moviePosters", moviePosters);
         model.addAttribute("movieStillcuts", movieStillcuts);
         model.addAttribute("mainposter", mainposter);
+        model.addAttribute("isAdmin", isAdmin);
         
 
         return "movie/moviestillcut";

@@ -20,6 +20,8 @@
 	href="${root }resources/static/css/line.css">
 <script type="text/javascript"
 	src="${root }resources/static/js/moviedetail.js"></script>
+	<script type="text/javascript"
+	src="${root }resources/static/js/getsummary.js"></script>
 <style>
 @import
 	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;500&display=swap');

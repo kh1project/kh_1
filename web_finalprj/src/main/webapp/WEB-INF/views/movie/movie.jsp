@@ -121,9 +121,16 @@ ul {
 					<div class="movies shadow bg-white rounded">
 						<div class="poster">
 							<div class="rank">${numRank = numRank+1 }</div>
-							<a href="${root}movie/detail?mid=${item.getId() }"><img
-								src="${root}/${mainposter.get(item.getId()-1).getPath()}/${mainposter.get(item.getId()-1).getName()}"
-								alt="${item.getTitle() }"></a>
+							<a href="${root}movie/detail?mid=${item.getId() }">
+								<c:choose>
+									<c:when test="${mainposter.get(item.getId()).getName() ne null}">
+										<img src="${root}/${mainposter.get(item.getId()).getPath()}/${mainposter.get(item.getId()).getName()}" alt="${item.getTitle() }">
+									</c:when>
+									<c:otherwise>
+										<img src="${root }resources/images/movie/0/imageNotExist.jpg" alt="${item.getTitle() }">
+									</c:otherwise>
+								</c:choose>
+							</a>
 						</div>
 						<div class="title-box">
 							<div class="title">

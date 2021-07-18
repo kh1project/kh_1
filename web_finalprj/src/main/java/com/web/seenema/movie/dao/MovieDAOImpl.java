@@ -123,13 +123,13 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 	
 	@Override
-	public List<MovieImageDTO> getPoster(int mid) {
-		return sqlSession.selectList("movie.getPosterInfo", mid);
+	public List<MovieImageDTO> getPoster() {
+		return sqlSession.selectList("movie.getPosterInfo");
 	}
 	
 	@Override
-	public List<MovieImageDTO> getStillcut(int mid) {
-		return sqlSession.selectList("movie.getStillcutInfo", mid);
+	public List<MovieImageDTO> getStillcut() {
+		return sqlSession.selectList("movie.getStillcutInfo");
 	}
 	
 	@Override
@@ -149,6 +149,15 @@ public class MovieDAOImpl implements MovieDAO {
 	@Override
 	public void updateMovieData(MovieDTO dto) {
 		sqlSession.update("movie.updateMovieData", dto);		
+	}
+	
+	@Override
+	public void deleteImageAll(int mid) {
+		sqlSession.delete("movie.deleteImageAll", mid);
+	}
+	@Override
+	public int deleteMovie(int mid) {
+		return sqlSession.delete("movie.deleteMovie", mid);
 	}
 	
 }

@@ -28,9 +28,12 @@ public interface MovieDAO {
 	public List<MovieImageDTO> getMovieStillcuts(Integer mid);
 	public void insertFile(MovieImageDTO midto);
 	public void insertMovieData(MovieDTO dto);
-	public List<MovieImageDTO> getPoster(int mid);
-	public List<MovieImageDTO> getStillcut(int mid);
+	public List<MovieImageDTO> getPoster();
+	public List<MovieImageDTO> getStillcut();
 	public List<MovieImageDTO> getOnePoster();
 	public void deleteImage(String[] removeList);
 	public void updateMovieData(MovieDTO dto);
+	public void deleteImageAll(int mid);
+	public int deleteMovie(int mid);
+	
 }

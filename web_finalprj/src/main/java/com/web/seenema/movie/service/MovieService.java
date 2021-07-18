@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.web.seenema.movie.dto.AddmovieDTO;
 import com.web.seenema.movie.dto.MovieDTO;
 import com.web.seenema.movie.dto.MovieImageDTO;
 import com.web.seenema.movie.dto.MovieLikeDTO;
@@ -36,10 +35,12 @@ public interface MovieService {
 	public void posterUpload(MultipartFile[] poster, int mid, HttpServletRequest req) throws IOException;
 	public void stillcutUpload(MultipartFile[] stillcut, int mid, HttpServletRequest req) throws IOException;
 	public void insertMovieData(MovieDTO dto);
-	public Map<Integer, List<MovieImageDTO>> getPosterInfo(int size);
-	public Map<Integer, List<MovieImageDTO>> getStillcutInfo(int size);
-	public List<MovieImageDTO> getOnePoster();
+	public Map<Integer, MovieImageDTO> getPosterInfo();
+	public Map<Integer, MovieImageDTO> getStillcutInfo();
+	public Map<Integer, MovieImageDTO> getOnePoster();
 	public int getAid(HttpServletRequest request);
 	public void deleteImage(String[] removeList);
 	public void updateMovieData(MovieDTO dto);
+	public Map<Integer, MovieImageDTO> getTargetPoster(Integer mid);
+	public int deleteMovie(int mid);
 }

@@ -13,7 +13,6 @@ function iLikeIt(mid){
         type: "post",
         datatype: "json",
         data: {
-            userid : 1,
             "mid" : mid
         },
         success: function(data){
@@ -35,7 +34,6 @@ function iHateIt(mid){
         type: "post",
         datatype: "json",
         data: {
-            userid : 1,
             "mid" : mid
         },
         success: function(data){
@@ -52,16 +50,16 @@ function iHateIt(mid){
 }
 
 $(document).ready(function(){
+    	let filter = document.querySelector(".custom-select");
+    	filter.onchange = function(){
+        	window.location = "/seenema/movie?sort="+filter.value; 
+    	}
+    	
         let btn = document.querySelector(".add-btn");
         btn.onclick = function(){
         	window.location = "/seenema/movie/add";
         }
         
-    	let filter = document.querySelector(".custom-select");
-    	filter.onchange = function(){
-        	window.location = "/seenema/movie?sort="+filter.value;
-        
-    }
 });
 
 /* <span class="inner-btn unlike" id="unlike-${item.getId() }"

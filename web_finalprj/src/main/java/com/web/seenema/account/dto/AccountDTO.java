@@ -14,6 +14,7 @@ public class AccountDTO {
 	private Date joindate;
 	private Date logindate;
 	private Date expiredate;
+	private int grade;
 	
 	
 	public int getId() {
@@ -124,11 +125,25 @@ public class AccountDTO {
 	public void setExpiredate(Date expiredate) {
 		this.expiredate = expiredate;
 	}
+	
+	
 
+
+	public int getGrade() {
+		return grade;
+	}
+
+
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
 
 	@Override
 	public String toString() {
-		return "AccountDTO [id=" + id + ", email=" + email + ", username=" + username + ", nickname=" + nickname + "]";
+		return "AccountDTO [id=" + id + ", email=" + email + ", password=" + password + ", username=" + username
+				+ ", nickname=" + nickname + ", age=" + age + ", gender=" + gender + ", phone=" + phone + ", joindate="
+				+ joindate + ", logindate=" + logindate + ", expiredate=" + expiredate + ", grade=" + grade + "]";
 	}
+
 
 }
