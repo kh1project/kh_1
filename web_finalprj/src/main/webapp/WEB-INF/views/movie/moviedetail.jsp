@@ -142,7 +142,10 @@
 					</div>
 					<div class="lineone">
 
-						<div class="line-star">${line.star }</div>
+						<div class="line-star">
+							<i class="fa fa-star-o" aria-hidden="true"></i>
+							${line.star }
+						</div>
 						<div class="line-contents">${line.contents }</div>
 						<div class="line-gcntIcon" data-id="${line.id }">
 							<svg width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">

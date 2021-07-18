@@ -38,11 +38,10 @@ public class MovieAjaxController {
 	}
 	
 	@RequestMapping(value = "/unlike")
-	public int movieUnlike(@RequestParam("userid") int aid,
-							@RequestParam("mid") int mid,
+	public int movieUnlike(@RequestParam("mid") int mid,
 							HttpServletRequest request) {
 
-		aid = service.getAid(request);
+		int aid = service.getAid(request);
 		
 		//로그인 체크
 		if(aid == -1)

@@ -22,7 +22,7 @@
 		}
 		
 		// el태그 표기법 확인해야 함.
-		if(${sessionScope.account != null && sessionScope.account.id == mygcnt.aid }) {
+		if(${sessionScope.account != null }) {
 			// 로그인이 된 상태
 			$.ajax({
 				url: "${url }",

@@ -22,7 +22,7 @@
 		<%@ include file="../module/header.jsp" %>
 	</header>
 	<c:url var="url_payment" value="/kakaopay" />
-	<section class="reserve-frame pt-5">
+	<section class="reserve-frame pt-5" style="margin-top: 0">
 		<div class="page-util">
 			<div class="container">
 				<i class="fas fa-home"></i>

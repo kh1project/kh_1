@@ -64,7 +64,7 @@
 	<select id="mygcnt" parameterType="mygcnt" resultType="integer">
 		SELECT mid
    		  FROM movielike
-    	 WHERE mid IN (#{mid1}, #{mid2}, #{mid3}, #{mid4}) AND aid = #{aid};
+    	 WHERE mid IN (#{mid1}, #{mid2}, #{mid3}, #{mid4}) AND aid = #{aid}
 	</select>
 	
 	<insert id="addMovielike" parameterType="movieLike">
@@ -77,4 +77,4 @@
 		   SET gcnt = gcnt + 1
 		 WHERE id = #{id}
 	</update>
-</mapper>
+</mapper> 

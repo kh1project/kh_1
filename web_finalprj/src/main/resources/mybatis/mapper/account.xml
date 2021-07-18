@@ -76,7 +76,7 @@
   	</delete>
   	
   	<select id="getAdminList" resultType="com.web.seenema.account.dto.AccountGradeDTO">
-  		SELECT id, name FROM account_type WHERE name = 'admin'
+  		SELECT id, username FROM account WHERE grade = 0
   	</select>
   
 </mapper>

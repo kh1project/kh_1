@@ -65,14 +65,18 @@
 	border-radius: 10px;
 }
 
-.page-util-text{
-	vertical-align: text-bottom;
-	line-height: 43px;
-}
-
 .svg{
     position: relative;
     bottom: 13px;
+}
+
+.movie-page-util {
+    background-color: #4397a9;
+    position: relative;
+    color: #fff;
+    font-weight: 400;
+    line-height: calc(3rem - 8px);
+    margin-bottom: 30px;
 }
 
 .page-util{

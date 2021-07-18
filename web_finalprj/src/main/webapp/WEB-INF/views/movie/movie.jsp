@@ -15,12 +15,16 @@
 	src="${root}resources/jquery/js/jquery-3.6.0.min.js"></script>
 <link type="text/css" rel="stylesheet"
 	href="${root}resources/bootstrap-4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
 <script type="text/javascript"
 	src="${root}resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
 <link type="text/css" rel="stylesheet"
 	href="${root}resources/static/css/movie.css">
 <link type="text/css" rel="stylesheet"
 	href="${root}resources/static/css/common.css">
+<link type="text/css" rel="stylesheet"
+	href="${root}resources/static/css/common2.css">
+<script type="text/javascript" src="https://kit.fontawesome.com/74ba2bf207.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="${root}resources/static/js/movie.js"></script>
 <style>
 @import
@@ -56,27 +60,11 @@ ul {
 	<!-- ----------------</header>---------------- -->
 	<!-- ----------------<body>---------------- -->
 	<container id="container">
-	<div class="page-util">
-		<div class="inner-wrap">
-
-			<span class="svg"> <a
-				href="<%=request.getContextPath()%>/index"> <svg
-						xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-						fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
-					  <path fill-rule="evenodd"
-							d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
-					  <path fill-rule="evenodd"
-							d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
-					</svg>
-			</a>
-			</span> <span class="svg"> <svg xmlns="http://www.w3.org/2000/svg"
-					width="16" height="16" fill="currentColor"
-					class="bi bi-caret-right" viewBox="0 0 16 16">
-				  <path
-						d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z" />
-				</svg>
-			</span> <span class="page-util-text"> <a href="/movie"> 영화 </a>
-			</span>
+	<div class="movie-page-util">
+		<div class="container">
+			<i class="fas fa-home" style="color: #fff"></i>
+			<i class="fas fa-angle-right" style="color: #fff"></i>
+			<span class="page-util-text"> <a href="<%=request.getContextPath()%>/movie" style="color: #fff"> 영화 </a></span>
 		</div>
 	</div>
 	<div class="movies-container">
