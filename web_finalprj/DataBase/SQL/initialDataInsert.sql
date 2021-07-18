@@ -530,7 +530,7 @@ INSERT INTO theater(id, bid, name) VALUES(theater_seq.NEXTVAL, 21, '2관');
 -- 영화상영관테이블 INSERT
 --*************************************
 CREATE SEQUENCE movie_t_seq;
-
+SELECT * FROM MOVIE_THEATER
 -- 위왓치유(ID : 1) / 강남 1관(ID : 1)
 INSERT INTO movie_theater(id, mid, tid, enddate) VALUES(movie_t_seq.NEXTVAL, 1, 1, TO_DATE('21/09/12','YY/MM/DD'));
 INSERT INTO movie_theater(id, mid, tid, enddate) VALUES(movie_t_seq.NEXTVAL, 2, 1, TO_DATE('21/09/13','YY/MM/DD'));
@@ -1536,7 +1536,7 @@ INSERT INTO time(id, mtid, moviedate, starttime, endtime) VALUES(time_seq.NEXTVA
 INSERT INTO time(id, mtid, moviedate, starttime, endtime) VALUES(time_seq.NEXTVAL, 6, TO_DATE('21/07/14', 'YY/MM/DD'), '13:34:00', '15:18:00');
 INSERT INTO time(id, mtid, moviedate, starttime, endtime) VALUES(time_seq.NEXTVAL, 6, TO_DATE('21/07/14', 'YY/MM/DD'), '17:40:00', '19:10:00');
 
-UPDATE time SET moviedate = TO_DATE('21/07/19', 'YY/MM/DD');
+UPDATE time SET moviedate = TO_DATE('21/07/18', 'YY/MM/DD');
 
 
 --*************************************
@@ -1669,6 +1669,260 @@ INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 
 INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 1, 'G', 12, 'n');
 INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 1, 'G', 13, 'n');
 INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 1, 'G', 14, 'n');
+
+-- 강남 1관 위왓치유. 총 98개.
+-- 강남 1관 A
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'A', 14, 'n');
+
+-- 강남 1관 B
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'B', 14, 'n');
+
+-- 강남 1관 C
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'C', 14, 'n');
+
+-- 강남 1관 D
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'D', 14, 'n');
+
+-- 강남 1관 E
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'E', 14, 'n');
+
+-- 강남 1관 F
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'F', 14, 'n');
+
+-- 강남 1관 G
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 2, 'G', 14, 'n');
+
+-- 강남 1관 위왓치유. 총 98개
+-- 강남 1관 A
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'A', 14, 'n');
+
+-- 강남 1관 B
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'B', 14, 'n');
+
+-- 강남 1관 C
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'C', 14, 'n');
+
+-- 강남 1관 D
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'D', 14, 'n');
+
+-- 강남 1관 E
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'E', 14, 'n');
+
+-- 강남 1관 F
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'F', 14, 'n');
+
+-- 강남 1관 G
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 1, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 2, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 3, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 4, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 5, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 6, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 7, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 8, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 9, 'n');
+
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 10, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 11, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 12, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 13, 'n');
+INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 3, 'G', 14, 'n');
 
 --*************************************
 -- 회원등급 INSERT
