@@ -60,9 +60,12 @@ label#sub {
 	margin-top: 10px;
 }
 input.btn.btn-outline-primary {
+	color: #444;
+	border-color: #444;
     font-weight: bold;
 }
 input.btn.btn-outline-primary:hover {
+	color: #fff;
 	background-color: #503396e0;
 	border-color: #503396e0;
 }
