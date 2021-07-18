@@ -70,8 +70,7 @@ public class ReserveRepositoryImpl implements ReserveRepository{
 
 	@Override
 	public int searchprice(int id) throws Exception {
-		int pay = sqlSession.selectOne("reserveMapper.pay_all", id);
-		return pay;
+		return sqlSession.selectOne("reserveMapper.pay_all", id);
 	}
 
 	@Override

@@ -55,6 +55,7 @@ public class MovieController {
                  
         int aid = service.getAid(request);
         Boolean isAdmin = aservice.adminCheck(aid); //관리자 계정인지 확인용
+        System.out.println(isAdmin);
         Map<Integer, String> reserveRating = service.getReserveRate();
         List<MovieLikeDTO> likeList = service.getMovieLikeList(aid);
         Map<Integer, MovieImageDTO> mainposter = service.getOnePoster();

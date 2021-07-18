@@ -78,7 +78,7 @@
 	
 	<select id="pay_all" resultType="_int">
 	    SELECT price FROM pay WHERE id = #{id}
-	</select>
+	</select> 
 	
 	<select id="search_Branch" resultType="BranchTheater">
 		SELECT mt.id AS tid

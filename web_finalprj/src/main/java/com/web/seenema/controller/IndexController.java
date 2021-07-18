@@ -58,8 +58,8 @@ public class IndexController {
 				dto.setMid3(boxoffice.get(2).getId());
 				dto.setMid4(boxoffice.get(3).getId());
 				dto.setAid(account.getId());
-				List<Integer> mygcnt = service.getMygcnt(dto);
-				mv.addObject("mygcnt", mygcnt);
+//				List<Integer> mygcnt = service.getMygcnt(dto);
+//				mv.addObject("mygcnt", mygcnt);
 			}
 		}
 		

@@ -109,8 +109,11 @@ public class AccountServiceImpl implements AccountService {
 		List<AccountGradeDTO> agdto = dao.getAdminList();
 		Boolean res = false;
 		for(AccountGradeDTO item : agdto) {
-			if(aid == item.getId())
+			if(aid == item.getId()) {
+				System.out.println(item.getId());
+				System.out.println(aid);
 				res = true;
+			}
 		}
 		
 		return res;
