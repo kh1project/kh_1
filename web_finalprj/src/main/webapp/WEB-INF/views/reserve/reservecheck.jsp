@@ -66,7 +66,7 @@
 					<c:url var="payment" value="/reserve/payment" />
 						<div class="movie-info">
 							<div class="poster">
-								<img src="<c:url value="/resources/img/${posterId }/poster/${postername }" />">
+								<img src="<c:url value="/resources/img/${mid }/poster/${postername }" />">
 							</div>							
 								<c:choose>
 								 	<c:when test="${rating eq 0}">
@@ -82,9 +82,8 @@
 							        	<span class="badge badge-pill badge-danger">19</span>
 						        	</c:otherwise>
 					        	</c:choose>
-								<input type="text" class="info title" name="title" value="${title }" readonly>
+								<input type="text" style="width: 90%; height: auto; border: 0px;" class="info title" name="title" value="${title }" readonly>
 								<label class="type">${type }</label>
-								<hr class="check">
 							<div class="info">
 								<div class="movietheater">
 								<label class="list">영화관</label>
@@ -93,7 +92,6 @@
 								<input type="text" name="tname" class="info cinema" value="${theater }" readonly>
 								<label class="list">인원</label><input type="text" name="peple" class="info peple" value="${peple }" readonly><p class="p-peple">명</p>
 								</div>
-								<hr class="check">
 								<div class="moviedate">
 									<label class="list">상영일</label>
 									<input type="hidden" name="timeID" value="${tid }">
