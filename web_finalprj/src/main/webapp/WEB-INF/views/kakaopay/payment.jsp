@@ -13,7 +13,7 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/jquery/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
 </head>
-<body class="pt-5">
+<body class="pt-3">
 	<header>
 		<%@ include file="../module/header.jsp" %>
 	</header>
