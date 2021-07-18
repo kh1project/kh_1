@@ -1,8 +1,8 @@
 --*************************************
 -- 모든 테이블 조회, 모든 SEQUENCE 조회
-SELECT * FROM tab;
-SELECT * FROM USER_SEQUENCES;
-SELECT * FROM all_objects WHERE object_type = 'SEQUENCE';
+--SELECT * FROM tab;
+--SELECT * FROM USER_SEQUENCES;
+--SELECT * FROM all_objects WHERE object_type = 'SEQUENCE';
 --*************************************
 
 --*************************************
@@ -15,9 +15,7 @@ DROP TABLE comments;
 DROP TABLE attach_files;
 DROP TABLE board;
 DROP TABLE board_type;
-DROP TABLE account_type;
 DROP TABLE reservation;
-DROP TABLE account;
 DROP TABLE seat;
 DROP TABLE time;
 DROP TABLE image_files;
@@ -25,6 +23,8 @@ DROP TABLE movie_theater;
 DROP TABLE theater;
 DROP TABLE branch;
 DROP TABLE movie;
+DROP TABLE account;
+DROP TABLE account_type;
 --*************************************
 
 --*************************************
@@ -191,6 +191,17 @@ COMMENT ON COLUMN seat.seatcol IS '좌석의 열';
 COMMENT ON COLUMN seat.reserved IS '좌석 예약 여부';
 
 
+-- 회원 구분 테이블
+CREATE TABLE account_type (
+    id NUMBER,
+    name VARCHAR2(64)
+);
+
+ALTER TABLE account_type ADD CONSTRAINT account_t_id_pk PRIMARY KEY(id);
+
+COMMENT ON COLUMN account_type.id IS '회원 구분 식별번호';
+COMMENT ON COLUMN account_type.name IS '회원 구분명';
+
 -- 회원 테이블
 CREATE TABLE account (
     id NUMBER,
@@ -264,17 +275,6 @@ COMMENT ON COLUMN reservation.rcnt IS '예매 인원';
 COMMENT ON COLUMN reservation.totalpay IS '결제 금액';
 COMMENT ON COLUMN reservation.payment IS '결제 방법';
 
-
--- 회원 구분 테이블
-CREATE TABLE account_type (
-    id NUMBER,
-    name VARCHAR2(64)
-);
-
-ALTER TABLE account_type ADD CONSTRAINT account_t_id_pk PRIMARY KEY(id);
-
-COMMENT ON COLUMN account_type.id IS '회원 구분 식별번호';
-COMMENT ON COLUMN account_type.name IS '회원 구분명';
 
 
 -- 게시판 구분 테이블
@@ -457,3 +457,8 @@ COMMENT ON COLUMN pay.price IS '영화가격';
 --	reviewGcnt NUMBER,
 --	reviewBcnt NUMBER,
 --);
+
+
+alter session set time_zone = '+09:00';
+--SELECT * FROM board;
+--SELECT TO_CHAR(current_timestamp, 'yyyy-mm-dd hh24') from dual

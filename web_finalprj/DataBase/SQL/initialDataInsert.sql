@@ -1536,7 +1536,7 @@ INSERT INTO time(id, mtid, moviedate, starttime, endtime) VALUES(time_seq.NEXTVA
 INSERT INTO time(id, mtid, moviedate, starttime, endtime) VALUES(time_seq.NEXTVAL, 6, TO_DATE('21/07/14', 'YY/MM/DD'), '13:34:00', '15:18:00');
 INSERT INTO time(id, mtid, moviedate, starttime, endtime) VALUES(time_seq.NEXTVAL, 6, TO_DATE('21/07/14', 'YY/MM/DD'), '17:40:00', '19:10:00');
 
--- UPDATE time SET moviedate = TO_DATE('21/07/15', 'YY/MM/DD');
+UPDATE time SET moviedate = TO_DATE('21/07/19', 'YY/MM/DD');
 
 
 --*************************************
@@ -1669,6 +1669,12 @@ INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 
 INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 1, 'G', 12, 'n');
 INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 1, 'G', 13, 'n');
 INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 1, 'G', 14, 'n');
+
+--*************************************
+-- 회원등급 INSERT
+--*************************************
+INSERT INTO account_type(id, name) VALUES(0, 'admin');
+INSERT INTO account_type(id, name) VALUES(1, 'user');
 
 --*************************************
 -- 회원테이블 INSERT (SEQUENCE 없는 상태)
