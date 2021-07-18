@@ -530,7 +530,6 @@ INSERT INTO theater(id, bid, name) VALUES(theater_seq.NEXTVAL, 21, '2관');
 -- 영화상영관테이블 INSERT
 --*************************************
 CREATE SEQUENCE movie_t_seq;
-SELECT * FROM MOVIE_THEATER
 -- 위왓치유(ID : 1) / 강남 1관(ID : 1)
 INSERT INTO movie_theater(id, mid, tid, enddate) VALUES(movie_t_seq.NEXTVAL, 1, 1, TO_DATE('21/09/12','YY/MM/DD'));
 INSERT INTO movie_theater(id, mid, tid, enddate) VALUES(movie_t_seq.NEXTVAL, 2, 1, TO_DATE('21/09/13','YY/MM/DD'));
