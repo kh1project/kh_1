@@ -157,6 +157,27 @@ public class AccountController {
 		return mv;
 	}
 	
+//	@RequestMapping(value="moveMypage.do", method = {RequestMethod.GET, RequestMethod.POST})
+//	public String moveMain(Model model, CGVReserveDto reserveDto, CGVPayDto payDto, HttpSession session) {
+//		CGVMemberDto login =(CGVMemberDto)session.getAttribute("login");
+//		
+//		 
+//		reserveDto.setId(login.getId());
+//		List<CGVReserveDto> list = cgvReserveService.getPayJoinTable(reserveDto);
+//		
+//		if(list != null) {
+//			for(CGVReserveDto dto : list) {
+//				System.out.println(dto.toString());
+//				model.addAttribute("reserveList", list);
+//			}황
+//		}else {
+//			System.out.println("이것이 오류다");
+//		}
+//		
+//		return "myPage";
+//	}
+	
+	
 	@RequestMapping(value = "/reservedetail")
 	public ModelAndView reserveDetail() {
 		ModelAndView mv = new ModelAndView("account/reservedetail");

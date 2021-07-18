@@ -43,8 +43,8 @@
   	</select>
   
   	<insert id="insertAccount" parameterType="account">
-  		INSERT INTO account(id, email, password,  username, nickname, age, phone)
-  	    	 VALUES(account_seq.NEXTVAL, #{email}, #{password}, #{username}, #{nickname}, #{age}, #{phone})
+  		INSERT INTO account(id, email, password,  username, nickname, age, gender, phone)
+  	    	 VALUES(account_seq.NEXTVAL, #{email}, #{password}, #{username}, #{nickname}, #{age}, #{gender}, #{phone})
   	</insert>
   
   	<update id="loginDate">

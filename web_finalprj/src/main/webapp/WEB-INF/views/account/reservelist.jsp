@@ -34,6 +34,53 @@
 		</container>
 		
 		<!-- 
+		<div class="my-page-container">
+			<div class="my-page-wrapper">
+				<div class="my-page-header">예약한 영화 목록</div>
+				<div class="movie-reserve-list">
+					<%
+						if (list == null) {
+					%>
+					<div>예약한 영화가 없습니다</div>
+					<%
+						} else {
+							for (int i = 0; i < list.size(); i++) {
+								CGVReserveDto reserveDto = list.get(i);
+					%>
+					<div class="movie-reserve">
+						<div class="movie-reserve-age"><%=reserveDto.getMovieAge() %></div>
+						<div class="movie-reserve-title"><%=reserveDto.getTitle() %></div>
+						<div class="movie-reserve-theater-wrapper">
+							<div><%=reserveDto.getSelectedTheater() %></div>
+							&nbsp;/&nbsp;
+							<div class="ticket-numeber"><%=reserveDto.getTicketNumber() %>장</div>
+						</div>
+						<div class="movie-reserve-seats"><%=reserveDto.getSelectedSeat() %></div>
+						<div class="movie-reserve-date-wrapper">
+							<div class="movie-reserve-date"><%=reserveDto.getMovieDate() %></div>
+							<div class="movie-reserve-runningTime"><%=reserveDto.getRunningTime() %></div>
+						</div>
+						<div class="movie"></div>
+
+						<div class="pay-information-wrapper">
+							<div class="pay-information-date-wrapper">
+								<div class="pay-information-date-title">결제한 날</div>
+								<div class="pay-information-date"><%=reserveDto.getCgvPayDto().getPayDate() %></div>
+							</div>
+
+							<div class="pay-information-money-wrapper">
+								<div class="pay-information-money-title">결제한 비용</div>
+								<div class="pay-information-money"><%=reserveDto.getCgvPayDto().getPayMoney() %>원</div>
+							</div>
+
+							<div class="barcode-wrapper">
+								<div>CGV</div>
+								<img src="images/barcode.png">
+							</div>
+
+						</div>
+					</div> -->
+		<!-- 
 		<div class="card" style="width: 18rem;">
 		  <img src="..." class="card-img-top" alt="...">
 		  <div class="card-body">
