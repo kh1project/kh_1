@@ -82,7 +82,7 @@
 							        	<span class="badge badge-pill badge-danger">19</span>
 						        	</c:otherwise>
 					        	</c:choose>
-								<input type="text" style="width: 90%; height: auto; border: 0px;" class="info title" name="title" value="${title }" readonly>
+								<input type="text" style="width: 90%; height: auto; border: 0px; text-align: center;" class="info title" name="title" value="${title }" readonly>
 								<label class="type">${type }</label>
 							<div class="info">
 								<div class="movietheater">

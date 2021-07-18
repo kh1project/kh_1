@@ -21,7 +21,7 @@
 							<a href="javascript:;" onclick="reviewUpdate()">수정</a>
 							<a href="javascript:;" onclick="reviewDelete()">삭제</a>
 						</c:if>
-						<a href="javascript:;" onclick="history.back();">목록</a>
+						<a href="<%=request.getContextPath() %>/review">목록</a>
 					</p>
 					<div class="starRating">
 						<i class="far fa-star" data-rating="1"></i>
