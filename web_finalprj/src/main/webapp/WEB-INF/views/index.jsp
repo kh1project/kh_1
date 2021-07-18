@@ -81,7 +81,7 @@
 	      			<div class="carousel-item">
 	      		</c:otherwise>
 	      	</c:choose>
-	      		<c:url var="path1" value="/resources/images/movie/${item }/stillcut/movie_image (5).jpg" />
+	      		<c:url var="path1" value="/resources/images/movie/${item }/stillcut/movie_image (1).jpg" />
 	      		<img src="${path1 }">
 	      	</div>
 	      </c:forEach>
