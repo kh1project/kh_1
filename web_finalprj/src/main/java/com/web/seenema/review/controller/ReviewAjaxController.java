@@ -72,11 +72,15 @@ public class ReviewAjaxController {
 		Type type = new TypeToken<ArrayList<Map<String, String>>>() {}.getType();
 		ArrayList<Map<String, String>> postlist = gson.fromJson(jsonData, type);
 		
+		System.out.println("------------------- 수정 작업 전 기존에 있던 내용들");
 		for(int i = 0; i < postlist.size(); i++) {
-			System.out.println("[AjaxController] : " + i + "번째 이미지 : " + postlist.get(i).get("postimg"));
-			System.out.println("[AjaxController] : " + i + "번째 텍스트 : " + postlist.get(i).get("posttext"));
+			System.out.println("[AjaxController] : " + i + "번째 : " + postlist.get(i));
 		}
 		int mergeId = review.updatePost(postlist, existingCont, boardId);
+		System.out.println("------------------- 수정 작업 후 내용들");
+		for(int i = 0; i < postlist.size(); i++) {
+			System.out.println("[AjaxController] : " + i + "번째 : " + postlist.get(i));
+		}
 		System.out.println("포스트 다 수정된 후 mergeId : " + mergeId);
 		return mergeId;
 	}

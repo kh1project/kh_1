@@ -244,7 +244,7 @@ public class ReviewController {
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String reviewUpdateGet(Model m, HttpServletRequest req, int rid) throws Exception {
-		String forward = "";
+		String forward = "redirect:/review";
 		
 		HttpSession session = req.getSession();
 		int aid = 0;
@@ -252,20 +252,25 @@ public class ReviewController {
 			AccountDTO dto = (AccountDTO) session.getAttribute("account");
 			aid = dto.getId();
 		}
-		
-		ReviewDTO data = review.reviewOne(rid);
-		if(data != null) {
-			if(aid == 0 || aid != data.getAid()) {
-				return "redirect:/review";
-			} else if(aid == data.getAid() && data.getNodel().equals("Y")) {
-				m.addAttribute("blockerror", 1);
+		if(rid > 0 ) {
+			ReviewDTO data = review.reviewOne(rid);
+			if(data != null) {
+				if(aid == 0 || aid != data.getAid()) {
+					return "redirect:/review";
+				} else if(aid == data.getAid() && data.getNodel().equals("Y")) {
+					m.addAttribute("blockerror", 1);
+				}
+				List<ReviewPostDTO> contlist = review.MergePost(data.getContents());
+				m.addAttribute("data", data);
+				m.addAttribute("contlist", contlist);
+				
+				System.out.println("-------------------------");
+				for(int i = 0; i < contlist.size(); i++) {
+					System.out.println("contents속에 있는 " + i + "번째 포스트 : " + contlist.get(i));
+				}
+				forward = "review/reviewupdate";
 			}
-			List<ReviewPostDTO> contlist = review.MergePost(data.getContents());
-			m.addAttribute("data", data);
-			m.addAttribute("contlist", contlist);
-			forward = "review/reviewupdate";
-		} else {
-			forward = "redirect:/review";
+			System.out.println("-------------------------");
 		}
 		
 		return forward;
@@ -274,31 +279,13 @@ public class ReviewController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String reviewUpdatePost(Model m, HttpServletRequest req, @ModelAttribute ReviewDTO dto) throws Exception {
 		String forward = "";
-		
-//		HttpSession session = req.getSession();
-//		int aid = 0;
-//		if(session.getAttribute("account") != null) {
-//			AccountDTO adto = (AccountDTO) session.getAttribute("account");
-//			aid = adto.getId();
-//		}
-//		if(aid == 0 || aid != dto.getAid()) {
-//			return "redirect:/review";
-//		}
-		
-		System.out.println("Update Controller 정상 진입 확인");
-		System.out.println("-------------------------");
-		System.out.println("dto.getContents() : " + dto.getContents());
-		System.out.println("dto.getStar() : " + dto.getStar());
-		System.out.println("dto.getId() : " + dto.getId());
-		System.out.println("-------------------------");
-
 		//updateReview 메서드 호출
 		boolean result = review.updateReview(dto);
 		System.out.println("updateReview 정상 동작 확인");
 		System.out.println("-------------------------");
-		System.out.println("업뎃 후 dto.getContents() : " + dto.getContents());
-		System.out.println("업뎃 후 dto.getStar() : " + dto.getStar());
-		System.out.println("업뎃 후 dto.getId() : " + dto.getId());
+		System.out.print("업뎃후 dto.getContents() : " + dto.getContents());
+		System.out.print(" / dto.getStar() : " + dto.getStar());
+		System.out.println(" / dto.getId() : " + dto.getId());
 		System.out.println("-------------------------");
 				
 		if(result) {

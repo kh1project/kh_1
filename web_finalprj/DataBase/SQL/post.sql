@@ -16,13 +16,19 @@ DROP SEQUENCE merge_seq;
 DROP SEQUENCE post_seq;
 CREATE SEQUENCE post_seq;
 CREATE SEQUENCE merge_seq;
+DELETE FROM post WHERE id  <= 200;
 
 SELECT * FROM post;
-DELETE FROM post WHERE id  <= 200;
-SELECT mergePost FROM post WHERE id <= 30;
+SELECT * FROM post WHERE mergePost = 1 ORDER BY id
 
 merge_seq.CURRVAL;
 
+UPDATE post
+		   SET mergePost = merge_seq.NEXTVAL
+		     , postimg = '/seenema/resources/images/movie/1/poster/movie_image.jpg'
+		     , posttext = '1122'
+		 WHERE id = 3
 
+ALTER SEQUENCE merge_seq INCREMENT BY -1
 
 DROP TABLE post;

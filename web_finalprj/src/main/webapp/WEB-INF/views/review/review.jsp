@@ -39,7 +39,14 @@
 			<div class="tab-content">
 			    <div class="tab-pane active" id="reviewtab1">
 			    	<div class="tab-header">
-			    		<h5>전체 <span>${listsize } </span>건</h5>
+			    		<h5>전체
+			    		<c:if test="${listsize != null}"> 
+			    			<span>${listsize } </span>건
+			    		</c:if>
+			    		<c:if test="${listsize == null}"> 
+			    			<span>0 </span>건
+			    		</c:if>
+			    		</h5>
 			    		<div class="tab-header-right">
 			    			<span class="orderdate" data-order="date">최신순</span>
 			    			<span class="orderlike" data-order="like">공감순</span>

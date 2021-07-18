@@ -113,9 +113,12 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 
 	@Override
 	public int firstUpdatePost(ReviewPostDTO post) throws Exception {
+		System.out.println("[Repo] firstUpdate 하기 전 내용 확인 " + post);
+		
 		int rs = sqlSession.update("reviewMapper.firstUpdatePost", post);
 		int mpid = post.getMergePost();
-		System.out.println("firstUpdatePost 정상동작");
+		System.out.println("[Repo] firstUpdate 후 " + post);
+		System.out.println("[Repo] firstUpdatePost 정상동작");
 		return mpid;
 	}
 	
@@ -136,7 +139,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 		if(rs == 1) {
 			result = true;
 		}
-		System.out.println("updatePost 정상동작");
+		System.out.println("[Repo] updatePost 정상동작");
 		return result;
 	}
 	
@@ -152,7 +155,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 		if(rs == 1) {
 			result = true;
 		}
-		System.out.println("rollbackPost 정상동작");
+		System.out.println("[Repo] rollbackPost 정상동작");
 		return result;
 	}
 	
@@ -207,5 +210,17 @@ public class ReviewRepositoryImpl implements ReviewRepository {
 	@Override
 	public List<Integer> selectAddPossibleList(int aid) throws Exception {
 		return sqlSession.selectList("reviewMapper.selectAddPossibleList", aid);
+	}
+
+	@Override
+	public boolean sequence1back() throws Exception {
+		boolean result = false;
+		int rs1 = sqlSession.update("reviewMapper.post_seq1back");
+		int rs2 = sqlSession.update("reviewMapper.merge_seq1back");
+		if(rs1 == 1 && rs2 == 1){
+			System.out.println("[Repo] sequence1back 정상동작");
+			result = true;
+		}
+		return result;
 	}
 }
