@@ -191,6 +191,18 @@ COMMENT ON COLUMN seat.seatcol IS '좌석의 열';
 COMMENT ON COLUMN seat.reserved IS '좌석 예약 여부';
 
 
+-- 회원 구분 테이블
+CREATE TABLE account_type (
+    id NUMBER,
+    name VARCHAR2(64)
+);
+
+ALTER TABLE account_type ADD CONSTRAINT account_t_id_pk PRIMARY KEY(id);
+
+COMMENT ON COLUMN account_type.id IS '회원 구분 식별번호';
+COMMENT ON COLUMN account_type.name IS '회원 구분명';
+
+
 -- 회원 테이블
 CREATE TABLE account (
     id NUMBER,
@@ -265,18 +277,6 @@ COMMENT ON COLUMN reservation.totalpay IS '결제 금액';
 COMMENT ON COLUMN reservation.payment IS '결제 방법';
 
 
--- 회원 구분 테이블
-CREATE TABLE account_type (
-    id NUMBER,
-    name VARCHAR2(64)
-);
-
-ALTER TABLE account_type ADD CONSTRAINT account_t_id_pk PRIMARY KEY(id);
-
-COMMENT ON COLUMN account_type.id IS '회원 구분 식별번호';
-COMMENT ON COLUMN account_type.name IS '회원 구분명';
-
-
 -- 게시판 구분 테이블
 CREATE TABLE board_type (
     id NUMBER,
@@ -301,8 +301,8 @@ CREATE TABLE board (
     gcnt NUMBER DEFAULT 0,
     bcnt NUMBER DEFAULT 0,
     star NUMBER DEFAULT 1,
-    cdate DATE DEFAULT SYSDATE,
-    udate DATE DEFAULT SYSDATE,
+    cdate DATE DEFAULT SYSDATE + (1/24 * 9),
+    udate DATE DEFAULT SYSDATE + (1/24 * 9),
     nodel CHAR(1) DEFAULT 'N',
     deleted CHAR(1) DEFAULT 'N'
 );

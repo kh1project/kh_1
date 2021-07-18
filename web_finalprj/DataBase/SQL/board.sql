@@ -132,3 +132,16 @@ UPDATE board SET gcnt = 1 WHERE id = 1;
 select a.id, a.title, b.path, b.name
   from movie a, Image_files b
  where a.id = b.mid and a.id = 1;
+ 
+ -- sysdate 관련하여
+ select sysdate, current_date, systimestamp, current_timestamp from dual;
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
+ALTER SESSION SET TIME_ZONE = '+9:0' 
+ALTER DATABASE web_final_oracle SET TIME_ZONE = '+9:0'
+ALTER DATABASE SET TIME_ZONE = '+09:00'
+
+select sysdate + (1/24 * 9) from dual;
+
+select sessiontimezone from dual;
+select dbtimezone from dual
+
