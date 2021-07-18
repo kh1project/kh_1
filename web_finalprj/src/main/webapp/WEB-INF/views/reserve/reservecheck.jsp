@@ -66,7 +66,7 @@
 					<c:url var="payment" value="/reserve/payment" />
 						<div class="movie-info">
 							<div class="poster">
-								<img src="<c:url value="/resources/img/${posterId }/poster/${postername }" />">
+								<img src="<c:url value="/resources/img/${mid }/poster/${postername }" />">
 							</div>							
 								<c:choose>
 								 	<c:when test="${rating eq 0}">
