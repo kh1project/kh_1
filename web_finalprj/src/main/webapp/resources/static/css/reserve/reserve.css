@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 section.reserve-frame{
-	width: 100%; height: 810px;
+	width: 100%; height: 720px;
 }
 
 div.reserve-window {
@@ -33,7 +33,7 @@ div.left-menu > ul > li {
 div.left-menu > ul > li.active {
 	width: 100%; height: 120px;
 	border: 1px solid #D5D5D5;
-	background-color: #4374D9;
+	background-color: #503396;
 	color: white; font-weight: bolder;
 }
 
@@ -43,4 +43,10 @@ li.choice-movie, li.choice-schedule, li.choice-time {
 
 hr{
 	width: 90%;
+}
+
+footer{
+	position: absolute;
+	left: 0; bottom: 0;
+    width: 100%;
 }
