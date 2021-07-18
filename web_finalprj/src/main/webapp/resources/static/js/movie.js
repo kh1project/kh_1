@@ -13,7 +13,6 @@ function iLikeIt(mid){
         type: "post",
         datatype: "json",
         data: {
-            userid : 1,
             "mid" : mid
         },
         success: function(data){
@@ -35,7 +34,6 @@ function iHateIt(mid){
         type: "post",
         datatype: "json",
         data: {
-            userid : 1,
             "mid" : mid
         },
         success: function(data){

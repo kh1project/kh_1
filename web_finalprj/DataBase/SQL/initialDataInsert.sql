@@ -1674,8 +1674,8 @@ INSERT INTO seat(id, tid, seatrow, seatcol, reserved) VALUES (seat_seq.NEXTVAL, 
 -- 회원테이블 INSERT (SEQUENCE 없는 상태)
 --*************************************
 CREATE SEQUENCE account_seq;
-INSERT INTO ACCOUNT (id, username, nickname, email, phone, password, gender, age, joindate)
-	VALUES(account_seq.NEXTVAL, '어드민', '어드민', 'admin@admin.com', '010-1234-1234', 'admin', 'F', 25, SYSDATE);
+INSERT INTO ACCOUNT (id, username, nickname, email, phone, password, gender, age, joindate, grade)
+	VALUES(account_seq.NEXTVAL, '어드민', '어드민', 'admin@admin.com', '010-1234-1234', 'admin', 'F', 25, SYSDATE, 0);
 
 --*************************************
 -- 예매테이블 INSERT

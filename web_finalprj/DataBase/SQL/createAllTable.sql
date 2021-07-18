@@ -122,7 +122,7 @@ CREATE TABLE movie_theater (
 );
 
 ALTER TABLE movie_theater ADD CONSTRAINT movie_t_id_pk PRIMARY KEY(id);
-ALTER TABLE movie_theater ADD CONSTRAINT movie_t_mid_FK FOREIGN KEY(mid) REFERENCES movie(id);
+ALTER TABLE movie_theater ADD CONSTRAINT movie_t_mid_FK FOREIGN KEY(mid) REFERENCES movie(id) ON DELETE CASCADE;
 ALTER TABLE movie_theater ADD CONSTRAINT movie_t_tid_FK FOREIGN KEY(tid) REFERENCES theater(id);
 
 COMMENT ON COLUMN movie_theater.id IS '영화의 상영관 식별번호';
@@ -139,7 +139,7 @@ CREATE TABLE Image_files(
 );
 
 ALTER TABLE Image_files ADD CONSTRAINT Image_files_id_PK PRIMARY KEY(id);
-ALTER TABLE Image_files ADD CONSTRAINT Image_files_mid_FK FOREIGN KEY(mid) REFERENCES movie(id);
+ALTER TABLE Image_files ADD CONSTRAINT Image_files_mid_FK FOREIGN KEY(mid) REFERENCES movie(id) ON DELETE CASCADE;
 ALTER TABLE Image_files MODIFY name CONSTRAINT Image_files_name_NN NOT NULL;
 ALTER TABLE Image_files MODIFY path CONSTRAINT Image_files_path_NN NOT NULL;
 
@@ -309,7 +309,7 @@ CREATE TABLE board (
 
 ALTER TABLE board ADD CONSTRAINT board_id_pk PRIMARY KEY(id);
 ALTER TABLE board ADD CONSTRAINT board_btype_FK FOREIGN KEY(btype) REFERENCES board_type(id);
-ALTER TABLE board ADD CONSTRAINT board_mid_FK FOREIGN KEY(mid) REFERENCES movie(id);
+ALTER TABLE board ADD CONSTRAINT board_mid_FK FOREIGN KEY(mid) REFERENCES movie(id) ON DELETE CASCADE;
 ALTER TABLE board ADD CONSTRAINT board_aid_FK FOREIGN KEY(aid) REFERENCES account(id);
 
 COMMENT ON COLUMN board.id IS '게시판 식별번호';
@@ -340,7 +340,7 @@ CREATE TABLE attach_files (
 
 ALTER TABLE attach_files ADD CONSTRAINT attach_files_id_pk PRIMARY KEY(id);
 ALTER TABLE attach_files ADD CONSTRAINT attach_files_bid_FK FOREIGN KEY(bid) REFERENCES board(id);
-ALTER TABLE attach_files ADD CONSTRAINT attach_files_mid_FK FOREIGN KEY(mid) REFERENCES movie(id);
+ALTER TABLE attach_files ADD CONSTRAINT attach_files_mid_FK FOREIGN KEY(mid) REFERENCES movie(id) ON DELETE CASCADE;
 
 COMMENT ON COLUMN attach_files.id IS '첨부파일 식별번호';
 COMMENT ON COLUMN attach_files.bid IS '게시글 첨부파일 식별';
@@ -368,7 +368,7 @@ CREATE TABLE comments (
 
 ALTER TABLE comments ADD CONSTRAINT comments_id_pk PRIMARY KEY(id);
 ALTER TABLE comments ADD CONSTRAINT comments_bid_FK FOREIGN KEY(bid) REFERENCES board(id);
-ALTER TABLE comments ADD CONSTRAINT comments_mid_FK FOREIGN KEY(mid) REFERENCES movie(id);
+ALTER TABLE comments ADD CONSTRAINT comments_mid_FK FOREIGN KEY(mid) REFERENCES movie(id) ON DELETE CASCADE;
 ALTER TABLE comments ADD CONSTRAINT comments_aid_FK FOREIGN KEY(aid) REFERENCES account(id);
 
 COMMENT ON COLUMN comments.id IS '댓글 식별번호';
@@ -390,7 +390,7 @@ CREATE TABLE movielike (
 	mid NUMBER ,
 	aid NUMBER
 );
-alter table movielike add constraint movielike_mid_fk foreign key(mid) references movie(id);
+alter table movielike add constraint movielike_mid_fk foreign key(mid) references movie(id) ON DELETE CASCADE;
 alter table movielike add constraint movielike_aid_fk foreign key(aid) references account(id);
 
 COMMENT ON COLUMN movielike.mid IS '영화 식별번호';
@@ -409,7 +409,7 @@ CREATE TABLE line (
 );
 
 ALTER TABLE line ADD CONSTRAINT line_id_pk PRIMARY KEY(id);
-ALTER TABLE line ADD CONSTRAINT line_mid_FK FOREIGN KEY(mid) REFERENCES movie(id);
+ALTER TABLE line ADD CONSTRAINT line_mid_FK FOREIGN KEY(mid) REFERENCES movie(id) ON DELETE CASCADE;
 ALTER TABLE line ADD CONSTRAINT line_aid_FK FOREIGN KEY(aid) REFERENCES account(id);
 
 COMMENT ON COLUMN line.id IS '한줄평 식별번호';

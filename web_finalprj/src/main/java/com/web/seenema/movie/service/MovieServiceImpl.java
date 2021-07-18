@@ -79,8 +79,7 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public MovieDTO getMovie(int mid) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getMovie(mid);
 	}
 	
 	@Override
@@ -130,6 +129,7 @@ public class MovieServiceImpl implements MovieService {
 		return dao.insertMovieLike(dto);
 	}
 	
+
 	@Override
 	public List<MovieLikeDTO> getMovieLikeList(int aid) {
 		return dao.getMovieLikeList(aid);
@@ -201,11 +201,12 @@ public class MovieServiceImpl implements MovieService {
 	
 	@Override
 	public Map<Integer, Integer> getGcnt() {
-		Map<Integer, Integer> res = new HashMap<>();
-		for(MovieGcntDTO item : dao.getGcnt()) 
-			res.put(item.getMid(), item.getGcnt());
+		Map<Integer, Integer> map = new HashMap<>();
+		List<MovieGcntDTO> list = dao.getGcnt();
+		for(MovieGcntDTO item : list) 
+			map.put(item.getMid(), item.getGcnt());
 		
-		return res;
+		return map;
 	}
 	
 	@Override
@@ -299,37 +300,62 @@ public class MovieServiceImpl implements MovieService {
 	}
 	
 	@Override
-	public Map<Integer, List<MovieImageDTO>> getPosterInfo(int size) {
+	public Map<Integer, MovieImageDTO> getPosterInfo() {
 
-		Map<Integer, List<MovieImageDTO>> imageMap = new HashMap<>();
-		for(int i = 1; i <= size; i++) {
-			imageMap.put(i, dao.getPoster(i));
+		Map<Integer, MovieImageDTO> imageMap = new HashMap<>();
+		List<MovieImageDTO> list = dao.getPoster();
+		for(MovieImageDTO item : list) {
+			imageMap.put(item.getMid(), item);
 		}
 
 		return imageMap;
 	}
 	
 	@Override
-	public Map<Integer, List<MovieImageDTO>> getStillcutInfo(int size) {
+	public Map<Integer, MovieImageDTO> getStillcutInfo() {
 
-		Map<Integer, List<MovieImageDTO>> imageMap = new HashMap<>();
-		for(int i = 1; i <= size; i++) {
-			imageMap.put(i, dao.getStillcut(i));
+		Map<Integer, MovieImageDTO> imageMap = new HashMap<>();
+		List<MovieImageDTO> list = dao.getStillcut();
+		for(MovieImageDTO item : list) {
+			imageMap.put(item.getMid(), item);
 		}
 
 		return imageMap;
 	}
 	
 	@Override
-	public List<MovieImageDTO> getOnePoster() {
-		return dao.getOnePoster();
+	public Map<Integer, MovieImageDTO> getOnePoster() {
+		List<MovieImageDTO> list = dao.getOnePoster();			
+		Map<Integer, MovieImageDTO> map = new HashMap<>();
+		for(MovieImageDTO item : list) {
+			map.put(item.getMid(), item);
+		}
+		
+		return map;
+	}
+	
+	@Override
+	public Map<Integer, MovieImageDTO> getTargetPoster(Integer mid) {
+		List<MovieImageDTO> list = dao.getOnePoster();			
+		Map<Integer, MovieImageDTO> map = new HashMap<>();
+		if(list == null) {
+			MovieImageDTO dto = new MovieImageDTO();
+			dto.setPath("/resources/images/movie/0/");
+			dto.setName("imageNotExist.jpg");
+			map.put(mid, dto);
+			
+		}
+		for(MovieImageDTO item : list) {
+			map.put(mid, item);
+		}
+		
+		return map;
 	}
 	
 	@Override
 	public int getAid(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		int aid=-1;
-		
     	if(session.getAttribute("account") != null) {
             AccountDTO dto = (AccountDTO) session.getAttribute("account");
             aid = dto.getId();
@@ -347,9 +373,16 @@ public class MovieServiceImpl implements MovieService {
 	
 	@Override
 	public void updateMovieData(MovieDTO dto) {
-		
 		dao.updateMovieData(dto);
-		
+	}
+	
+	@Override
+	public int deleteMovie(int mid) {
+		int res = 0;
+		dao.deleteImageAll(mid);
+		if(dao.deleteMovie(mid) > 0)
+			res = 1;
+		return 0;
 	}
 
 }

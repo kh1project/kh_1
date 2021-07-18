@@ -40,7 +40,7 @@
                                      <span class="input-group-text" id="inputGroupFileAddon01">포스터 등록</span>
                                 </div>
                                 <div class="custom-file">
-                                     <input type="file" class="custom-file-input" id="poster" name="poster" aria-describedby="inputGroupFileAddon01" multiple>
+                                     <input type="file" class="custom-file-input" id="poster" name="poster" aria-describedby="inputGroupFileAddon01" accept=".jpg, .jpeg, .png" multiple>
                                      <label class="custom-file-label" for="poster">선택된 파일 없음</label>
                                 </div>
                            </div>
@@ -49,7 +49,7 @@
                                      <span class="input-group-text" id="inputGroupFileAddon02">스틸컷 등록</span>
                                 </div>
                                 <div class="custom-file">
-                                     <input type="file" class="custom-file-input" id="stillcut" name="stillcut" aria-describedby="inputGroupFileAddon02" multiple>
+                                     <input type="file" class="custom-file-input" id="stillcut" name="stillcut" aria-describedby="inputGroupFileAddon02" accept=".jpg, .jpeg, .png" multiple>
                                      <label class="custom-file-label" for="stillcut">선택된 파일 없음</label>
                                 </div>
                            </div>
@@ -181,6 +181,7 @@
                      </div>
                 </div>
                 <button type="submit" id="submit" class="btn btn-primary" onclick="edit()">수정</button>
+                <button type="button" class="btn btn-danger" onclick="deletemovie(${mid})">영화삭제</button>
            </form>
      </div>
      <hr>

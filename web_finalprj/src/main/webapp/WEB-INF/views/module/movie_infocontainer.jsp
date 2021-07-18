@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div class="info-container">
-	<img class="bg-poster" alt="movie-id${movie.getId() }-img"
-		src="${root }${mainposter.get(movie.getId()-1).getPath()}${mainposter.get(movie.getId()-1).getName()}">
+	<c:choose>
+		<c:when test="${mainposter.get(movie.getId()).getName() ne null}">
+			<img class="bg-poster" alt="movie-id${movie.getId() }-img" src="${root }${mainposter.get(movie.getId()).getPath()}${mainposter.get(movie.getId()).getName()}">
+		</c:when>
+		<c:otherwise>
+			<img class="bg-poster" alt="movie-id${movie.getId() }-img"
+				src="${root }resources/images/movie/0/imageNotExist.jpg">
+		</c:otherwise>
+	</c:choose>
 	<div class="info">
 		<div class="title ">${movie.getTitle()}</div>
 		<div class="subtitle ">${movie.getSubtitle()}</div>
@@ -83,8 +90,16 @@
 			</c:otherwise>
 		</c:choose>
 	</p>
-	<img class="rounded img-fluid float-right" alt="${movie.getTitle() }"
-		src="${root }${mainposter.get(movie.getId()-1).getPath()}${mainposter.get(movie.getId()-1).getName()}">
+	<c:choose>
+		<c:when test="${mainposter.get(movie.getId()).getName() ne null}">
+			<img class="rounded img-fluid float-right" alt="${movie.getTitle() }"
+				src="${root }${mainposter.get(movie.getId()).getPath()}${mainposter.get(movie.getId()).getName()}">
+		</c:when>
+		<c:otherwise>
+			<img class="rounded img-fluid float-right" alt="${movie.getTitle() }"
+				src="${root }resources/images/movie/0/imageNotExist.jpg">
+		</c:otherwise>
+	</c:choose>
 </div>
 <c:if test="${isAdmin eq true }">
 	<div class="pt-5 edit-btn-box">

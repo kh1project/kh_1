@@ -83,11 +83,11 @@
 	</insert>
 	
 	<select id="getPosterInfo" resultType="movieImage">
-		SELECT * FROM image_files WHERE mid=#{mid} AND path LIKE '%poster%'
+		SELECT * FROM image_files WHERE path LIKE '%poster%'
 	</select>
 	
 	<select id="getStillcutInfo" resultType="movieImage">
-		SELECT * FROM image_files WHERE mid=#{mid} AND path LIKE '%stillcut%'
+		SELECT * FROM image_files WHERE path LIKE '%stillcut%'
 	</select>
 	
 	<select id="getOnePoster" resultType="movieImage">
@@ -118,6 +118,14 @@
 		, rating = #{rating}, actor = #{actor}, playdate = #{playdate}
 		WHERE id = #{id} 
 	</insert>
+	
+	<delete id="deleteImageAll" parameterType="_int">
+		DELETE FROM image_files WHERE mid = #{mid}
+	</delete>
+	
+	<delete id="deleteMovie" parameterType="_int">
+		DELETE FROM movie WHERE id = #{mid}
+	</delete>
   	
   	
 </mapper>

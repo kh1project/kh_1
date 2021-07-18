@@ -57,7 +57,29 @@
 
 	}
 	
-
+	function deletemovie(mid){
+		console.log(mid+"번 영화 삭제 요청");
+		let go = confirm("정말로 삭제 할까요? 네??");
+		if(go){
+			$.ajax({
+		        url: "/seenema/movieajax/edit/deletemovie", 
+		        type: "post",
+		        datatype: "json",
+		        data: {
+		            "mid" : mid
+		        },
+		        success: function(data){
+					console.log("삭제작업 완료");
+					window.location = "/seenema/movie";
+		        },
+		        error: function(){
+					console.log("삭제실패");
+		        }
+		    })
+	    } else {
+	    console.log("삭제취소");
+	    }
+	}
 	
 	function remove(){
 		$.ajax({
