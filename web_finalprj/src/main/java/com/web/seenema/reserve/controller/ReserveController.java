@@ -129,6 +129,7 @@ public class ReserveController {
 		List<MovieDTO> moviedata = movies.getMovies(mid);
 		// 영화 Poster List
 		List<MovieImageDTO> poster = movies.getPoster(mid);
+		
 		// 시간 List
 		List<TimeInfoDTO> timelist = ress.getTimelist(timeid);
 		
