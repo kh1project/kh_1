@@ -236,12 +236,12 @@ public class ReviewServiceImpl implements ReviewService {
 			equalsFlag = true;
 			System.out.println("수정된 포스트 하나도 없음");
 			//새 머지아이디로 저장된 post 전체 삭제하는 sql 실행.
-			dto.rollbackPost(mergeId);
+			dto.rollbackPost(mergeId); //DB용량관리차원에서 이전 머지아이디는 삭제함
 			System.out.println("rollbackPost 정상 작동");
 			//머지아이디 시퀀스 -1 하는 sql 실행. ALTER SEQUENCE merge_seq INCREMENT BY -1;
 			return Integer.parseInt(existingCont); //기존의 머지아이디 그대로 다시 반환
 		} else {
-			dto.rollbackPost(mergeId-1);
+			dto.rollbackPost(mergeId-1); //DB용량관리차원 이전 머지아이디는 삭제함
 			System.out.println("return 전의 mergeId : " + mergeId);
 			return mergeId;
 		}
