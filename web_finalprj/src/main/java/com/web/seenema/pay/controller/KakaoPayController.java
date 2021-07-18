@@ -53,7 +53,7 @@ public class KakaoPayController {
 	
 	@RequestMapping(value = "",  method= RequestMethod.POST)
 	public String payment(HttpServletRequest req,
-			Model m, @ModelAttribute PayInfoDTO pidto) throws Exception {
+			Model m, @ModelAttribute PayInfoDTO pidto,  @RequestParam String timeID) throws Exception {
 		String forward = "";
 		// 주문자가 결제 요청한 상품의 정보를 확인 후 카카오페이 서버에 상품관련 결제준비 정보 전송
 		HttpSession session = req.getSession();
@@ -64,16 +64,15 @@ public class KakaoPayController {
 			// 상품 정보를 확인하기 위한 코드 작성 시작
 			int mid = ress.getMovieId(pidto.getTitle());
 			int mtid = ress.getmtid(mid, pidto.getLocation(), pidto.getName(), pidto.getTname());
-			
+			int timeid = Integer.parseInt(timeID);
 			// accountid 가져오기
 			AccountDTO adto = (AccountDTO)session.getAttribute("account");
 			List<MovieDTO> moviedata = movies.getMovies(mid);
-			List<TimeInfoDTO> timelist = ress.getTimelist(mtid, pidto.getMoviedate(), pidto.getStarttime(), pidto.getEndtime());
+			List<TimeInfoDTO> timelist = ress.getTimelist(timeid);
 			
 			Date date = new Date();
 			SimpleDateFormat today = new SimpleDateFormat("yyMMdd");
 			String orderdate = today.format(date);
-			String timeid = Integer.toString(timelist.get(0).getId());
 			
 			String seats = pidto.getSeat();
 			System.out.println("payment 좌석 : " + seats);

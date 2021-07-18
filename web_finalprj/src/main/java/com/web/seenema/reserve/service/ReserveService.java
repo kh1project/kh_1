@@ -25,7 +25,7 @@ public interface ReserveService {
 	public int getMovieId(String title) throws Exception;
 	public int getmtid(int mid, String location, String name, String tname) throws Exception;
 	public int getBranchTheater(String location, String name, String tname) throws Exception;
-	public List<TimeInfoDTO> getTimelist(int mtid, String moviedate, String starttime, String endtime) throws Exception;
+	public List<TimeInfoDTO> getTimelist(int tid) throws Exception;
 	public int ResDelete(int id) throws Exception;
 	public List<ReservationDTO> Reservelist(String orderid, int aid) throws Exception;
 	public List<SeatDTO> getSeatlist(int id) throws Exception;

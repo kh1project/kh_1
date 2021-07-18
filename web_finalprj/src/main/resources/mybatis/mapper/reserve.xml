@@ -14,12 +14,9 @@
 		DELETE reservation WHERE id = #{id}
 	</delete>
 	
-	<select id="getTimeid" parameterType="HashMap" resultType="timeinfo">
+	<select id="getTimeid" resultType="timeinfo">
 		SELECT * FROM time
-		 WHERE mtid = #{mtid}
-		   AND TO_CHAR(moviedate, 'yyyy-mm-dd') = #{moviedate}
-		   AND starttime = #{starttime}
-		   AND endtime = #{endtime}
+		 WHERE id = #{tid}
 	</select>
 	
 	<select id="getMid" resultType="_int">

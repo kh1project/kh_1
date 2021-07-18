@@ -122,14 +122,8 @@ public class ReserveRepositoryImpl implements ReserveRepository{
 	}
 
 	@Override
-	public List<TimeInfoDTO> getTimelist(int mtid, String moviedate, String starttime, String endtime) throws Exception {
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("mtid", mtid);
-		data.put("moviedate", moviedate);
-		data.put("starttime", starttime);
-		data.put("endtime", endtime);
-		
-		return sqlSession.selectList("reserveMapper.getTimeid", data);
+	public List<TimeInfoDTO> getTimelist(int tid) throws Exception {
+		return sqlSession.selectList("reserveMapper.getTimeid", tid);
 	}
 
 	@Override

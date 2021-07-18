@@ -98,9 +98,9 @@ public class ReserveServiceImpl implements ReserveService {
 	}
 
 	@Override
-	public List<TimeInfoDTO> getTimelist(int mtid, String moviedate, String starttime, String endtime) throws Exception {
+	public List<TimeInfoDTO> getTimelist(int tid) throws Exception {
 		// 시간 List 가져오기
-		return dao.getTimelist(mtid, moviedate, starttime, endtime);
+		return dao.getTimelist(tid);
 	}
 
 	@Override

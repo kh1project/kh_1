@@ -54,6 +54,7 @@
 			</c:forEach>
 			
 			<c:forEach var="timelist" items="${timelist }">
+				<c:set var="tid" value="${timelist.id }" />
 				<c:set var="moviedate" value="${timelist.moviedate }" />
 				<c:set var="starttime" value="${timelist.starttime }" />
 				<c:set var="endtime" value="${timelist.endtime }" />
@@ -95,6 +96,7 @@
 								<hr class="check">
 								<div class="moviedate">
 									<label class="list">상영일</label>
+									<input type="hidden" name="timeID" value="${tid }">
 									<input type="text" name="moviedate" class="info moviedate" value="${moviedate }" readonly>
 									<label class="list">상영시간</label>
 									<div class="time">

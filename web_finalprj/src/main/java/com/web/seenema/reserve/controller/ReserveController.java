@@ -88,20 +88,20 @@ public class ReserveController {
 	}
 	
 	@RequestMapping(value = "/seats")
-	public ModelAndView seats(HttpServletRequest req, @ModelAttribute SeatSelectDTO ssdto) throws Exception {
+	public ModelAndView seats(HttpServletRequest req, @ModelAttribute SeatSelectDTO ssdto, @RequestParam String tid) throws Exception {
 		int mid = ress.getMovieId(ssdto.getTitle());
 		int mtid = ress.getmtid(mid, ssdto.getLocation(), ssdto.getName(), ssdto.getTname());
-		
-		List<TimeInfoDTO> timelist = ress.getTimelist(mtid, ssdto.getMoviedate(), ssdto.getStarttime(), ssdto.getEndtime());
-		int timeid = timelist.get(0).getId();
+		int timeid = Integer.parseInt(tid);
+		List<TimeInfoDTO> timelist = ress.getTimelist(timeid);
 		
 		// 상영관 List
 		List<BranchTheaterDTO> btlist = ress.getmovieTheater(mtid);
 		
 		// 상영관의 좌석 정보 가져오기.
 		List<SeatDTO> seatlists = ress.seatList(timeid);
+		
 		// 상영관의 총 좌석, 잔여석 가져오기.
-		Map<String, Object> seatcnt = ress.seatcntlist(mtid);
+		Map<String, Object> seatcnt = ress.seatcntlist(timeid);
 		
 		// 영화 정보 가져오기.
 		List<MovieDTO> moviedata = movies.getMovies(mid);
@@ -117,10 +117,11 @@ public class ReserveController {
 	}
 	
 	@RequestMapping(value = "/reservecheck", method= RequestMethod.POST)
-	public ModelAndView reservecheck(HttpServletRequest req, HttpServletResponse response, @ModelAttribute ReserveCheckDTO rcdto) throws Exception {
+	public ModelAndView reservecheck(HttpServletRequest req, HttpServletResponse response, @ModelAttribute ReserveCheckDTO rcdto, @RequestParam String tid) throws Exception {
 		ModelAndView mv = new ModelAndView("reserve/reservecheck");
 		int mid = ress.getMovieId(rcdto.getTitle());
 		int mtid = ress.getmtid(mid, rcdto.getLocation(), rcdto.getName(), rcdto.getTname());
+		int timeid = Integer.parseInt(tid);
 		
 		// 상영관 List
 		List<BranchTheaterDTO> btlist = ress.getmovieTheater(mtid);
@@ -129,7 +130,7 @@ public class ReserveController {
 		// 영화 Poster List
 		List<MovieImageDTO> poster = movies.getPoster(mid);
 		// 시간 List
-		List<TimeInfoDTO> timelist = ress.getTimelist(mtid, rcdto.getMoviedate(), rcdto.getStarttime(), rcdto.getEndtime());
+		List<TimeInfoDTO> timelist = ress.getTimelist(timeid);
 		
 		List<SeatDTO> seatlist = new ArrayList<SeatDTO>();
 		// 체크된 좌석 정보
