@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.seenema.dto.BoxofficeDTO;
+import com.web.seenema.dto.MyGcntDTO;
+import com.web.seenema.movie.dto.MovieLikeDTO;
 import com.web.seenema.repository.MainRepositoryImpl;
 
 @Service
@@ -38,6 +40,16 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public int getGcnt(int id) {
 		return repository.selectGcnt(id);
+	}
+	
+	@Override
+	public boolean addMovielike(MovieLikeDTO info) {
+		return repository.insertMovielike(info);
+	}
+
+	@Override
+	public List<Integer> getMygcnt(MyGcntDTO mygcnt) {
+		return repository.getMygcnt(mygcnt);
 	}
 
 }

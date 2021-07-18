@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-
+/*
 .carousel-item {
   height: 100vh;
   min-height: 350px;
@@ -10,6 +10,25 @@
   -o-background-size: cover;
   background-size: cover;
 }
+*/
+
+* {
+	user-select: none;
+}
+
+/* carousel 크기 */
+.carousel {
+	height: 600px;
+}
+
+.carousel-inner {
+	height: 100%;
+}
+.carousel-inner img {
+	width: 100%;
+	object-fit: cover;
+}
+
 
 #boxoffice {
 	/*background-image: url('https://source.unsplash.com/RCAhiGJsUUE/1920x1080');*/
@@ -61,12 +80,14 @@
 	background-color: rgba(0, 0, 0, 0.8);
 	text-align: left;
 	color: white;
+	transition: background-color .3s ease-out, color 0s ease-out .5s;
+	cursor: pointer;
 }
 
 .btn-primary {
 	background-color: #1a56b0;
-	border: 1px solid #1a56b0;
 }
+
 
 .btn-outline-light {
 	border: 1px solid rgb(255, 255, 255, 0.3);

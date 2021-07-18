@@ -35,7 +35,6 @@
 		 			  FROM (SELECT id FROM movie WHERE id &lt;= 15 ORDER BY playdate DESC)
 		 			 WHERE ROWNUM &lt;= 4
 		 )
-		 
 	</select>
 	
 	<select id="movieCnt" resultType="_int">
@@ -54,6 +53,24 @@
 		  FROM movie
 		 WHERE id = #{id}
 	</select>
+	
+	<select id="checkGcntDup" parameterType="movieLike">
+		SELECT *
+		  FROM movielike
+		 WHERE aid = #{aid}
+		   AND mid = #{mid}
+	</select>
+	
+	<select id="mygcnt" parameterType="mygcnt" resultType="integer">
+		SELECT mid
+   		  FROM movielike
+    	 WHERE mid IN (#{mid1}, #{mid2}, #{mid3}, #{mid4}) AND aid = #{aid};
+	</select>
+	
+	<insert id="addMovielike" parameterType="movieLike">
+		INSERT INTO movielike
+			 VALUES (#{aid}, #{mid})
+	</insert>
 	
 	<update id="incGcnt">
 		UPDATE movie

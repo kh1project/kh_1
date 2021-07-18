@@ -9,6 +9,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.web.seenema.dto.BoxofficeDTO" alias="boxoffice" />
+		<typeAlias type="com.web.seenema.dto.MyGcntDTO" alias="mygcnt" />
 		<typeAlias type="com.web.seenema.reserve.dto.BranchDTO" alias="branch" />
 		<typeAlias type="com.web.seenema.reserve.dto.TheaterDTO" alias="theater" />
 		<typeAlias type="com.web.seenema.reserve.dto.MovieTheaterDTO" alias="movietheater" />
@@ -18,6 +19,7 @@
 		<typeAlias type="com.web.seenema.movie.dto.MovieDTO" alias="movie" />
 		<typeAlias type="com.web.seenema.movie.dto.MyMovieDTO" alias="myMovie" />
 		<typeAlias type="com.web.seenema.movie.dto.MovieImageDTO" alias="movieImage" />
+		<typeAlias type="com.web.seenema.movie.dto.MovieLikeDTO" alias="movielike" />
 		<typeAlias type="com.web.seenema.reserve.dto.SeatSelectDTO" alias="SeatSelect" />
 		<typeAlias type="com.web.seenema.reserve.dto.SeatDTO" alias="seat" />
 		<typeAlias type="com.web.seenema.reserve.dto.ReservationDTO" alias="reservation" />

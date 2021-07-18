@@ -2,15 +2,19 @@ package com.web.seenema.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.web.seenema.account.dto.AccountDTO;
 import com.web.seenema.dto.BoxofficeDTO;
+import com.web.seenema.dto.MyGcntDTO;
 import com.web.seenema.service.MainService;
 
 @Controller
@@ -21,15 +25,15 @@ public class IndexController {
 	private MainService service;
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ModelAndView index(HttpServletResponse resp) {
+	public ModelAndView index(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView("index");
 		
 		// 메인 carousel에 배치될 랜덤한 영화ID 3개 받아오기 & 담기
-		mv.addObject("carousel", service.getCarousel());
+		List<Integer> carousel = service.getCarousel();
 		
 		// 메인 박스오피스에 배치될 4순위의 List<영화ID, like수, summary> 받아오기
 		List<BoxofficeDTO> boxoffice = service.getBoxOffice();
-		
+
 		// summary 편집하기
 		for(BoxofficeDTO item: boxoffice) {
 			String summary = item.getSummary();
@@ -42,8 +46,31 @@ public class IndexController {
 				}
 			}
 		}
+		
+		// 로그인 된 경우 좋아요 여부 가져오기
+		HttpSession sess = req.getSession(false);
+		if(sess != null) {
+			AccountDTO account = (AccountDTO)sess.getAttribute("account");
+			if(account != null) {
+				MyGcntDTO dto = new MyGcntDTO();
+				dto.setMid1(boxoffice.get(0).getId());
+				dto.setMid2(boxoffice.get(1).getId());
+				dto.setMid3(boxoffice.get(2).getId());
+				dto.setMid4(boxoffice.get(3).getId());
+				dto.setAid(account.getId());
+				List<Integer> mygcnt = service.getMygcnt(dto);
+				mv.addObject("mygcnt", mygcnt);
+			}
+		}
+		
+		mv.addObject("carousel", carousel);
 		mv.addObject("boxoffice", boxoffice);
 		
 		return mv;
-	}	
+	}
+	
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String search(@RequestParam(required=false)String keyword) {
+		return "search";
+	}
 }
