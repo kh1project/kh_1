@@ -67,8 +67,8 @@
      	WHERE id = #{id}
   	</update>
   	
-  	<select id="getAdminList" resultType="com.web.seenema.account.dto.AccountGradeDTO">
-  		SELECT id, name FROM account_type WHERE name = 'admin'
+  	<select id="getAdminList" resultType="com.web.seenema.account.dto.AccountDTO">
+  		SELECT id, grade FROM account WHERE grade = 0
   	</select>
   	
 </mapper>

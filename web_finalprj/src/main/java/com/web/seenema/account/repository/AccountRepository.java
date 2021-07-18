@@ -15,6 +15,6 @@ public interface AccountRepository {
 	public boolean insert(AccountDTO dto) throws Exception;
 	public boolean update(AccountDTO dto) throws Exception;
 	public boolean delete(AccountDTO dto) throws Exception;
-	public List<AccountGradeDTO> getAdminList();
+	public List<AccountDTO> getAdminList();
 
 }

@@ -69,7 +69,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 	}
 
 	@Override
-	public List<AccountGradeDTO> getAdminList() {
+	public List<AccountDTO> getAdminList() {
 		return sqlSession.selectList("accountMapper.getAdminList");
 	}
 	

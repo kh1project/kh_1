@@ -328,7 +328,7 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public int getAid(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		int aid=0;
+		int aid=-1;
 		
     	if(session.getAttribute("account") != null) {
             AccountDTO dto = (AccountDTO) session.getAttribute("account");

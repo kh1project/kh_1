@@ -203,7 +203,8 @@ CREATE TABLE account (
     age NUMBER,
     joindate DATE DEFAULT SYSDATE,
     logindate DATE DEFAULT SYSDATE,
-    expiredate DATE DEFAULT NULL
+    expiredate DATE DEFAULT NULL,
+    grade NUMBER(1) DEFAULT 1 NOT NULL
 );
 
 ALTER TABLE account ADD CONSTRAINT account_id_pk PRIMARY KEY(id);
@@ -214,6 +215,7 @@ ALTER TABLE account MODIFY phone CONSTRAINT account_phone_nn NOT NULL;
 ALTER TABLE account MODIFY password CONSTRAINT account_password_nn NOT NULL;
 ALTER TABLE account ADD CONSTRAINT account_gender_CK CHECK(gender IN('M', 'F'));
 ALTER TABLE account MODIFY age CONSTRAINT account_age_nn NOT NULL;
+ALTER TABLE account ADD CONSTRAINT account_t_grade_fk FOREIGN KEY(grade) REFERENCES account_type(id);
 
 COMMENT ON COLUMN account.id IS '회원 식별번호';
 COMMENT ON COLUMN account.username IS '회원 이름';

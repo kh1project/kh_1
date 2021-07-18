@@ -122,9 +122,9 @@ public class AccountServiceImpl implements AccountService {
 	
 	@Override
 	public Boolean adminCheck(int aid) {
-		List<AccountGradeDTO> agdto = dao.getAdminList();
+		List<AccountDTO> adto = dao.getAdminList();
 		Boolean res = false;
-		for(AccountGradeDTO item : agdto) {
+		for(AccountDTO item : adto) {
 			if(aid == item.getId())
 				res = true;
 		}

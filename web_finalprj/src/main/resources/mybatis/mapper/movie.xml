@@ -94,9 +94,7 @@
 		SELECT img.id, img.mid, img.path, img.name 
 		FROM image_files img 
 		WHERE img.id 
-		IN (SELECT MIN(id) FROM image_files GROUP BY mid) 
-		AND img.path 
-		LIKE '%poster%' 
+		IN (SELECT MIN(id) FROM image_files WHERE path LIKE '%poster%' GROUP BY mid) 
 		ORDER BY mid
 	</select>
 	
