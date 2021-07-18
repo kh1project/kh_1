@@ -1,7 +1,7 @@
 package com.web.seenema.account.dto;
 
 import java.sql.Date;
-
+ 
 public class AccountDTO {
 	private int id;
 	private String email;

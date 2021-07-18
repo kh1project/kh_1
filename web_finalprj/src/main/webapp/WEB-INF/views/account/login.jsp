@@ -15,7 +15,7 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://kit.fontawesome.com/74ba2bf207.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/static/js/common.js"></script>
-
+ 
 	<c:url var="main" value="/index" />
 	<c:url var="login" value="/account/login" />
 	<c:url var="join" value="/account/join" />
@@ -45,19 +45,7 @@ body{
 .main-container .main-wrap{
 	width:768px;
 }
-.main-container .main-wrap .logo-wrap{
-	padding-top:55px;
-}
-.main-container .main-wrap .logo-wrap img
-{
-	width: 231px;
-	height: 44px;
-}
-.main-container .main-wrap header .logo-wrap{
-	display:flex;	
-	flex-direction: column;
-	align-items: center;
-}
+
 .login-input-section-wrap{
 	padding-top: 60px;
 	display: flex;
@@ -169,6 +157,7 @@ body{
 			<div class="login-input-wrap password-wrap">	
 				<input id="id_password" name="password" type="password" placeholder="비밀번호" required></input>
 			</div>
+			&nbsp;
 			<div>
 				<label style="color: red;">${error }</label>
 			</div>
@@ -176,6 +165,7 @@ body{
 				<button type="submit" class="loginButton">로그인</button>
 				<c:url var="main" value="/index" />
 			</div>
+			&nbsp;
 			<div class="login-stay-sign-in">
 				<div class="sort1">
 					<input type="checkbox" id="checkSaveId"> <span>아이디 저장</span>
