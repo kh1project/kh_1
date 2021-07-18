@@ -39,6 +39,7 @@ hr { margin: 3px; }
     color: #fff;
     font-weight: 400;
     line-height: calc(3rem - 8px);
+    margin-bottom: 30px;
 }
 div #schedule_form {
 	border: 1px solid #D5D5D5;
