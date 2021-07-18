@@ -226,12 +226,11 @@ select {
                 <div>
                     <h3 class="join_title"><label for="gender" checked>성별</label></h3>
                     <span class="box gender_code">
-                        <select id="gender" class="sel">
+                        <select name="gender" id="gender" class="sel">
                             <option>성별</option>
-                            <option value="M" id="id_gender_m" name="gender">남자</option>
-                            <option value="F" id="id_gender_f" name="gender">여자</option>
-                        </select>
-                        <input name="gender" type="hidden" value="" />                            
+                            <option value="M" id="id_gender_m">남자</option>
+                            <option value="F" id="id_gender_f">여자</option>
+                        </select>                           
                     </span>
                 </div>
 
@@ -311,8 +310,6 @@ function send() {
 		phone.focus();
 		return;
 	}
-	//select 값을 input태그에 전달
-	document.querySelector("#gender").nextElementSibling.value = document.querySelector("#gender").value
 	
 	document.account_form.submit();
 }
