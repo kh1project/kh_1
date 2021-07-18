@@ -13,7 +13,7 @@
 			VALUES(post_seq.NEXTVAL, #{mergePost}, #{postimg}, #{posttext}) 
 	</insert>
 	<select id="selectMergePost" parameterType="string" resultType="reviewpost">
-		SELECT * FROM post WHERE mergePost = #{mergeId}
+		SELECT * FROM post WHERE mergePost = #{mergeId} ORDER BY id
 	</select>
 	<insert id="insertReview" parameterType="reviewadd">
 		INSERT INTO board(id, btype, mid, aid, title, contents, star)
@@ -73,20 +73,18 @@
 				  LEFT OUTER JOIN reservation h ON g.id = h.timeid
 				 WHERE e.id = ${id}
 		      GROUP BY d.mid
-           ) ORDER BY id DESC;
+           ) ORDER BY id DESC
 	</select>
 	<select id="selectReview" parameterType="int" resultType="review">
-		SELECT * FROM board WHERE id = ${rid} AND deleted = 'N' AND nodel = 'N'
+		SELECT * FROM board WHERE id = ${rid} AND deleted = 'N' AND nodel = 'N' ORDER BY id
 	</select>
 	<update id="firstUpdatePost" parameterType="reviewpost">
 		UPDATE post
-		   SET mergePost = merge_seq.NEXTVAL
+		   SET mergePost = post_seq.NEXTVAL
 		     , postimg = #{postimg}
 		     , posttext = #{posttext}
 		 WHERE id = #{id}
-		 <selectKey keyColumn="mergePost" keyProperty="mergePost" resultType="int" order="AFTER">
-		 	SELECT mergePost FROM post WHERE id = #{id}
-		 </selectKey>
+
 	</update>
 	<update id="updatePost" parameterType="reviewpost">
 		UPDATE post
