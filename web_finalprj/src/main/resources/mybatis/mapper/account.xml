@@ -52,13 +52,17 @@
        	SET logindate = SYSDATE
      	WHERE id = #{id}
   	</update>
+  	
+  	<select id="readAccount" resultType="account">
+  		SELECT * FROM account WHERE email = #{email}
+ 	</select>
   
-  	<update id="updateAccount" parameterType="account">
+  	<update id="update" parameterType="account">
   		UPDATE account
   	   	SET password = #{password}
   	     	, nickname = #{nickname}
   	     	, phone = #{phone}
-  	 	WHERE id = #{id}
+  	 	WHERE email = #{email}
   	</update>
   
   	<update id="expireAccount">
@@ -67,8 +71,12 @@
      	WHERE id = #{id}
   	</update>
   	
+  	<delete id="delete">
+  		DELETE FROM account WHERE email = #{email} AND password = #{password}
+  	</delete>
+  	
   	<select id="getAdminList" resultType="com.web.seenema.account.dto.AccountGradeDTO">
   		SELECT id, name FROM account_type WHERE name = 'admin'
   	</select>
-  	
+  
 </mapper>

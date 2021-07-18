@@ -14,7 +14,7 @@ import com.web.seenema.movie.repository.MovieRepositoryImpl;
 import com.web.seenema.account.dto.AccountDTO;
 import com.web.seenema.account.dto.AccountGradeDTO;
 import com.web.seenema.account.repository.AccountRepositoryImpl;
-
+ 
 @Service
 public class AccountServiceImpl implements AccountService {
 	
@@ -85,22 +85,6 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public boolean changeNickname() throws Exception {
-		return false;
-	}
-
-	@Override
-	public boolean changePassword() throws Exception {
-		return false;
-	}
-	
-	@Override
-	public boolean changePhone() throws Exception {
-		return false;
-	}
-	
-	
-	@Override
 	public List<List<MyMovieDTO>> mywatchList(int aid) throws Exception {
 		List<Integer> temp = dao.selectMyMovieList(aid);
 		List<Integer> midlist = temp.stream().distinct().collect(Collectors.toList());
@@ -133,10 +117,18 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public AccountDTO findId(int id) throws Exception {
-		AccountDTO data = new AccountDTO();
-		data.setId(id);
-		return dao.select(data);
+	public boolean update(AccountDTO dto) throws Exception {
+		return dao.update(dto);
+	}
+
+	@Override
+	public boolean delete(AccountDTO dto) throws Exception {
+		return dao.delete(dto);
+	}
+
+	@Override
+	public AccountDTO readAccount(String email) throws Exception {
+		return dao.readAccount(email);
 	}
 
 

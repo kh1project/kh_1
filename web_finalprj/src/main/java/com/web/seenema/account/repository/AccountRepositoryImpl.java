@@ -11,7 +11,7 @@ import com.web.seenema.account.dto.AccountGradeDTO;
 
 @Repository
 public class AccountRepositoryImpl implements AccountRepository {
-
+ 
 	@Autowired
 	SqlSession sqlSession;
 	
@@ -47,6 +47,10 @@ public class AccountRepositoryImpl implements AccountRepository {
 	public AccountDTO checkUser(AccountDTO dto) throws Exception {
 		return sqlSession.selectOne("accountMapper.checkLogin", dto);
 	}
+	
+	public AccountDTO readUser(String userid) throws Exception {
+		return sqlSession.selectOne("accountMapper.readUser", userid);
+	}
 
 	@Override
 	public boolean insert(AccountDTO dto) throws Exception {
@@ -60,17 +64,32 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 	@Override
 	public boolean update(AccountDTO dto) throws Exception {
-		return false;
+		boolean result = false;
+		int rs = sqlSession.update("accountMapper.update", dto);
+		if(rs == 1) {
+			result = true;
+		}
+		return result;
 	}
 
 	@Override
 	public boolean delete(AccountDTO dto) throws Exception {
-		return false;
+		boolean result = false;
+		int rs = sqlSession.update("accountMapper.delete", dto);
+		if(rs == 1) {
+			result = true;
+		}
+		return result;
 	}
 
 	@Override
 	public List<AccountGradeDTO> getAdminList() {
 		return sqlSession.selectList("accountMapper.getAdminList");
+	}
+
+	@Override
+	public AccountDTO readAccount(String email) throws Exception {
+		return sqlSession.selectOne("accountMapper.readAccount", email);
 	}
 	
 }

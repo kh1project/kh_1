@@ -14,7 +14,7 @@
 <script type="text/javascript" src="https://kit.fontawesome.com/74ba2bf207.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/static/js/common.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+ 
 <c:url var="email_check" value="/accountAjax/email" />
 <c:url var="nickname_check" value="/accountAjax/nickname" />
 	

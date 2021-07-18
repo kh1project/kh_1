@@ -67,12 +67,13 @@ public class AccountController {
 			// dto.getId() 값이 0 보다 큰 경우 로그인 성공
 			HttpSession session = req.getSession();
 			session.setAttribute("account", dto);
+			session.setAttribute("email", dto.getEmail());
 			session.setAttribute("logined", true);
 			forward = "redirect:/index";
 		} else {
 			// dto.getId() 값이 0 보다 크지 않은 경우 로그인 실패
 			m.addAttribute("data", dto);
-			m.addAttribute("error", "로그인 실패");
+			m.addAttribute("error", "가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
 			forward = "account/login";
 		}
 		
@@ -89,45 +90,65 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String account(Model m, @ModelAttribute AccountDTO dto) throws Exception {
-		AccountDTO data = account.accountInfoDetail(dto);
-		m.addAttribute("data", data);
-		System.out.println(data.toString());
+	public String account(HttpSession session, Model m) throws Exception {
+		String email = (String) session.getAttribute("email");	
+		AccountDTO dto = account.readAccount(email);	
+		m.addAttribute("accountData", dto);
 		return "account/mypage";
 	}
 	
-	@RequestMapping(value = "/updateAccount", method = RequestMethod.GET)
-	public String UpdateAccount(Model m, @ModelAttribute AccountDTO dto) throws Exception {
-		AccountDTO data = account.accountInfoDetail(dto);
-		m.addAttribute("data", data);
-		System.out.println(data.toString());
-		return "account/updateAccount";
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String update(HttpSession session, Model m) throws Exception {
+		String email = (String) session.getAttribute("email");	
+		AccountDTO dto = account.readAccount(email);	
+		m.addAttribute("accountData", dto);
+		return "account/update";
 	}
 
-	@RequestMapping(value = "/expire")
-	public ModelAndView expire() {
-		ModelAndView mv = new ModelAndView("account/expire");
-		mv.addObject("", "");
+	@RequestMapping(value = "/mypage", method = RequestMethod.POST)
+	public String mypage(@ModelAttribute AccountDTO dto, HttpSession session, Model m) throws Exception {
+		String forward = "";
+		boolean result = account.update(dto);
 		
-		return mv;
+		if(result) {
+			String email = (String) session.getAttribute("email");
+			m.addAttribute("accountData", dto);
+			forward = "/account/mypage";
+		} else {
+			String email = (String) session.getAttribute("email");
+			m.addAttribute("accountData", dto);
+			m.addAttribute("error", "정보 수정 실패");
+			forward = "/account/mypage";
+		}
+		return forward;
 	}
 	
-//	@RequestMapping(value = "/updateAccount", method = RequestMethod.GET)
-//	public ModelAndView accountGet() {
-//		ModelAndView mv = new ModelAndView("account/updateAccount");
-//		mv.addObject("", "");
-//		
-//		return mv;
-//	}
-	
-	@RequestMapping(value = "/updateAccount", method = RequestMethod.POST)
-	public ModelAndView accountPost() {
-		ModelAndView mv = new ModelAndView("account/updateAccount");
-		mv.addObject("", "");
-		
-		return mv;
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(HttpSession session, Model m)throws Exception {
+		String email = (String) session.getAttribute("email");
+		AccountDTO dto = account.readAccount(email);
+		m.addAttribute("accountData", dto);
+		return "account/delete";
 	}
 	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String delete(Model m, @ModelAttribute AccountDTO dto, HttpSession session)throws Exception {
+		String forward ="";
+		boolean result = account.delete(dto);
+		
+		if(result) {
+			session.invalidate();
+			forward = "redirect:/index";
+		} else {
+			m.addAttribute("accountData", dto);
+			m.addAttribute("error", "비밀번호가 일치하지 않습니다.");
+			forward = "account/delete";
+		}
+		
+		return forward;
+	}
+	
+
 	@RequestMapping(value = "/reservelist")
 	public ModelAndView reserveList() {
 		ModelAndView mv = new ModelAndView("account/reservelist");
@@ -177,5 +198,4 @@ public class AccountController {
 		return mv;
 	}
 
-}
-
+  }
