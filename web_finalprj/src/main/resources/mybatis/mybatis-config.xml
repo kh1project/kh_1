@@ -10,11 +10,9 @@
 	<typeAliases>
 		<typeAlias type="com.web.seenema.dto.BoxofficeDTO" alias="boxoffice" />
 		<typeAlias type="com.web.seenema.reserve.dto.BranchDTO" alias="branch" />
-		<typeAlias type="com.web.seenema.reserve.dto.RstepDTO" alias="rstep" />
 		<typeAlias type="com.web.seenema.reserve.dto.TheaterDTO" alias="theater" />
 		<typeAlias type="com.web.seenema.reserve.dto.MovieTheaterDTO" alias="movietheater" />
 		<typeAlias type="com.web.seenema.reserve.dto.BranchTheaterDTO" alias="BranchTheater" />
-		<typeAlias type="com.web.seenema.reserve.dto.TableRstepDTO" alias="table" />
 		<typeAlias type="com.web.seenema.reserve.dto.TimeDTO" alias="time" />
 		<typeAlias type="com.web.seenema.reserve.dto.TimeInfoDTO" alias="timeinfo" />
 		<typeAlias type="com.web.seenema.movie.dto.MovieDTO" alias="movie" />

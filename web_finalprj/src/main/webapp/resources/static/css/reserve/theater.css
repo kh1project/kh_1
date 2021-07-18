@@ -18,7 +18,6 @@ a:hover { text-decoration:none; color:inherit; }
 .btn-outline-secondary:hover { background-color:#f2f2f2; }
 .row-cols-lg-4>* { padding:0.5rem; }
 
-* { margin: auto auto; }
 .page-util {
     background-color: #4397a9;
     position: relative;

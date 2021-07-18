@@ -12,9 +12,7 @@ import com.web.seenema.movie.dto.MovieDTO;
 import com.web.seenema.reserve.dto.BranchDTO;
 import com.web.seenema.reserve.dto.BranchTheaterDTO;
 import com.web.seenema.reserve.dto.ReservationDTO;
-import com.web.seenema.reserve.dto.RstepDTO;
 import com.web.seenema.reserve.dto.SeatDTO;
-import com.web.seenema.reserve.dto.TableRstepDTO;
 import com.web.seenema.reserve.dto.TimeDTO;
 import com.web.seenema.reserve.dto.TimeInfoDTO;
 
@@ -160,48 +158,6 @@ public class ReserveRepositoryImpl implements ReserveRepository{
 		data.put("orderid", orderid);
 		data.put("aid", aid);
 		return sqlSession.selectList("reserveMapper.ReserveList", data);
-	}
-
-	@Override
-	public List<TableRstepDTO> selectRestInfo(TableRstepDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Map<String, Object>> selectSeatCnt(RstepDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Map<String, Object>> selectSeatFrame(RstepDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Integer> selectRseatList(RstepDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean updateSeat(RstepDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int selectPrice(RstepDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<SeatDTO> getSeatlist(int id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
