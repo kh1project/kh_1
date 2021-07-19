@@ -1951,6 +1951,8 @@ INSERT INTO reservation(id, orderid, sid, timeid, aid, rdate,  rcnt, totalpay, p
 INSERT INTO reservation(id, orderid, sid, timeid, aid, rdate,  rcnt, totalpay, payment)
 	VALUES(res_seq.NEXTVAL, '21071482A5', 5, 10, 1, SYSDATE, 1, 13000, 'k');
 	
+select * from board;
+	
 --*************************************
 -- line테이블 INSERT
 --*************************************
