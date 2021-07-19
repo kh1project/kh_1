@@ -360,8 +360,8 @@ CREATE TABLE comments (
     gcnt NUMBER DEFAULT 0,
     bcnt NUMBER DEFAULT 0,
     star NUMBER DEFAULT 1,
-    cdate DATE DEFAULT SYSDATE + 9,
-    udate DATE DEFAULT SYSDATE + 9,
+    cdate DATE DEFAULT SYSDATE,
+    udate DATE DEFAULT SYSDATE,
     deleted CHAR(1) DEFAULT 'N',
     block CHAR(1) DEFAULT 'N'
 );
